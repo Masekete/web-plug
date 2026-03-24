@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -227,10 +228,15 @@
     .footer-legal a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
     .footer-legal a:hover { color: #3a58ff; }
 
+    /* Center footer content on mobile - like other pages */
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-col { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-contact li { justify-content: center; }
+      .footer-links a:hover { transform: none; }
       .footer-bottom { flex-direction: column; text-align: center; }
-      .footer-legal { flex-direction: column; gap: 0.5rem; }
+      .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
     }
 
     /* Footer Flip Text */
