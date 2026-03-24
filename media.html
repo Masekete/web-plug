@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Webify – Get Your Business Online</title>
+  <title>Social Media Pages – Webify</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* ── Promo Bar – scrolls away naturally ── */
+    /* ── Promo Bar ── */
     .promo-bar {
       background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
       color: white;
@@ -28,33 +28,21 @@
       font-weight: 500;
       font-size: 0.9rem;
     }
-
-    .promo-content {
-      display: flex;
-      animation: scroll 25s linear infinite;
-      white-space: nowrap;
-    }
-
+    .promo-content { display: flex; animation: scroll 25s linear infinite; white-space: nowrap; }
     .promo-item { padding: 0 3rem; display: inline-flex; align-items: center; }
     .promo-item::before { content: ""; margin-right: 0.5rem; }
-
-    @keyframes scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @media (max-width: 768px) {
       .promo-content { animation: none; display: block; text-align: center; }
       .promo-item { display: none; padding: 0 1rem; justify-content: center; }
       .promo-item.active { display: flex; }
     }
 
-    /* ── Navbar – smart scroll ── */
+    /* ── CHANGE 1: Smart scroll navbar — top:0, hides on scroll down, shows on scroll up ── */
     .navbar {
       position: fixed;
-      top: 0; /* JS overrides this dynamically */
-      left: 0;
-      right: 0;
+      top: 0;
+      left: 0; right: 0;
       z-index: 1000;
       padding: 1rem 5%;
       display: flex;
@@ -66,39 +54,29 @@
       border-bottom: 1px solid rgba(255,255,255,0.3);
       box-shadow: 0 4px 30px rgba(0,0,0,0.07);
       transform: translateY(0);
-      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 0.38s ease;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .navbar.nav-hidden { transform: translateY(-100%); }
 
-    /* Scrolled down – navbar slides out above viewport */
-    .navbar.nav-hidden {
-      transform: translateY(-100%);
-    }
-
-    .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); }
-
+    .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); text-decoration: none; cursor: pointer; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
-
     .nav-links a {
       text-decoration: none; color: #222; font-weight: 500;
       position: relative; transition: color 0.25s; display: block; padding: 0.5rem 0;
     }
-
     .nav-links a::after {
       content: ''; position: absolute; width: 0; height: 2px;
       bottom: -5px; left: 0; background: #3a58ff; transition: width 0.3s ease;
     }
-
     .nav-links a:hover, .nav-links a.active { color: #3a58ff; }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
     /* ── Dropdown ── */
     .dropdown { position: relative; }
     .dropdown > a { display: flex; align-items: center; gap: 0.3rem; }
     .dropdown > a::before { content: '▼'; font-size: 0.7rem; transition: transform 0.3s; }
     .dropdown:hover > a::before { transform: rotate(180deg); }
-
     .dropdown-menu {
       position: absolute; top: 100%; left: 0;
       background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
@@ -108,7 +86,6 @@
       transition: all 0.3s ease; margin-top: 0.5rem;
       border: 1px solid rgba(58,88,255,0.1);
     }
-
     .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu li { list-style: none; }
     .dropdown-menu a {
@@ -118,177 +95,107 @@
     .dropdown-menu a:hover { background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; }
     .dropdown-menu a::after { display: none; }
 
-    /* ── Get Started ── */
     .get-started {
       padding: 0.7rem 1.5rem;
       background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
       color: white; border: none; border-radius: 8px;
-      font-weight: 600; cursor: pointer; transition: all 0.25s; text-align: center;
+      font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.25s;
     }
-    .get-started:hover { transform: translateY(-1px); opacity: 0.92; }
+    .get-started:hover { background: #3a58ff; transform: translateY(-1px); }
+
+    /* ── CHANGE 2: Mobile get-started button (inside nav panel) ── */
     .get-started-mobile { display: none; }
 
     .menu-btn { display: none; font-size: 1.9rem; cursor: pointer; color: #222; z-index: 1002; }
 
-    /* ── Hero ── */
-    .hero {
-      padding: clamp(9rem, 15vh, 12rem) 5% 6rem;
-      max-width: 1280px;
-      margin: 0 auto;
-      background: url('./tech bckgrnd.jpg') center/cover no-repeat white;
+    .mobile-menu-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .mobile-menu-overlay.active { display: block; opacity: 1; }
+
+    /* ── CHANGE 3: Mobile nav — no dropdown, clean get-started swap ── */
+    @media (max-width: 991px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        flex-direction: column; background: white; padding: 6rem 2rem 2rem;
+        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
+        z-index: 999; overflow-y: auto;
+      }
+      .nav-links.active { right: 0; }
+      .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
+      .nav-links a { padding: 1rem 0; }
+      .menu-btn { display: block; }
+      .get-started { display: none; }
+      /* No dropdown on mobile — Services links straight to section */
+      .dropdown > a::before { display: none; }
+      .dropdown-menu { display: none !important; }
+      /* Show mobile get-started inside the slide-out panel */
+      .get-started-mobile {
+        display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem;
+        background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
+        color: white; border: none; border-radius: 8px;
+        font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem;
+        cursor: pointer; transition: all 0.25s; text-align: center;
+      }
+      .get-started-mobile:hover { opacity: 0.92; transform: translateY(-1px); }
+    }
+    @media (max-width: 600px) { .navbar { padding: 1rem 4%; } .nav-links { width: 85%; } }
+
+    /* ══════════════════════
+       PAGE HERO
+    ══════════════════════ */
+    .page-hero {
       position: relative;
+      min-height: clamp(340px, 52vh, 500px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      /* CHANGE 4: margin-top = just navbar height; promo bar scrolls away naturally */
+      margin-top: 68px;
       overflow: hidden;
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -20% 0 -20% 0;
-      background: url('./tech bckgrnd.jpg') center / cover no-repeat;
-      z-index: -1;
-      will-change: transform;
-      transform: translateZ(0);
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background: url(./social-media-marketing-concept-marketing-with-applications.jpg);
+      background-size: cover; background-position: center;
+      filter: blur(0.8px) brightness(0.5); transform: scale(1.07); z-index: 1;
     }
-
-    @supports (animation-timeline: view()) {
-      .hero::before {
-        animation: parallax linear both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 60%;
-      }
-      @keyframes parallax { to { transform: translateY(-15%); } }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%);
+      z-index: 1;
     }
-
-    .hero-content { display: flex; align-items: center; gap: 4rem; flex-direction: row-reverse; }
-    .hero-text { flex: 1; }
-
-    .hero h1 { font-size: clamp(2.2rem,6vw,3.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.3rem; overflow: hidden; }
-
-    .hero-text-part1, .hero-text-part2 { display: inline-block; opacity: 0; }
-    .hero-text-part1 { animation: slideInLeft 0.8s ease-out 0.3s forwards; }
-    .hero-text-part2 { animation: slideInScale 0.6s ease-out 1.2s forwards; }
-
-    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes slideInScale {
-      0%   { opacity: 0; transform: translateY(20px) scale(0.8); }
-      60%  { transform: translateY(-5px) scale(1.05); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+    .hero-body { position: relative; z-index: 2; padding: 0 5%; }
+    .hero-breadcrumb {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 500; margin-bottom: 1.2rem;
     }
-
-    .highlight { color: #3a58ff; }
-
-    .hero p {
-      font-size: clamp(1rem,2.2vw,1.15rem); color: #555; max-width: 540px;
-      margin-bottom: 2.2rem; opacity: 0;
-      animation: fadeInUp 0.8s ease-out 1.8s forwards;
+    .hero-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: white; }
+    .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-breadcrumb .current { color: rgba(255,255,255,0.9); }
+    .page-hero h1 {
+      font-size: clamp(2.8rem,7vw,5.2rem); font-weight: 800; color: #ffffff;
+      line-height: 1.05; letter-spacing: -1.5px;
+      opacity: 0; transform: translateY(30px); animation: heroUp 0.8s ease-out 0.2s forwards;
     }
-
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    .cta-buttons {
-      display: flex; gap: 1.2rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeInUp 0.8s ease-out 2.2s forwards;
+    .page-hero h1 .highlight { color: #7c9bff; }
+    .page-hero p {
+      margin-top: 1.1rem; font-size: clamp(1rem,2.3vw,1.18rem);
+      color: rgba(255,255,255,0.72); max-width: 540px;
+      margin-left: auto; margin-right: auto; line-height: 1.7;
+      opacity: 0; transform: translateY(20px); animation: heroUp 0.8s ease-out 0.5s forwards;
     }
+    @keyframes heroUp { to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .page-hero h1 { letter-spacing: -0.5px; } }
 
-    .primary-btn {
-      padding: 0.9rem 1.7rem;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      color: white; border-radius: 10px; text-decoration: none;
-      font-weight: 600; font-size: 0.95rem; transition: all 0.3s;
-    }
-    .primary-btn:hover { background: #2f4ae6; transform: translateY(-2px); }
-
-    .secondary-btn {
-      padding: 0.9rem 1.7rem; border: 2px solid #bbb; background: transparent;
-      border-radius: 10px; font-weight: 500; font-size: 0.95rem;
-      cursor: pointer; transition: all 0.3s;
-    }
-    .secondary-btn:hover { border-color: #3a58ff; color: #3a58ff; }
-
-    .hero-img { flex: 0 0 auto; opacity: 0; animation: fadeInRight 0.8s ease-out 0.5s forwards; }
-    @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-    .hero-img img { width: 100%; max-width: 480px; height: auto; border-radius: 15% 55% 15% 55%; display: block; object-fit: cover; }
-
-    /* ── Stats ── */
-    /* ── Stats ── */
-    .stats {
-      background: #ffffff;
-      padding: 5rem 5%;
-    }
-    .stats-grid {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: clamp(2rem, 6vw, 5rem);
-      flex-wrap: wrap;
-    }
-    .stat-box {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      min-width: 130px;
-    }
-    .stat-icon {
-      width: 64px;
-      height: 64px;
-      color: #3a58ff;
-      margin-bottom: 0.4rem;
-    }
-    .stat-icon svg { width: 100%; height: 100%; }
-    .stat-box h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 800;
-      color: #111;
-      line-height: 1;
-    }
-    .stat-box p {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #888;
-      line-height: 1.4;
-    }
-
-    /* Mobile: 2-column grid, matching the reference image */
-    @media (max-width: 600px) {
-      .stats { padding: 3.5rem 5%; }
-      .stats-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem 1.5rem;
-        justify-items: center;
-      }
-    }
-
-    /* ── Elevate ── */
-    .elevate-section {
-      max-width: 100vw; padding: 0 5%;
-      display: flex; align-items: center; gap: clamp(3rem,6vw,5rem);
-      background-image: url(./hex\ tech\ bckrnd.jpg); background-size: contain;
-    }
-
-    .elevate-image { flex: 1; opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
-    .elevate-section.visible .elevate-image { opacity: 1; transform: translateX(0); }
-    .elevate-image img {
-      width: 100%; max-width: 550px; height: auto; border-radius: 20%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15); display: block;
-      border: blue solid 1px; border-top: #111 solid 0px; padding-top: 10%;
-    }
-
-    .elevate-content { flex: 1; opacity: 0; transform: translateX(50px); transition: all 0.8s ease-out 0.2s; }
-    .elevate-section.visible .elevate-content { opacity: 1; transform: translateX(0); }
-    .elevate-content h2 { font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; color: white; }
-    .elevate-content p { font-size: clamp(1.05rem,2.2vw,1.2rem); line-height: 1.8; color: white; margin-bottom: 1.2rem; }
-
-    /* ── Services ── */
-    /* ── Services wrapper ── */
-    .services-wrapper { max-width: 100vw; padding: 5rem 5%; background-color: #f8fbff; }
-
+    /* ══════════════════════
+       PACKAGES SECTION
+    ══════════════════════ */
+    .packages-section { max-width: 1200px; margin: 5rem auto; padding: 0 5%; }
     .section-heading {
       text-align: center; margin-bottom: 3.5rem;
       opacity: 0; transform: translateY(30px);
@@ -300,167 +207,79 @@
     .section-heading h2 .highlight { color: #3a58ff; }
     .section-heading p { font-size: clamp(1rem,2.2vw,1.15rem); color: #555; max-width: 580px; margin: 0 auto; line-height: 1.7; }
 
-    .services {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+    .pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
 
-    .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid rgba(0,0,0,0.04);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-      opacity: 0;
-      transform: translateY(50px);
+    .pkg-card {
+      background: #f8fbff; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.3s ease;
     }
-    .service-card.visible { opacity: 1; transform: translateY(0); }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
-      border: solid blue 2px;
-    }
+    .pkg-card:nth-child(1) { transition-delay: 0.1s; }
+    .pkg-card:nth-child(2) { transition-delay: 0.22s; }
+    .pkg-card:nth-child(3) { transition-delay: 0.34s; }
+    .pkg-card.visible { opacity: 1; transform: translateY(0); }
+    .pkg-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); border-color: rgba(58,88,255,0.15); }
 
-    .icon-box {
-      width: 56px; height: 56px; border-radius: 14px; background: #e8edff;
-      color: #3a58ff; display: grid; place-items: center;
-      font-size: 1.5rem; margin-bottom: 1.3rem; transition: all 0.4s;
-    }
-    .service-card:hover .icon-box { background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; transform: translateY(-4px); }
-    .service-card h3 { margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 700; }
-    .service-card p { color: #444; margin-bottom: 1.2rem; font-size: 0.97rem; }
-    .service-card ul { list-style: none; font-size: 0.94rem; color: #555; }
-    .service-card ul li { margin: 0.4rem 0; }
-    .service-card ul li::before { content: "✔ "; color: #3a58ff; margin-right: 0.5rem; }
+    .pkg-image { position: relative; width: 100%; height: 220px; overflow: hidden; }
+    .pkg-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.4s ease; filter: brightness(0.92); }
+    .pkg-card:hover .pkg-image img { transform: scale(1.06); filter: brightness(1); }
+    .pkg-accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3a58ff, #7c9bff); z-index: 1; }
 
-    .view-more-btn {
-      display: inline-block; margin-top: 1.2rem; padding: 0.6rem 1.3rem;
-      background: transparent; color: #3a58ff; border: 2px solid #3a58ff;
-      border-radius: 8px; text-decoration: none; font-weight: 600;
-      font-size: 0.9rem; transition: all 0.3s ease;
+    .pkg-body { padding: 1.5rem 1.8rem 1.8rem; }
+    .pkg-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3a58ff; background: #e8edff; padding: 0.28rem 0.75rem; border-radius: 50px; margin-bottom: 0.85rem; }
+    .pkg-body h3 { font-size: clamp(1.25rem,2.5vw,1.55rem); font-weight: 800; color: #111; margin-bottom: 0.7rem; line-height: 1.2; }
+    .pkg-body p { font-size: 0.97rem; color: #555; line-height: 1.7; margin-bottom: 1.3rem; }
+    .pkg-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #3a58ff; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: gap 0.3s ease, color 0.25s; }
+    .pkg-link:hover { gap: 0.75rem; color: #2f4ae6; }
+
+    @media (max-width: 900px) { .pkg-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
+
+    /* ══════════════════════
+       CTA BANNER
+    ══════════════════════ */
+    .cta-section {
+      padding: clamp(5rem,10vh,8rem) 5%;
+      background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%);
+      text-align: center; position: relative; overflow: hidden;
     }
-    .view-more-btn:hover { background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; transform: translateX(5px); }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%); pointer-events: none; }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: #fff; margin-bottom: 1rem; }
+    .cta-section h2 .highlight { color: #7c9bff; }
+    .cta-section p { font-size: clamp(1rem,2.2vw,1.15rem); color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .cta-btn {
+      display: inline-block; padding: 1rem 2.2rem;
+      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
+      color: white; border-radius: 10px; font-weight: 700; font-size: 1rem;
+      text-decoration: none; transition: all 0.3s; box-shadow: 0 8px 30px rgba(58,88,255,0.4);
+    }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(58,88,255,0.5); }
 
     /* ── WhatsApp Float ── */
     .chat-widget {
       position: fixed; bottom: 1.8rem; left: 1.8rem;
-      background: #25D366; color: white; width: 56px; height: 56px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.4); cursor: pointer;
-      transition: all 0.3s; z-index: 999; text-decoration: none;
+      background: #25D366; color: white; width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      cursor: pointer; transition: all 0.3s; z-index: 999; text-decoration: none;
     }
-    .chat-widget:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(37,211,102,0.55); }
-    .chat-widget svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .chat-widget:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(0,0,0,0.22); }
+    .chat-widget svg { width: 28px; height: 28px; }
 
-    /* ── Why Choose Webify ── */
-    .choose-webify {
-      padding: clamp(6rem,12vh,10rem) 5%;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      text-align: center; position: relative; overflow: hidden;
+    /* ── CHANGE 5: Footer flip text CSS ── */
+    .footer-brand-heading { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: white; line-height: 1.55; }
+    .footer-flip-wrapper {
+      display: inline-block; position: relative; overflow: hidden;
+      height: 1.45em; min-width: 105px; vertical-align: bottom; perspective: 400px;
     }
-
-    .cw-container { max-width: 1280px; margin: 0 auto; }
-    .cw-header { text-align: center; margin-bottom: clamp(3.5rem,8vw,5rem); }
-    .cw-pretitle { font-size: clamp(0.9rem,2vw,1rem); font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: white; margin-bottom: 0.8rem; }
-    .cw-header h2 { font-size: clamp(2.6rem,7vw,4.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; }
-    .cw-header h2 .highlight { color: white; }
-    .cw-subtitle { font-size: clamp(1.1rem,2.5vw,1.25rem); max-width: 720px; margin: 0 auto; opacity: 0.9; line-height: 1.7; }
-
-    .cw-intro { display: flex; align-items: center; gap: clamp(3rem,6vw,5rem); margin-bottom: clamp(4rem,8vw,6rem); }
-    .cw-intro-image { flex: 1; opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
-    .cw-intro.visible .cw-intro-image { opacity: 1; transform: translateX(0); }
-    .cw-intro-image img { width: 100%; max-width: 550px; height: auto; border-radius: 20px; border: 2px solid rgba(58,88,255,0.3); box-shadow: 0 20px 60px rgba(58,88,255,0.2); display: block; }
-    .cw-intro-content { flex: 1; opacity: 0; transform: translateX(50px); transition: all 0.8s ease-out 0.2s; }
-    .cw-intro.visible .cw-intro-content { opacity: 1; transform: translateX(0); }
-    .cw-intro-content h3 { font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; color: #fff; }
-    .cw-intro-content p { font-size: clamp(1.05rem,2.2vw,1.15rem); line-height: 1.8; color: #e2e8f0; margin-bottom: 1rem; opacity: 0.95; }
-
-    .cw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: clamp(1.8rem,4vw,2.5rem); }
-
-    .cw-card {
-      background: rgba(15,23,42,0.65); backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
-      padding: 2.2rem 1.8rem; text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      opacity: 0; transform: translateY(60px) scale(0.95);
-      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    .flip-word {
+      position: absolute; top: 0; left: 0; color: #7c9bff; font-weight: 800;
+      opacity: 0; transform: rotateX(90deg); transform-origin: center bottom;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4,0,0.2,1); white-space: nowrap;
     }
-    .cw-card.visible { opacity: 1; transform: translateY(0) scale(1); }
-    .cw-card:hover { transform: translateY(-12px) scale(1.04); box-shadow: 0 24px 60px rgba(0,0,0,0.45); border-color: rgba(58,88,255,0.4); }
-
-    .cw-icon {
-      width: 72px; height: 72px; margin: 0 auto 1.4rem;
-      background: rgba(58,88,255,0.15); border: 2px solid #3a58ff;
-      border-radius: 18px; display: flex; align-items: center; justify-content: center;
-      transition: all 0.45s cubic-bezier(0.22,1,0.36,1); color: #3a58ff;
-    }
-    .cw-icon svg { width: 32px; height: 32px; }
-    .cw-card:hover .cw-icon { background: #3a58ff; color: #fff; transform: scale(1.15) translateY(-4px); box-shadow: 0 10px 30px rgba(58,88,255,0.3); }
-    .cw-card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff; }
-    .cw-card p { font-size: 1rem; line-height: 1.6; opacity: 0.9; color: #e2e8f0; }
-
-    /* ── Mobile Menu Overlay ── */
-    .mobile-menu-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease;
-    }
-    .mobile-menu-overlay.active { display: block; opacity: 1; }
-
-    /* ── Responsive ── */
-    @media (max-width: 991px) {
-      .get-started { display: none; }
-      .get-started-mobile { display: block; }
-
-      .nav-links {
-        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-        flex-direction: column; background: white; padding: 6rem 2rem 2rem;
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-        transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
-        z-index: 999; overflow-y: auto;
-      }
-      .nav-links.active { right: 0; }
-      .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
-      .nav-links a { padding: 1rem 0; }
-
-      .get-started-mobile {
-        margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem;
-        background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-        color: white; border: none; border-radius: 8px;
-        font-weight: 600; font-size: 1rem; cursor: pointer;
-        transition: all 0.25s; text-align: center;
-      }
-      .get-started-mobile:hover { opacity: 0.92; transform: translateY(-1px); }
-
-      /* No dropdown on mobile – Services links to the section directly */
-      .dropdown > a::before { display: none; }
-      .dropdown-menu { display: none !important; }
-
-      .menu-btn { display: block; }
-
-      .hero { padding-top: clamp(8rem,18vw,10rem); text-align: center; }
-      .hero-content { flex-direction: column; gap: 3rem; }
-      .hero-img img { max-width: 320px; }
-      .elevate-section { flex-direction: column; text-align: center; gap: 2.5rem; }
-      .elevate-image img { max-width: 100%; }
-      .cw-intro { flex-direction: column; text-align: center; gap: 2.5rem; }
-      .cw-intro-image img { max-width: 100%; }
-    }
-
-    @media (max-width: 600px) {
-      .navbar { padding: 1rem 4%; }
-      .promo-bar { font-size: 0.85rem; }
-      .cta-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
-      /* stats handled by its own @media (max-width: 600px) block */
-      .cw-grid { grid-template-columns: 1fr; }
-      .nav-links { width: 85%; }
-      .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 52px; height: 52px; }
-      .chat-widget svg { width: 26px; height: 26px; }
-    }
+    .flip-word.active { opacity: 1; transform: rotateX(0deg); }
+    .flip-word.exit   { opacity: 0; transform: rotateX(-90deg); }
 
     /* ══════════════════════
        FOOTER
@@ -487,65 +306,18 @@
     .footer-legal a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
     .footer-legal a:hover { color: #3a58ff; }
 
-    /* ── Footer brand flip text ── */
-    .footer-brand-heading {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: white;
-      line-height: 1.55;
-    }
-
-    .footer-flip-wrapper {
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      height: 1.45em;
-      min-width: 105px;
-      vertical-align: bottom;
-      perspective: 400px;
-    }
-
-    .flip-word {
-      position: absolute;
-      top: 0; left: 0;
-      color: #7c9bff;
-      font-weight: 800;
-      opacity: 0;
-      transform: rotateX(90deg);
-      transform-origin: center bottom;
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-      white-space: nowrap;
-    }
-
-    .flip-word.active {
-      opacity: 1;
-      transform: rotateX(0deg);
-    }
-
-    .flip-word.exit {
-      opacity: 0;
-      transform: rotateX(-90deg);
-    }
-
-    /* ── Footer mobile centering ── */
+    /* CHANGE 6: Footer fully centered on mobile */
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-
       .footer-col { text-align: center; }
-
       .footer-social { justify-content: center; }
-
       .footer-contact li { justify-content: center; }
-
       .footer-links a:hover { transform: none; }
-
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
     }
   </style>
 </head>
-
 <body>
 
 <!-- Promo Bar -->
@@ -564,16 +336,16 @@
 
 <header>
   <nav class="navbar" id="mainNavbar">
-    <div class="logo">Webify</div>
+    <a href="./index.html" class="logo">Webify</a>
 
     <ul class="nav-links" id="navLinks">
       <li class="dropdown">
-        <a href="#service-scroll">Services</a>
+        <a href="./index.html#service-scroll">Services</a>
         <ul class="dropdown-menu">
           <li><a href="./google.html">Google My Business</a></li>
-          <li><a href="./media.html">Social Media Pages</a></li>
+          <li><a href="./media.html" class="active">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
-          <li><a href="#service-scroll">WhatsApp Business</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
           <li><a href="./branding.html">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
@@ -591,210 +363,93 @@
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-img">
-      <img src="./happy-professional-sitting-workplace.jpg" alt="Happy business owner with phone and laptop">
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-body">
+    <div class="hero-breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="./index.html#service-scroll">Services</a>
+      <span class="sep">›</span>
+      <span class="current">Social Media Pages</span>
     </div>
-    <div class="hero-text">
-      <h1>
-        <span class="hero-text-part1">From local hustle to </span>
-        <span class="hero-text-part2 highlight">online success</span>
-      </h1>
-      <p>We help township and small businesses get found online.<br>No tech stress, we handle everything so you can focus on growing.</p>
-      <div class="cta-buttons">
-        <a class="primary-btn" href="https://wa.me/27791646006" target="_blank">Let's Chat on WhatsApp</a>
-        <button class="secondary-btn">View Our Work →</button>
+    <h1>Social Media <span class="highlight">Pages</span></h1>
+    <p>Professional Facebook and Instagram pages that attract customers. We set up, design, and optimize your social presence so you can focus on your business.</p>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section">
+  <div class="section-heading" id="sectionHeading">
+    <p class="section-pretitle">Our Social Media Services</p>
+    <h2>Build Your Social <span class="highlight">Presence</span></h2>
+    <p>From page setup to professional designs and ongoing content — we help you create a social media presence that converts followers into customers.</p>
+  </div>
+
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <div class="pkg-image">
+        <div class="pkg-accent"></div>
+        <img src="./social-media-communication-networking-online-concept.jpg" alt="Social Media Page Setup">
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-tag">Essential</span>
+        <h3>Page Setup &amp; Branding</h3>
+        <p>Professional Facebook and Instagram business pages with optimized profiles, contact info, and basic branding that makes a great first impression.</p>
+        <a href="./essential-media.html" class="pkg-link">Learn more &#8594;</a>
+      </div>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-image">
+        <div class="pkg-accent"></div>
+        <img src="./wacom-work.jpg" alt="Social Media Design">
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-tag">Professional</span>
+        <h3>Complete Design Package</h3>
+        <p>Custom cover photos, profile images, highlight covers, post templates, and branded story templates. Everything designed to match your brand perfectly.</p>
+        <a href="./pro-media.html" class="pkg-link">Learn more &#8594;</a>
+      </div>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-image">
+        <div class="pkg-accent"></div>
+        <img src="./homepage-seen-computer-screen.jpg" alt="Social Media Management">
+      </div>
+      <div class="pkg-body">
+        <span class="pkg-tag">Premium</span>
+        <h3>Content Management</h3>
+        <p>We create and schedule posts, engage with your audience, respond to messages, and grow your following with consistent, professional content.</p>
+        <a href="prem-media.html" class="pkg-link">Learn more &#8594;</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="stats">
-  <div class="stats-grid">
-
-    <!-- 50+ Businesses Online -->
-    <div class="stat-box">
-      <div class="stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-        </svg>
-      </div>
-      <h2>50+</h2>
-      <p>Businesses<br>Online</p>
-    </div>
-
-    <!-- Starting From R499 -->
-    <div class="stat-box">
-      <div class="stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
-        </svg>
-      </div>
-      <h2>R499</h2>
-      <p>Starting<br>From</p>
-    </div>
-
-    <!-- 24hr Response Time -->
-    <div class="stat-box">
-      <div class="stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
-        </svg>
-      </div>
-      <h2>24hr</h2>
-      <p>Response<br>Time</p>
-    </div>
-
-    <!-- 2+ Years Operational -->
-    <div class="stat-box">
-      <div class="stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
-        </svg>
-      </div>
-      <h2>2+</h2>
-      <p>Years<br>Operational</p>
-    </div>
-
-  </div>
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Grow Your <span class="highlight">Following?</span></h2>
+  <p>Stop losing customers to competitors with better social media. Let's build your presence — starting today.</p>
+  <a href="https://wa.me/27791646006" target="_blank" class="cta-btn">Chat on WhatsApp &#8594;</a>
 </section>
 
-<a href="https://wa.me/27791646006" target="_blank" class="chat-widget" aria-label="Chat on WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+<!-- WhatsApp Float -->
+<a class="chat-widget" href="https://wa.me/27791646006" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
     <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
   </svg>
 </a>
-
-<section class="elevate-section">
-  <div class="elevate-image">
-    <img src="./portrait-young-african-american-man-with-vr-glasses.jpg" alt="Business growth and success">
-  </div>
-  <div class="elevate-content">
-    <h2>Elevate Your <span class="highlight">Online Presence</span></h2>
-    <p>In today's digital world, your online presence is your storefront. Whether you're a small township business or a growing enterprise, we help you stand out where it matters most, online.</p>
-    <p>From creating stunning websites to managing your social media, we provide complete digital solutions that attract customers and grow your business. No technical knowledge required, we handle everything so you can focus on what you do best.</p>
-  </div>
-</section>
-
-<section class="services-wrapper" id="service-scroll">
-  <div class="section-heading">
-    <p class="section-pretitle">What We Offer</p>
-    <h2>Our <span class="highlight">Services</span></h2>
-    <p>Everything you need to succeed online, from websites to marketing. We make it simple.</p>
-  </div>
-
-  <div class="services">
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg></div>
-      <h3>Google My Business</h3>
-      <p>Get found when customers search for your services nearby. Show up on Google Maps.</p>
-      <ul><li>Local visibility</li><li>Customer reviews</li><li>Business hours</li></ul>
-      <a href="./google.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></svg></div>
-      <h3>Social Media Pages</h3>
-      <p>Professional Facebook and Instagram pages that attract customers.</p>
-      <ul><li>Page setup</li><li>Content templates</li><li>Cover designs</li></ul>
-      <a href="./media.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/></svg></div>
-      <h3>Professional Websites</h3>
-      <p>Beautiful websites that show customers you mean business. Easy to find on Google.</p>
-      <ul><li>Mobile-friendly</li><li>Fast loading</li><li>Easy to update</li></ul>
-      <a href="./web.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></div>
-      <h3>WhatsApp Business Setup</h3>
-      <p>Turn your WhatsApp into a powerful sales tool with catalogues and auto-replies.</p>
-      <ul><li>Product catalogue</li><li>Quick replies</li><li>Business profile</li></ul>
-      <a href="whatsapp-business.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8m-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7"/></svg></div>
-      <h3>Logo and Branding</h3>
-      <p>Stand out with a professional logo and brand that customers remember.</p>
-      <ul><li>Custom Logo</li><li>Brand colours</li><li>Business cards</li></ul>
-      <a href="./branding.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-    <div class="service-card">
-      <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/></svg></div>
-      <h3>Digital Marketing</h3>
-      <p>Reach more customers with targeted ads that fit your budget.</p>
-      <ul><li>Email marketing</li><li>Facebook ads</li><li>Google ads</li><li>WhatsApp marketing</li></ul>
-      <a href="./marketing.html" class="view-more-btn">View More &#8594;</a>
-    </div>
-
-  </div>
-</section>
-<section class="choose-webify" id="choose-webify">
-  <div class="cw-container">
-    <div class="cw-header">
-      <p class="cw-pretitle">WHY CHOOSE WEBIFY?</p>
-      <h2>Built for <span class="highlight">local success</span></h2>
-    </div>
-
-    <div class="cw-intro">
-      <div class="cw-intro-image">
-        <img src="./positive-hesitant-business-lady-speads-palms-clueless-looks-up-ceiling-hesitates-choice-dressed-formally.jpg" alt="Local business success story">
-      </div>
-      <div class="cw-intro-content">
-        <h3>Your Success Is Our Mission</h3>
-        <p>We understand the unique challenges facing township and small businesses. That's why we've built our services specifically for entrepreneurs like you, people who are passionate about their business but need a trusted partner to handle the digital side.</p>
-        <p>With Webify, you're not just getting a service provider, you're getting a partner who's invested in your growth. We speak your language, understand your market, and deliver solutions that actually work.</p>
-      </div>
-    </div>
-
-    <div class="cw-grid">
-      <div class="cw-card" data-index="0">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5M8 12c-2.29 0-3.5-1.168-3.5-2h7C11.5 10.832 10.29 12 8 12"/></svg></div>
-        <h3>We Understand You</h3>
-        <p>We know township business inside out. We speak your language and truly get your challenges.</p>
-      </div>
-      <div class="cw-card" data-index="1">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/><path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/></svg></div>
-        <h3>Affordable Prices</h3>
-        <p>Quality work that fits real small-business budgets — no compromise, no overcharging.</p>
-      </div>
-      <div class="cw-card" data-index="2">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></div>
-        <h3>Quick Turnaround</h3>
-        <p>Your site live in as little as 3–5 days. Fast, efficient, no endless waiting.</p>
-      </div>
-      <div class="cw-card" data-index="3">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/></svg></div>
-        <h3>Real Support</h3>
-        <p>WhatsApp us anytime. Real people reply fast — no bots, no call centres.</p>
-      </div>
-      <div class="cw-card" data-index="4">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/><path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/></svg></div>
-        <h3>No Hidden Costs</h3>
-        <p>The price we quote is the price you pay. Transparent from day one.</p>
-      </div>
-      <div class="cw-card" data-index="5">
-        <div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/></svg></div>
-        <h3>We Handle Everything</h3>
-        <p>Domain, design, hosting, updates — you don't need to be tech-savvy. We've got you.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-grid">
 
-      <!-- About Column – animated heading, no description paragraph -->
+      <!-- CHANGE 5: Flip text heading, no description paragraph -->
       <div class="footer-col">
         <h3 class="footer-brand-heading">
           Webify, Built to
@@ -824,8 +479,8 @@
         <h3>Quick Links</h3>
         <ul class="footer-links">
           <li><a href="./index.html">Home</a></li>
-          <li><a href="index.html#service-scroll">Services</a></li>
-          <li><a href="#choose-webify">About Us</a></li>
+          <li><a href="./index.html#service-scroll">Services</a></li>
+          <li><a href="#">About Us</a></li>
           <li><a href="#">Pricing</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="#">Contact</a></li>
@@ -853,7 +508,7 @@
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>
-            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef86818980af988a8d868996c18c80c1958e">[email&#160;protected]</a></span>
+            <span>info@webify.co.za</span>
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
@@ -874,69 +529,61 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── Promo bar mobile rotation ──
   const promoItems = document.querySelectorAll('.promo-item');
-  let currentPromoIndex = 0;
-  function rotatePromoText() {
+  let promoIndex = 0;
+  function rotatePromo() {
     if (window.innerWidth <= 768) {
       promoItems.forEach(i => i.classList.remove('active'));
-      Array.from(promoItems).slice(0,3)[currentPromoIndex].classList.add('active');
-      currentPromoIndex = (currentPromoIndex + 1) % 3;
+      Array.from(promoItems).slice(0,3)[promoIndex].classList.add('active');
+      promoIndex = (promoIndex + 1) % 3;
     }
   }
-  rotatePromoText();
-  setInterval(rotatePromoText, 3000);
+  rotatePromo();
+  setInterval(rotatePromo, 3000);
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) promoItems.forEach(i => i.classList.remove('active'));
-    else rotatePromoText();
+    else rotatePromo();
   });
 
   // ── Mobile menu ──
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-
+  const overlay  = document.getElementById('mobileOverlay');
   menuBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('active');
-    mobileOverlay.classList.toggle('active', open);
+    overlay.classList.toggle('active', open);
     menuBtn.textContent = open ? '✕' : '☰';
     document.body.style.overflow = open ? 'hidden' : '';
   });
-
-  mobileOverlay.addEventListener('click', () => {
+  overlay.addEventListener('click', () => {
     navLinks.classList.remove('active');
-    mobileOverlay.classList.remove('active');
+    overlay.classList.remove('active');
     menuBtn.textContent = '☰';
     document.body.style.overflow = '';
   });
 
-  document.querySelectorAll('.dropdown-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      mobileOverlay.classList.remove('active');
-      menuBtn.textContent = '☰';
-      document.body.style.overflow = '';
+  // ── Scroll-triggered animations ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.section-heading, .pkg-card').forEach(el => observer.observe(el));
 
-  // ── Smart navbar: hide on scroll down, reveal on scroll up ──
-  // Navbar tracks below the promo bar while it's visible, then locks to top:0
-  const navbar = document.getElementById('mainNavbar');
+  // CHANGE 1: Smart navbar — hide on scroll down, reveal on scroll up
+  const navbar   = document.getElementById('mainNavbar');
   const promoBar = document.querySelector('.promo-bar');
   let lastScrollY = 0;
   const HIDE_THRESHOLD = 80;
-
   function updateNavbar() {
-    const scrollY = window.scrollY;
-    const promoHeight = promoBar ? promoBar.offsetHeight : 0;
-    // How many px of the promo bar are still on screen
-    const promoVisible = Math.max(0, promoHeight - scrollY);
-    // Always track below whatever is left of the promo bar
-    navbar.style.top = promoVisible + 'px';
-
+    const scrollY      = window.scrollY;
+    const promoH       = promoBar ? promoBar.offsetHeight : 0;
+    const promoVisible = Math.max(0, promoH - scrollY);
+    navbar.style.top   = promoVisible + 'px';
     if (scrollY < HIDE_THRESHOLD) {
       navbar.classList.remove('nav-hidden');
     } else if (scrollY > lastScrollY) {
@@ -944,117 +591,27 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       navbar.classList.remove('nav-hidden');
     }
-
     lastScrollY = scrollY;
   }
-
   window.addEventListener('scroll', updateNavbar, { passive: true });
-  // Run once on load to set correct initial position
   updateNavbar();
 
-  // ── Smooth scrolling ──
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // ── Service cards slide-in ──
-  const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, idx) => {
-      if (entry.isIntersecting)
-        setTimeout(() => entry.target.classList.add('visible'), idx * 120);
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.service-card').forEach(c => cardObserver.observe(c));
-
-  // ── Elevate section ──
-  const elevateObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.2 });
-  const elevateSection = document.querySelector('.elevate-section');
-  if (elevateSection) elevateObserver.observe(elevateSection);
-
-  // ── CW intro ──
-  const cwIntroObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.2 });
-  const cwIntro = document.querySelector('.cw-intro');
-  if (cwIntro) cwIntroObserver.observe(cwIntro);
-
-  // ── Stats counter ──
-  const statsSection = document.querySelector('.stats');
-  const statNumbers = document.querySelectorAll('.stat-box h2');
-  statNumbers.forEach(el => {
-    const num = el.textContent.trim();
-    el.innerHTML = `<span data-target="${num}">${num}</span>`;
-  });
-  const countUp = (el) => {
-    const target = el.getAttribute('data-target');
-    let end, suffix = '';
-    if (target.startsWith('R')) { end = parseInt(target.replace('R',''),10); suffix='R'; }
-    else if (target.endsWith('+')) { end = parseInt(target.replace('+',''),10); suffix='+'; }
-    else if (target.endsWith('hr')) { end = parseInt(target.replace('hr',''),10); suffix='hr'; }
-    else { end = parseInt(target,10); }
-    if (!end) return;
-    const duration = 1800, stepTime = 30;
-    const increment = end / (duration / stepTime);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) { current = end; clearInterval(timer); }
-      el.textContent = suffix==='R' ? `R${Math.round(current)}` :
-                       suffix==='+' ? `${Math.round(current)}+` :
-                       suffix==='hr' ? `${Math.round(current)}hr` : Math.round(current);
-    }, stepTime);
-  };
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) statNumbers.forEach(el => { const s=el.querySelector('span'); if(s) countUp(s); }); });
-  }, { threshold: 0.4 });
-  if (statsSection) statsObserver.observe(statsSection);
-
-  // ── Why Choose cards ──
-  const cwObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = parseInt(entry.target.dataset.index || 0);
-        setTimeout(() => entry.target.classList.add('visible'), 120 + index * 160);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
-  document.querySelectorAll('.cw-card').forEach(c => cwObserver.observe(c));
-
-  // ── Section headings ──
-  const headingObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.section-heading').forEach(h => headingObserver.observe(h));
-
-  // ── Footer flip text ──
+  // CHANGE 5: Footer flip text
   const flipWords = document.querySelectorAll('.flip-word');
   let flipIdx = 0;
-
   if (flipWords.length) {
     setInterval(() => {
-      // Exit current
       flipWords[flipIdx].classList.add('exit');
       flipWords[flipIdx].classList.remove('active');
       const exiting = flipWords[flipIdx];
       setTimeout(() => exiting.classList.remove('exit'), 500);
-
-      // Advance
       flipIdx = (flipIdx + 1) % flipWords.length;
-
-      // Enter next
       flipWords[flipIdx].classList.add('active');
     }, 2400);
   }
 
 });
 </script>
-
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
