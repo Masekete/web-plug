@@ -8,1108 +8,309 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #ffffff; color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
 
     /* ── Promo Bar ── */
-    .promo-bar {
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      color: white;
-      padding: 0.75rem 0;
-      overflow: hidden;
-      position: relative;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .promo-content {
-      display: flex;
-      animation: scroll 25s linear infinite;
-      white-space: nowrap;
-    }
-
-    .promo-item {
-      padding: 0 3rem;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .promo-item::before {
-      content: "";
-      margin-right: 0.5rem;
-    }
-
-    @keyframes scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
+    .promo-bar { background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; padding: 0.75rem 0; overflow: hidden; position: relative; font-weight: 500; font-size: 0.9rem; }
+    .promo-content { display: flex; animation: scroll 25s linear infinite; white-space: nowrap; }
+    .promo-item { padding: 0 3rem; display: inline-flex; align-items: center; }
+    .promo-item::before { content: ""; margin-right: 0.5rem; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @media (max-width: 768px) {
-      .promo-content {
-        animation: none;
-        display: block;
-        text-align: center;
-      }
-      .promo-item {
-        display: none;
-        padding: 0 1rem;
-        justify-content: center;
-      }
+      .promo-content { animation: none; display: block; text-align: center; }
+      .promo-item { display: none; padding: 0 1rem; justify-content: center; }
       .promo-item.active { display: flex; }
-      .promo-item::before { content: ""; margin-right: 0.5rem; }
     }
 
     /* ── Navbar ── */
     .navbar {
-      position: fixed;
-      top: 2.5rem;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1rem 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+      transform: translateY(0); transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .navbar.nav-hidden { transform: translateY(-100%); }
 
-    .logo {
-      color: #3a58ff;
-      font-weight: 800;
-      font-size: clamp(1.6rem, 5vw, 2rem);
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: clamp(1.6rem, 4vw, 2.8rem);
-      list-style: none;
-    }
-
+    .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); text-decoration: none; cursor: pointer; }
+    .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; position: relative; transition: color 0.25s; display: block; padding: 0.5rem 0; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #3a58ff; transition: width 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: #3a58ff; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #222;
-      font-weight: 500;
-      position: relative;
-      transition: color 0.25s;
-      display: block;
-      padding: 0.5rem 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: #3a58ff;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: #3a58ff; }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-
-    /* ── Dropdown ── */
     .dropdown { position: relative; }
-
-    .dropdown > a {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .dropdown > a::before {
-      content: '▼';
-      font-size: 0.7rem;
-      transition: transform 0.3s;
-    }
-
-    .dropdown:hover > a::before {
-      transform: rotate(180deg);
-    }
-
+    .dropdown > a { display: flex; align-items: center; gap: 0.3rem; }
+    .dropdown > a::before { content: '▼'; font-size: 0.7rem; transition: transform 0.3s; }
+    .dropdown:hover > a::before { transform: rotate(180deg); }
     .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      min-width: 240px;
-      border-radius: 12px;
-      padding: 0.75rem 0;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      margin-top: 0.5rem;
-      border: 1px solid rgba(58, 88, 255, 0.1);
+      position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px); min-width: 240px; border-radius: 12px; padding: 0.75rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15); opacity: 0; visibility: hidden;
+      transform: translateY(-10px); transition: all 0.3s ease; margin-top: 0.5rem;
+      border: 1px solid rgba(58,88,255,0.1);
     }
-
-    .dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu li { list-style: none; }
-
-    .dropdown-menu a {
-      padding: 0.75rem 1.5rem;
-      color: #222;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: all 0.25s;
-      border-left: 3px solid transparent;
-    }
-
-    .dropdown-menu a:hover {
-      background: #f0f4ff;
-      color: #3a58ff;
-      border-left-color: #3a58ff;
-      padding-left: 1.7rem;
-    }
-
+    .dropdown-menu a { padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; border-left: 3px solid transparent; }
+    .dropdown-menu a:hover { background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; }
     .dropdown-menu a::after { display: none; }
 
-    .get-started {
-      padding: 0.7rem 1.5rem;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .get-started:hover {
-      background: #3a58ff;
-      transform: translateY(-1px);
-    }
-
-    .menu-btn {
-      display: none;
-      font-size: 1.9rem;
-      cursor: pointer;
-      color: #222;
-      z-index: 1002;
-    }
-
-    .mobile-menu-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 998;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
+    .get-started { padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.25s; }
+    .get-started:hover { background: #3a58ff; transform: translateY(-1px); }
+    .get-started-mobile { display: none; }
+    .menu-btn { display: none; font-size: 1.9rem; cursor: pointer; color: #222; z-index: 1002; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { display: block; opacity: 1; }
 
     @media (max-width: 991px) {
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
-        flex-direction: column;
-        background: white;
-        padding: 6rem 2rem 2rem;
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        z-index: 999;
-        overflow-y: auto;
-      }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; flex-direction: column; background: white; padding: 6rem 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); z-index: 999; overflow-y: auto; }
       .nav-links.active { right: 0; }
       .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
       .nav-links a { padding: 1rem 0; }
       .menu-btn { display: block; }
-      .get-started { margin: 1.5rem auto 0; width: fit-content; }
+      .get-started { display: none; }
+      .get-started-mobile { display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; }
+      .get-started-mobile:hover { opacity: 0.92; transform: translateY(-1px); }
+      .dropdown > a::before { display: none; }
+      .dropdown-menu { display: none !important; }
     }
+    @media (max-width: 600px) { .navbar { padding: 1rem 4%; } .nav-links { width: 85%; } }
 
-    @media (max-width: 600px) {
-      .navbar { padding: 1rem 4%; }
-      .nav-links { width: 85%; }
-    }
-
-     /* ══════════════════════
-       PAGE HERO
+    /* ══════════════════════
+       STICKY HERO WRAPPER
     ══════════════════════ */
+    .hero-sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      will-change: transform;
+    }
+
+    /* ── Page Hero ── */
     .page-hero {
-      position: relative;
-      min-height: clamp(520px, 70vh, 700px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-top: calc(2.5rem + 68px);
-      overflow: hidden;
-      padding: 5rem 0 4rem;
+      height: 100vh;
+      min-height: 580px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      overflow: hidden; position: relative;
     }
 
     .hero-bg-img {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: url(./social-media-marketing-concept-marketing-with-applications.jpg);
-      background-size: cover;
-      filter: blur(0.8px) brightness(0.5);
-      transform: scale(1.07);
-      z-index: 1;
+      background-size: cover; background-position: center;
+      filter: blur(0.8px) brightness(0.5); transform: scale(1.07); z-index: 1;
     }
 
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(58, 88, 255, 0.28) 0%,
-        rgba(10, 10, 40, 0.55) 100%
-      );
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%);
       z-index: 1;
     }
 
-    .hero-body {
-      position: relative;
-      z-index: 2;
-      padding: 0 5%;
-      max-width: 800px;
-    }
+    .hero-body { position: relative; z-index: 2; padding: 0 5%; max-width: 800px; width: 100%; }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.55rem 2rem;
-      background: rgba(58, 88, 255, 0.2);
-      border: 1px solid rgba(58, 88, 255, 0.4);
-      border-radius: 50px;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
+    /* Breadcrumb */
+    .hero-breadcrumb {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      justify-content: center;
+      color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 500; margin-bottom: 1.2rem;
     }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: white; }
+    .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-breadcrumb .current { color: rgba(255,255,255,0.9); }
 
-    .page-hero h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 2rem; background: rgba(58,88,255,0.2); border: 1px solid rgba(58,88,255,0.4); border-radius: 50px; color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; }
 
+    .page-hero h1 { font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
     .page-hero h1 .highlight { color: #7c9bff; }
-
-    .page-hero p {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 2.3vw, 1.15rem);
-      color: rgba(255,255,255,0.85);
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .hero-price {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 800;
-      color: white;
-      margin-bottom: 2.5rem;
-    }
-
+    .page-hero p { margin-top: 1rem; font-size: clamp(1rem,2.3vw,1.15rem); color: rgba(255,255,255,0.85); max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; margin-bottom: 2rem; }
+    .hero-price { font-size: clamp(2rem,5vw,2.8rem); font-weight: 800; color: white; margin-bottom: 2.5rem; }
     .hero-price .from { font-size: 1rem; font-weight: 500; opacity: 0.8; }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta-primary {
-      padding: 1rem 2.2rem;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 8px 30px rgba(58, 88, 255, 0.4);
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(58, 88, 255, 0.5);
-    }
-
-    .cta-secondary {
-      padding: 1rem 2.2rem;
-      background: rgba(255,255,255,0.15);
-      color: white;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      backdrop-filter: blur(10px);
-      text-decoration: none;
-      display: inline-block;
-    }
-    .cta-secondary:hover {
-      background: rgba(255,255,255,0.25);
-      border-color: rgba(255,255,255,0.6);
-    }
-
-    /* ══════════════════════
-       SECTION STYLES
-    ══════════════════════ */
-    .content-section {
-      max-width: 1200px;
-      margin: 5rem auto;
-      padding: 0 5%;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .section-heading.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-pretitle {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #3a58ff;
-      margin-bottom: 0.8rem;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      color: #111;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .section-heading h2 .highlight { color: #3a58ff; }
-
-    .section-heading p {
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      color: #555;
-      max-width: 580px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ══════════════════════
-       IDEAL FOR CARDS
-    ══════════════════════ */
-    .ideal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .ideal-card {
-      background: #f8fbff;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid rgba(0,0,0,0.04);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
-    }
-
-    .ideal-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .ideal-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
-      border-color: rgba(58, 88, 255, 0.15);
-    }
-
-    .ideal-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
-
-    .ideal-icon svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .ideal-card h3 {
-      font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-      font-weight: 800;
-      color: #111;
-      margin-bottom: 0.7rem;
-      line-height: 1.2;
-    }
-
-    .ideal-card p {
-      font-size: 0.97rem;
-      color: #555;
-      line-height: 1.7;
-    }
-
-    /* ══════════════════════
-       WHY SECTION (Grid)
-    ══════════════════════ */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    .why-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
-    }
-
-    .why-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .why-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 40px rgba(58, 88, 255, 0.1);
-    }
-
-    .why-number {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #3a58ff;
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .why-card h3 {
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      font-weight: 800;
-      color: #111;
-      margin-bottom: 0.7rem;
-    }
-
-    .why-card p {
-      font-size: 0.97rem;
-      color: #555;
-      line-height: 1.7;
-    }
-
-    /* ══════════════════════
-       FEATURES GRID
-    ══════════════════════ */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .feature-item {
-      background: #f8fbff;
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: scale(0.95);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .feature-item.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .feature-item:hover {
-      background: white;
-      box-shadow: 0 10px 32px rgba(58, 88, 255, 0.08);
-      transform: scale(1.02);
-      border-color: rgba(58, 88, 255, 0.1);
-    }
-
-    .feature-icon {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 1rem;
-      border-radius: 10px;
-      background: rgba(58, 88, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #3a58ff;
-    }
-
-    .feature-icon svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .feature-item h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #111;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-item p {
-      font-size: 0.875rem;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    /* ══════════════════════
-       PRICING SECTION
-    ══════════════════════ */
-    .pricing-section {
-      padding: clamp(5rem, 10vh, 8rem) 5%;
-      background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%);
-      pointer-events: none;
-    }
-
-    .pricing-container {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .pricing-section .section-pretitle { color: #7c9bff; }
-    .pricing-section .section-heading h2,
-    .pricing-section .section-heading p { color: white; }
-
-    .pricing-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin-top: 3rem;
-    }
-
-    .price-header {
-      text-align: center;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 2rem;
-    }
-
-    .package-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .price-amount {
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: white;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .price-amount .currency {
-      font-size: 2rem;
-      vertical-align: super;
-    }
-
-    .price-duration {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1rem;
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-
-    .features-list li {
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-    }
-
-    .features-list li::before {
-      content: '✓';
-      color: #7c9bff;
-      font-weight: 900;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .price-cta {
-      text-align: center;
-    }
-
-    .price-cta .cta-primary {
-      width: 100%;
-      max-width: 400px;
-      font-size: 1.05rem;
-    }
-
-    /* ══════════════════════
-       FAQ SECTION
-    ══════════════════════ */
-    .faq-section {
-      max-width: 800px;
-      margin: 5rem auto;
-      padding: 0 5%;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      padding: 1.5rem 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-
-    .faq-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .faq-question {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #111;
-      margin-bottom: 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      transition: color 0.3s;
-    }
-
-    .faq-question:hover { color: #3a58ff; }
-
-    .faq-toggle {
-      font-size: 1.5rem;
-      color: #3a58ff;
-      transition: transform 0.3s;
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-toggle { transform: rotate(45deg); }
-
-    .faq-answer {
-      color: #555;
-      line-height: 1.7;
-      font-size: 0.97rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, margin-top 0.4s ease;
-      margin-top: 0;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 500px;
-      margin-top: 1rem;
-    }
-
-    /* ══════════════════════
-       FINAL CTA
-    ══════════════════════ */
-    .final-cta {
-      padding: clamp(5rem, 10vh, 8rem) 5%;
-      background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .final-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-    }
-
-    .final-cta-content {
-      max-width: 700px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .final-cta h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      color: white;
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-    }
-
-    .final-cta p {
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-
-    .final-cta .cta-primary {
-      background: white;
-      color: #3a58ff;
-    }
-
-    .final-cta .cta-primary:hover {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 14px 40px rgba(255, 255, 255, 0.3);
-    }
-
-    /* ── WhatsApp Float ── */
-    .chat-widget {
-      position: fixed;
-      bottom: 1.8rem;
-      left: 1.8rem;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: all 0.3s;
-      z-index: 999;
-      text-decoration: none;
-    }
-
-    .chat-widget:hover {
-      transform: scale(1.1);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
-    }
-
-    .chat-widget svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    /* ══════════════════════
-       RESPONSIVE
-    ══════════════════════ */
-    @media (max-width: 900px) {
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ideal-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .cta-primary { padding: 1rem 2.2rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 30px rgba(58,88,255,0.4); text-decoration: none; display: inline-block; }
+    .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(58,88,255,0.5); }
+    .cta-secondary { padding: 1rem 2.2rem; background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); text-decoration: none; display: inline-block; }
+    .cta-secondary:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
 
     @media (max-width: 600px) {
-      .page-hero {
-        height: clamp(450px, 70vh, 600px);
-      }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .cta-primary,
-      .cta-secondary {
-        width: 100%;
-      }
-
-      .pricing-card {
-        padding: 2rem 1.5rem;
-      }
-
-      .price-amount {
-        font-size: 3rem;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .chat-widget {
-        bottom: 1.2rem;
-        left: 1.2rem;
-        width: 56px;
-        height: 56px;
-      }
-
-      .chat-widget svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    .get-started-mobile {
-      display: none;
-    }
-
-    @media (max-width: 991px) {
-      .get-started { display: none; }
-      .get-started-mobile { display: block; }
-
-      .get-started-mobile {
-        margin-top: 1.5rem;
-        width: 100%;
-        padding: 0.85rem 1.5rem;
-        background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.25s;
-        text-align: center;
-      }
-
-      .get-started-mobile:hover {
-        opacity: 0.92;
-        transform: translateY(-1px);
-      }
+      .page-hero { min-height: 100vh; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .cta-primary, .cta-secondary { width: 100%; }
     }
 
     /* ══════════════════════
-       FOOTER
+       SECTIONS THAT SCROLL OVER THE STICKY HERO
     ══════════════════════ */
+    .content-section,
+    .why-bg,
+    .pricing-section,
+    .faq-section,
+    .final-cta,
     .footer {
-      background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%);
-      color: white;
-      padding: 4rem 5% 2rem;
+      position: relative;
+      z-index: 10;
     }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* ── Content Sections ── */
+    .content-section { max-width: 1200px; margin: 5rem auto; padding: 0 5%; background: #ffffff; }
+
+    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .section-heading.visible { opacity: 1; transform: translateY(0); }
+    .section-pretitle { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #3a58ff; margin-bottom: 0.8rem; }
+    .section-heading h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: #111; line-height: 1.1; margin-bottom: 1rem; }
+    .section-heading h2 .highlight { color: #3a58ff; }
+    .section-heading p { font-size: clamp(1rem,2.2vw,1.15rem); color: #555; max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+    /* Ideal Cards */
+    .ideal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; }
+    .ideal-card { background: #f8fbff; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 8px 24px rgba(0,0,0,0.05); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+    .ideal-card.visible { opacity: 1; transform: translateY(0); }
+    .ideal-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); border-color: rgba(58,88,255,0.15); }
+    .ideal-icon { width: 60px; height: 60px; border-radius: 12px; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: white; }
+    .ideal-icon svg { width: 28px; height: 28px; }
+    .ideal-card h3 { font-size: clamp(1.2rem,2.5vw,1.4rem); font-weight: 800; color: #111; margin-bottom: 0.7rem; line-height: 1.2; }
+    .ideal-card p { font-size: 0.97rem; color: #555; line-height: 1.7; }
+
+    /* Why */
+    .why-bg { background: #f8fbff; padding-top: 5rem; padding-bottom: 5rem; }
+    .why-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
+    .why-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+    .why-card.visible { opacity: 1; transform: translateY(0); }
+    .why-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(58,88,255,0.1); }
+    .why-number { font-size: 2.5rem; font-weight: 900; color: #3a58ff; line-height: 1; margin-bottom: 1rem; }
+    .why-card h3 { font-size: clamp(1.25rem,2.5vw,1.5rem); font-weight: 800; color: #111; margin-bottom: 0.7rem; }
+    .why-card p { font-size: 0.97rem; color: #555; line-height: 1.7; }
+
+    /* Features */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
+    .feature-item { background: #f8fbff; border-radius: 12px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; opacity: 0; transform: scale(0.95); border: 1px solid rgba(0,0,0,0.03); }
+    .feature-item.visible { opacity: 1; transform: scale(1); }
+    .feature-item:hover { background: white; box-shadow: 0 10px 32px rgba(58,88,255,0.08); transform: scale(1.02); border-color: rgba(58,88,255,0.1); }
+    .feature-icon { width: 50px; height: 50px; margin: 0 auto 1rem; border-radius: 10px; background: rgba(58,88,255,0.1); display: flex; align-items: center; justify-content: center; color: #3a58ff; }
+    .feature-icon svg { width: 24px; height: 24px; }
+    .feature-item h4 { font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 0.5rem; }
+    .feature-item p { font-size: 0.875rem; color: #666; line-height: 1.5; }
+
+    /* Pricing */
+    .pricing-section { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
+    .pricing-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%); pointer-events: none; }
+    .pricing-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .pricing-section .section-pretitle { color: #7c9bff; }
+    .pricing-section .section-heading h2, .pricing-section .section-heading p { color: white; }
+    .pricing-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; margin-top: 3rem; }
+    .price-header { text-align: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+    .package-name { font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; }
+    .price-amount { font-size: 3.5rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 0.5rem; }
+    .price-amount .currency { font-size: 2rem; vertical-align: super; }
+    .price-duration { color: rgba(255,255,255,0.7); font-size: 1rem; }
+    .features-list { list-style: none; margin-bottom: 2rem; }
+    .features-list li { padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); font-size: 1rem; display: flex; align-items: flex-start; gap: 0.8rem; }
+    .features-list li::before { content: '✓'; color: #7c9bff; font-weight: 900; font-size: 1.2rem; flex-shrink: 0; }
+    .price-cta { text-align: center; }
+    .price-cta .cta-primary { width: 100%; max-width: 400px; font-size: 1.05rem; }
+
+    /* FAQ */
+    .faq-section { max-width: 800px; margin: 5rem auto; padding: 0 5%; background: #ffffff; }
+    .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1.5rem 0; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
+    .faq-item.visible { opacity: 1; transform: translateY(0); }
+    .faq-question { font-size: 1.1rem; font-weight: 700; color: #111; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color 0.3s; }
+    .faq-question:hover { color: #3a58ff; }
+    .faq-toggle { font-size: 1.5rem; color: #3a58ff; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.active .faq-toggle { transform: rotate(45deg); }
+    .faq-answer { color: #555; line-height: 1.7; font-size: 0.97rem; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.4s ease; margin-top: 0; }
+    .faq-item.active .faq-answer { max-height: 500px; margin-top: 1rem; }
+
+    /* Final CTA */
+    .final-cta { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); text-align: center; overflow: hidden; }
+    .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%); }
+    .final-cta-content { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+    .final-cta h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 1.2rem; }
+    .final-cta p { font-size: clamp(1rem,2.2vw,1.15rem); color: rgba(255,255,255,0.9); margin-bottom: 2rem; line-height: 1.7; }
+    .final-cta .cta-primary { background: white; color: #3a58ff; }
+    .final-cta .cta-primary:hover { background: rgba(255,255,255,0.95); box-shadow: 0 14px 40px rgba(255,255,255,0.3); }
+
+    /* WhatsApp Float */
+    .chat-widget { position: fixed; bottom: 1.8rem; left: 1.8rem; background: #25D366; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 8px 32px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.3s; z-index: 999; text-decoration: none; }
+    .chat-widget:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(0,0,0,0.22); }
+    .chat-widget svg { width: 28px; height: 28px; }
+
+    /* Responsive */
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
+    @media (max-width: 600px) { .pricing-card { padding: 2rem 1.5rem; } .price-amount { font-size: 3rem; } .features-grid { grid-template-columns: 1fr; } .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 56px; height: 56px; } .chat-widget svg { width: 24px; height: 24px; } }
+
+    /* Footer */
+    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 4rem 5% 2rem; }
+    .footer-container { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
+    .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.8rem; }
+    .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: all 0.3s; display: inline-block; }
+    .footer-links a:hover { color: #3a58ff; transform: translateX(5px); }
+    .footer-contact { list-style: none; }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.8); }
+    .footer-contact svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: #3a58ff; }
+    .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-link { width: 40px; height: 40px; border-radius: 8px; background: rgba(58,88,255,0.15); display: flex; align-items: center; justify-content: center; color: #3a58ff; transition: all 0.3s; text-decoration: none; }
+    .social-link:hover { background: #3a58ff; color: white; transform: translateY(-3px); }
+    .social-link svg { width: 20px; height: 20px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-legal { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-legal a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-legal a:hover { color: #3a58ff; }
+
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-col { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-contact li { justify-content: center; }
+      .footer-links a:hover { transform: none; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-col h3 {
+    /* ── Footer Flip Text (aligned) ── */
+    .footer-brand-heading {
       font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       color: white;
+      line-height: 1.55;
     }
 
-    .footer-col p {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.7;
-      margin-bottom: 1.2rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: all 0.3s;
+    .footer-flip-wrapper {
       display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 1.2em;
+      min-width: 90px;
+      vertical-align: middle;
+      perspective: 400px;
     }
 
-    .footer-links a:hover {
-      color: #3a58ff;
-      transform: translateX(5px);
+    .flip-word {
+      position: absolute;
+      top: 0; left: 0;
+      color: #7c9bff;
+      font-weight: 800;
+      font-size: 1.3rem;
+      line-height: 1.2em;
+      opacity: 0;
+      transform: rotateX(90deg);
+      transform-origin: center bottom;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4,0,0.2,1);
+      white-space: nowrap;
     }
-
-    .footer-contact {
-      list-style: none;
-    }
-
-    .footer-contact li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .footer-contact svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      margin-top: 2px;
-      color: #3a58ff;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: rgba(58, 88, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #3a58ff;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-
-    .social-link:hover {
-      background: #3a58ff;
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    .social-link svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-    }
-
-    .footer-legal {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .footer-legal a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-
-    .footer-legal a:hover {
-      color: #3a58ff;
-    }
-
-    @media (max-width: 600px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-legal {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
-
-     @media (max-width: 991px) {
-  /* Remove dropdown arrow on mobile */
-  .dropdown > a::before {
-    display: none;
-  }
-
-  /* Never show the dropdown submenu on mobile */
-  .dropdown-menu {
-    display: none !important;
-  }
-}
+    .flip-word.active { opacity: 1; transform: rotateX(0deg); }
+    .flip-word.exit { opacity: 0; transform: rotateX(-90deg); }
   </style>
 </head>
 <body>
@@ -1126,285 +327,145 @@
   </div>
 </div>
 
-<!-- Mobile Overlay -->
 <div class="mobile-menu-overlay" id="mobileOverlay"></div>
 
-<!-- Navbar -->
 <header>
-  <nav class="navbar">
-    <div class="logo">Webify</div>
+  <nav class="navbar" id="mainNavbar">
+    <a href="./index.html" class="logo">Webify</a>
 
     <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
       <li class="dropdown">
-        <a href="./indexhtml#service-scroll">Services</a>
+        <a href="./index.html#service-scroll">Services</a>
         <ul class="dropdown-menu">
           <li><a href="./google.html">Google My Business</a></li>
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
-          <li><a href="#service-scroll">WhatsApp Business</a></li>
-          <li><a href="./branding.html">Logo & Branding</a></li>
-          <li><a href="./marketing.html">Digital Marketing</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
+          <li><a href="./marketing.html" class="active">Digital Marketing</a></li>
         </ul>
       </li>
       <li><a href="#">Pricing</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
-
-      <!-- Get Started inside mobile nav panel -->
       <li style="border-bottom: none;">
         <button class="get-started-mobile">Get Started</button>
       </li>
     </ul>
 
-    <!-- Desktop Get Started -->
     <button class="get-started">Get Started</button>
-    <div class="menu-btn" id="menuBtn">☰</div>
+    <div class="menu-btn" id="menuBtn">&#9776;</div>
   </nav>
 </header>
 
-<!-- ══════════════════════════════
-     HERO SECTION
-══════════════════════════════ -->
-<section class="page-hero">
-  <div class="hero-bg-img"></div>
-  <div class="hero-overlay"></div>
+<!-- ══ STICKY HERO WRAPPER ══ -->
+<div class="hero-sticky-wrapper">
+  <section class="page-hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
 
-  <div class="hero-body">
-    <div class="hero-badge">PREMIUM PACKAGE</div>
-    
-    <h1>Full Digital Marketing <span class="highlight">Management</span></h1>
-    <p>Complete hands-off digital marketing service: Google Ads, Social Media Ads, SEO, content creation, monthly reporting and dedicated manager to grow your business every month.</p>
+      <!-- Breadcrumb -->
+      <div class="hero-breadcrumb">
+        <a href="./index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="./index.html#service-scroll">Services</a>
+        <span class="sep">›</span>
+        <span class="current">Digital Marketing</span>
+      </div>
 
-    <div class="hero-price">
-      <span class="from">From</span> R2,999 <small>/month</small>
+      <div class="hero-badge">PREMIUM PACKAGE</div>
+      <h1>Full Digital Marketing <span class="highlight">Management</span></h1>
+      <p>Complete hands-off digital marketing service: Google Ads, Social Media Ads, SEO, content creation, monthly reporting and dedicated manager to grow your business every month.</p>
+      <div class="hero-price"><span class="from">From</span> R2,999 <small>/month</small></div>
+      <div class="hero-cta">
+        <a href="#pricing" class="cta-secondary">View Pricing</a>
+      </div>
     </div>
+  </section>
+</div>
+<!-- ══ END STICKY HERO WRAPPER ══ -->
 
-    <div class="hero-cta">
-      <a href="#pricing" class="cta-secondary">View Pricing</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     IDEAL FOR SECTION
-══════════════════════════════ -->
+<!-- IDEAL FOR -->
 <section class="content-section">
   <div class="section-heading" id="idealHeading">
     <p class="section-pretitle">Perfect For</p>
     <h2>Who Is This <span class="highlight">For?</span></h2>
     <p>The Full Digital Marketing Management package is for busy business owners who want consistent growth without managing ads or content themselves.</p>
   </div>
-
   <div class="ideal-grid">
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h3>Salons & Barbershops</h3>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+      <h3>Salons &amp; Barbershops</h3>
       <p>Fill your books every week with consistent leads from Google and social ads.</p>
     </div>
-
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      </div>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
       <h3>Small Retailers</h3>
       <p>Drive steady foot traffic and online orders month after month.</p>
     </div>
-
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      </div>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
       <h3>Service Businesses</h3>
       <p>Get a steady flow of qualified calls and bookings every single month.</p>
     </div>
-
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-        </svg>
-      </div>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg></div>
       <h3>Food Vendors</h3>
       <p>Keep tables full and takeaway orders coming in with daily promotions.</p>
     </div>
-
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-      </div>
-      <h3>Tutors & Coaches</h3>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
+      <h3>Tutors &amp; Coaches</h3>
       <p>Fill classes and sell packages with consistent lead flow.</p>
     </div>
-
     <div class="ideal-card">
-      <div class="ideal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      </div>
+      <div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
       <h3>Fitness Trainers</h3>
       <p>Keep your gym or classes booked with targeted fitness campaigns.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     WHY YOU NEED IT
-══════════════════════════════ -->
-<section class="content-section" style="background: #f8fbff; margin-left: 0; margin-right: 0; max-width: 100%; padding-top: 5rem; padding-bottom: 5rem;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+<!-- WHY YOU NEED IT -->
+<div class="why-bg">
+  <div class="why-inner">
     <div class="section-heading" id="whyHeading">
       <p class="section-pretitle">The Benefits</p>
       <h2>Why You Need Full Digital Marketing <span class="highlight">Management</span></h2>
       <p>One dedicated team handles everything so you get consistent growth without the stress.</p>
     </div>
-
     <div class="why-grid">
-      <div class="why-card">
-        <div class="why-number">01</div>
-        <h3>Hands-Off Growth</h3>
-        <p>We manage ads, content, and strategy — you just watch the leads come in.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-number">02</div>
-        <h3>Multiple Channels</h3>
-        <p>Google Ads + Social Ads + SEO working together for maximum results.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-number">03</div>
-        <h3>Monthly Reports</h3>
-        <p>Clear numbers and insights so you always know what's working.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-number">04</div>
-        <h3>Expert Team</h3>
-        <p>Dedicated manager who knows your business and optimises every month.</p>
-      </div>
+      <div class="why-card"><div class="why-number">01</div><h3>Hands-Off Growth</h3><p>We manage ads, content, and strategy — you just watch the leads come in.</p></div>
+      <div class="why-card"><div class="why-number">02</div><h3>Multiple Channels</h3><p>Google Ads + Social Ads + SEO working together for maximum results.</p></div>
+      <div class="why-card"><div class="why-number">03</div><h3>Monthly Reports</h3><p>Clear numbers and insights so you always know what's working.</p></div>
+      <div class="why-card"><div class="why-number">04</div><h3>Expert Team</h3><p>Dedicated manager who knows your business and optimises every month.</p></div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ══════════════════════════════
-     KEY FEATURES
-══════════════════════════════ -->
+<!-- KEY FEATURES -->
 <section class="content-section">
   <div class="section-heading" id="featuresHeading">
     <p class="section-pretitle">What's Included</p>
     <h2>Everything You <span class="highlight">Need</span></h2>
     <p>Full-service digital marketing with no monthly cap on our work — just results.</p>
   </div>
-
   <div class="features-grid">
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      </div>
-      <h4>Google Ads Management</h4>
-      <p>Ongoing optimisation & budget management</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      </div>
-      <h4>Social Media Ads</h4>
-      <p>Facebook & Instagram campaigns with fresh creatives</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </div>
-      <h4>SEO Optimisation</h4>
-      <p>Monthly on-page improvements & local SEO</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      </div>
-      <h4>Content Creation</h4>
-      <p>12 social posts + 4 reels + stories monthly</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </div>
-      <h4>Audience Engagement</h4>
-      <p>Daily comments, DMs & community building</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      </div>
-      <h4>Monthly Reports</h4>
-      <p>Clear ROI, leads & recommendations</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      </div>
-      <h4>Dedicated Manager</h4>
-      <p>One expert who knows your business</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h4>Strategy Meetings</h4>
-      <p>Monthly review calls with you</p>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-        </svg>
-      </div>
-      <h4>No Long Contracts</h4>
-      <p>Month-to-month — cancel anytime</p>
-    </div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h4>Google Ads Management</h4><p>Ongoing optimisation &amp; budget management</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h4>Social Media Ads</h4><p>Facebook &amp; Instagram campaigns with fresh creatives</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><h4>SEO Optimisation</h4><p>Monthly on-page improvements &amp; local SEO</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h4>Content Creation</h4><p>12 social posts + 4 reels + stories monthly</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div><h4>Audience Engagement</h4><p>Daily comments, DMs &amp; community building</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h4>Monthly Reports</h4><p>Clear ROI, leads &amp; recommendations</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h4>Dedicated Manager</h4><p>One expert who knows your business</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h4>Strategy Meetings</h4><p>Monthly review calls with you</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h4>No Long Contracts</h4><p>Month-to-month — cancel anytime</p></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     PRICING SECTION
-══════════════════════════════ -->
+<!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-container">
     <div class="section-heading" id="pricingHeading">
@@ -1412,119 +473,50 @@
       <h2>One Price. <span class="highlight">Everything Included.</span></h2>
       <p>No hidden fees. Full digital marketing team working for you every month.</p>
     </div>
-
     <div class="pricing-card">
       <div class="price-header">
         <h3 class="package-name">Full Digital Marketing Management</h3>
-        <div class="price-amount">
-          <span class="currency">R</span>2,999
-        </div>
+        <div class="price-amount"><span class="currency">R</span>2,999</div>
         <p class="price-duration">Per month</p>
       </div>
-
       <ul class="features-list">
-        <li>Google Ads management & optimisation</li>
-        <li>Facebook & Instagram ad campaigns</li>
+        <li>Google Ads management &amp; optimisation</li>
+        <li>Facebook &amp; Instagram ad campaigns</li>
         <li>Monthly content creation (12 posts + reels)</li>
-        <li>SEO improvements & local optimisation</li>
-        <li>Daily engagement & message responses</li>
-        <li>Custom strategy & monthly reports</li>
+        <li>SEO improvements &amp; local optimisation</li>
+        <li>Daily engagement &amp; message responses</li>
+        <li>Custom strategy &amp; monthly reports</li>
         <li>Dedicated account manager</li>
-        <li>Unlimited revisions & adjustments</li>
+        <li>Unlimited revisions &amp; adjustments</li>
         <li>Cancel anytime (30 days notice)</li>
       </ul>
-
       <div class="price-cta">
-        <a href="https://wa.me/27791646006" target="_blank" class="cta-primary">
-          Get Started on WhatsApp →
-        </a>
+        <a href="https://wa.me/27791646006" target="_blank" class="cta-primary">Get Started on WhatsApp &#8594;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     FAQ SECTION
-══════════════════════════════ -->
+<!-- FAQ -->
 <section class="faq-section">
   <div class="section-heading" id="faqHeading">
     <p class="section-pretitle">Got Questions?</p>
     <h2>Frequently Asked <span class="highlight">Questions</span></h2>
   </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>How many posts and ads do you create?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>12 feed posts + 4 reels + daily stories + multiple ad variations every month.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>Do I need to provide content?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>No — we create everything. Just send us your logo, photos and any special offers.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>Is there a minimum contract?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>Month-to-month only. Cancel anytime with 30 days notice.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>Will I get reports every month?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>Yes — clear monthly reports showing leads, cost per lead, and ROI.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>What ad budget do I need?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>We recommend R4,000–R10,000/month depending on your goals. We manage the spend for you.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">
-      <span>Can I start smaller and upgrade?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p>Yes! Many clients begin with our setup packages and move to full management later.</p>
-    </div>
-  </div>
+  <div class="faq-item"><div class="faq-question"><span>How many posts and ads do you create?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>12 feed posts + 4 reels + daily stories + multiple ad variations every month.</p></div></div>
+  <div class="faq-item"><div class="faq-question"><span>Do I need to provide content?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>No — we create everything. Just send us your logo, photos and any special offers.</p></div></div>
+  <div class="faq-item"><div class="faq-question"><span>Is there a minimum contract?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>Month-to-month only. Cancel anytime with 30 days notice.</p></div></div>
+  <div class="faq-item"><div class="faq-question"><span>Will I get reports every month?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>Yes — clear monthly reports showing leads, cost per lead, and ROI.</p></div></div>
+  <div class="faq-item"><div class="faq-question"><span>What ad budget do I need?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We recommend R4,000–R10,000/month depending on your goals. We manage the spend for you.</p></div></div>
+  <div class="faq-item"><div class="faq-question"><span>Can I start smaller and upgrade?</span><span class="faq-toggle">+</span></div><div class="faq-answer"><p>Yes! Many clients begin with our setup packages and move to full management later.</p></div></div>
 </section>
 
-<!-- ══════════════════════════════
-     FINAL CTA
-══════════════════════════════ -->
+<!-- FINAL CTA -->
 <section class="final-cta">
   <div class="final-cta-content">
     <h2>Ready for Consistent Business Growth?</h2>
-    <p>
-      Let our team handle your entire digital marketing so you can focus on what you do best.
-    </p>
-    <a href="https://wa.me/27791646006" target="_blank" class="cta-primary">
-      Start Full Management Today →
-    </a>
+    <p>Let our team handle your entire digital marketing so you can focus on what you do best.</p>
+    <a href="https://wa.me/27791646006" target="_blank" class="cta-primary">Start Full Management Today &#8594;</a>
   </div>
 </section>
 
@@ -1535,54 +527,32 @@
   </svg>
 </a>
 
-<!-- ══════════════════════════════
-     FOOTER
-══════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-grid">
-      <!-- About Column -->
       <div class="footer-col">
-        <h3>Webify</h3>
-        <p>We help township and small businesses succeed online with affordable websites, social media management, and digital marketing services.</p>
+        <h3 class="footer-brand-heading">Webify, Built to <span class="footer-flip-wrapper"><span class="flip-word active">Connect</span><span class="flip-word">Impress</span><span class="flip-word">Attract</span></span></h3>
         <div class="footer-social">
-          <a href="#" class="social-link" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-            </svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-            </svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-            </svg>
-          </a>
-          <a href="https://wa.me/27791646006" class="social-link" aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-            </svg>
-          </a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a>
+          <a href="#" class="social-link" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
+          <a href="https://wa.me/27791646006" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></a>
         </div>
       </div>
 
-      <!-- Quick Links -->
       <div class="footer-col">
         <h3>Quick Links</h3>
         <ul class="footer-links">
           <li><a href="./index.html">Home</a></li>
-          <li><a href="index.html#service-scroll">Services</a></li>
-          <li><a href="#choose-webify">About Us</a></li>
+          <li><a href="./index.html#service-scroll">Services</a></li>
+          <li><a href="#">About Us</a></li>
           <li><a href="#">Pricing</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Services -->
       <div class="footer-col">
         <h3>Services</h3>
         <ul class="footer-links">
@@ -1590,33 +560,17 @@
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
           <li><a href="#">WhatsApp Business</a></li>
-          <li><a href="./branding.html">Logo & Branding</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </div>
 
-      <!-- Contact Info -->
       <div class="footer-col">
         <h3>Get in Touch</h3>
         <ul class="footer-contact">
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-            </svg>
-            <span>+27 79 164 6006</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-            </svg>
-            <span>info@webify.co.za</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-            </svg>
-            <span>Tembisa, Gauteng<br>South Africa</span>
-          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg><span>+27 79 164 6006</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span>info@webify.co.za</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>Tembisa, Gauteng<br>South Africa</span></li>
         </ul>
       </div>
     </div>
@@ -1631,20 +585,20 @@
     </div>
   </div>
 </footer>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
   // Promo bar mobile rotation
   const promoItems = document.querySelectorAll('.promo-item');
   let promoIndex = 0;
-
   function rotatePromo() {
     if (window.innerWidth <= 768) {
       promoItems.forEach(i => i.classList.remove('active'));
-      Array.from(promoItems).slice(0, 3)[promoIndex].classList.add('active');
+      Array.from(promoItems).slice(0,3)[promoIndex].classList.add('active');
       promoIndex = (promoIndex + 1) % 3;
     }
   }
-
   rotatePromo();
   setInterval(rotatePromo, 3000);
   window.addEventListener('resize', () => {
@@ -1656,14 +610,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
   const overlay = document.getElementById('mobileOverlay');
-
   menuBtn.addEventListener('click', () => {
     const open = navLinks.classList.toggle('active');
     overlay.classList.toggle('active', open);
     menuBtn.textContent = open ? '✕' : '☰';
     document.body.style.overflow = open ? 'hidden' : '';
   });
-
   overlay.addEventListener('click', () => {
     navLinks.classList.remove('active');
     overlay.classList.remove('active');
@@ -1672,34 +624,37 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Scroll animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -80px 0px'
-  };
-
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.section-heading, .ideal-card, .why-card, .feature-item, .faq-item').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('.section-heading, .ideal-card, .why-card, .feature-item, .faq-item').forEach(el => {
-    observer.observe(el);
-  });
+  // Smart Navbar Scroll
+  const navbar = document.getElementById('mainNavbar');
+  const promoBar = document.querySelector('.promo-bar');
+  let lastScrollY = 0;
+  function updateNavbar() {
+    const scrollY = window.scrollY;
+    const promoH = promoBar ? promoBar.offsetHeight : 0;
+    navbar.style.top = Math.max(0, promoH - scrollY) + 'px';
+    if (scrollY < 80) {
+      navbar.classList.remove('nav-hidden');
+    } else if (scrollY > lastScrollY) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastScrollY = scrollY;
+  }
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar();
 
   // FAQ Accordion
   document.querySelectorAll('.faq-item').forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
       const wasActive = item.classList.contains('active');
-      
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-      
-      if (!wasActive) {
-        item.classList.add('active');
-      }
+      if (!wasActive) item.classList.add('active');
     });
   });
 
@@ -1708,13 +663,26 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // Footer flip text animation
+  const flipWords = document.querySelectorAll('.flip-word');
+  let flipIdx = 0;
+  if (flipWords.length) {
+    setInterval(() => {
+      flipWords[flipIdx].classList.add('exit');
+      flipWords[flipIdx].classList.remove('active');
+      const ex = flipWords[flipIdx];
+      setTimeout(() => ex.classList.remove('exit'), 500);
+      flipIdx = (flipIdx + 1) % flipWords.length;
+      flipWords[flipIdx].classList.add('active');
+    }, 2400);
+  }
 });
 </script>
+
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -1727,6 +695,5 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
