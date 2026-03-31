@@ -46,13 +46,14 @@
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       border-bottom: 1px solid rgba(255,255,255,0.3);
       box-shadow: 0 4px 30px rgba(0,0,0,0.07);
       transform: translateY(0); transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .navbar.nav-hidden { transform: translateY(-100%); }
-    .logo { color: var(--blue); font-family: var(--display-font); font-weight: 800; font-size: clamp(1.5rem,4vw,1.9rem); letter-spacing: -0.5px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: clamp(60px, 6vw, 85px); width: auto; display: block; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
     .nav-links a { text-decoration: none; color: #222; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.25s; display: block; padding: 0.5rem 0; }
@@ -471,7 +472,9 @@
 
 <header>
   <nav class="navbar" id="mainNavbar">
-    <div class="logo">Webify</div>
+   <a href="./index.html" class="logo">
+      <img src="./webie 2.png" alt="Webify">
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="./index.html">Home</a></li>
       <li class="dropdown">

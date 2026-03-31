@@ -93,8 +93,13 @@
     .page-hero {
       height: 100vh;
       min-height: 580px;
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      overflow: hidden; position: relative;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center;
+      overflow: hidden; 
+      position: relative;
+      padding-top: 130px; /* INCREASED PADDING – ensures all hero content sits clearly below the fixed navbar on both desktop and mobile */
     }
 
     .hero-bg-img {
@@ -115,7 +120,6 @@
     /* Breadcrumb */
     .hero-breadcrumb {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      justify-content: center;
       color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 500; margin-bottom: 1.2rem;
     }
     .hero-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
@@ -154,12 +158,17 @@
     .footer {
       position: relative;
       z-index: 10;
+      width: 100%; /* All sections now explicitly full-width on desktop + mobile */
     }
 
     /* ── Content Sections ── */
-    .content-section { max-width: 1200px; margin: 5rem auto; padding: 0 5%; background: #ffffff; }
+    .content-section { 
+      padding: 4rem 5%; 
+      background: #ffffff; 
+      /* Removed max-width → full bleed width on every screen size */
+    }
 
-    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s , transform 0.7s ; }
     .section-heading.visible { opacity: 1; transform: translateY(0); }
     .section-pretitle { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #3a58ff; margin-bottom: 0.8rem; }
     .section-heading h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: #111; line-height: 1.1; margin-bottom: 1rem; }
@@ -177,8 +186,12 @@
     .ideal-card p { font-size: 0.97rem; color: #555; line-height: 1.7; }
 
     /* Why */
-    .why-bg { background: #f8fbff; padding-top: 5rem; padding-bottom: 5rem; }
-    .why-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    .why-bg { background: #f8fbff; padding-top: 4rem; padding-bottom: 4rem; }
+    .why-inner { 
+      width: 100%; 
+      padding: 0 5%; 
+      /* Removed max-width → full bleed width */
+    }
     .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
     .why-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
     .why-card.visible { opacity: 1; transform: translateY(0); }
@@ -200,7 +213,13 @@
     /* Pricing */
     .pricing-section { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
     .pricing-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%); pointer-events: none; }
-    .pricing-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .pricing-container { 
+      width: 100%; 
+      max-width: 1100px; /* Slightly wider but still comfortable – full-width section with centered card */
+      margin: 0 auto; 
+      position: relative; 
+      z-index: 1; 
+    }
     .pricing-section .section-pretitle { color: #7c9bff; }
     .pricing-section .section-heading h2, .pricing-section .section-heading p { color: white; }
     .pricing-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; margin-top: 3rem; }
@@ -216,7 +235,11 @@
     .price-cta .cta-primary { width: 100%; max-width: 400px; font-size: 1.05rem; }
 
     /* FAQ */
-    .faq-section { max-width: 800px; margin: 5rem auto; padding: 0 5%; background: #ffffff; }
+    .faq-section { 
+      padding: 4rem 5%; 
+      background: #ffffff; 
+      /* Removed max-width → full bleed width on every screen size */
+    }
     .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1.5rem 0; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
     .faq-item.visible { opacity: 1; transform: translateY(0); }
     .faq-question { font-size: 1.1rem; font-weight: 700; color: #111; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color 0.3s; }
@@ -241,12 +264,22 @@
     .chat-widget svg { width: 28px; height: 28px; }
 
     /* Responsive */
-    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
-    @media (max-width: 600px) { .pricing-card { padding: 2rem 1.5rem; } .price-amount { font-size: 3rem; } .features-grid { grid-template-columns: 1fr; } .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 56px; height: 56px; } .chat-widget svg { width: 24px; height: 24px; } }
+    @media (max-width: 900px) { 
+      .why-grid { grid-template-columns: 1fr; } 
+      .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } 
+    }
+    @media (max-width: 600px) { 
+      .pricing-card { padding: 2rem 1.5rem; } 
+      .price-amount { font-size: 3rem; } 
+      .features-grid { grid-template-columns: 1fr; } 
+      .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 56px; height: 56px; } 
+      .chat-widget svg { width: 24px; height: 24px; } 
+      .page-hero { padding-top: 100px; } /* Slightly less on mobile for better proportion */
+    }
 
     /* Footer */
     .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 4rem 5% 2rem; }
-    .footer-container { max-width: 1200px; margin: 0 auto; }
+    .footer-container { max-width: 1200px; margin: 0 auto; width: 100%; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
     .footer-col h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
     .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
@@ -569,7 +602,7 @@
         <h3>Get in Touch</h3>
         <ul class="footer-contact">
           <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg><span>+27 79 164 6006</span></li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span>info@webify.co.za</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93fafdf5fcd3e4f6f1faf5eabdf0fcbde9f2">[email&#160;protected]</a></span></li>
           <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>Tembisa, Gauteng<br>South Africa</span></li>
         </ul>
       </div>
@@ -586,7 +619,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', () => {
 
   // Promo bar mobile rotation
