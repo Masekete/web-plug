@@ -15,9 +15,7 @@
       --body-font: 'Inter', system-ui, sans-serif;
       --display-font: 'Inter', system-ui, sans-serif;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: var(--body-font);
       background: #ffffff;
@@ -25,7 +23,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     /* ── Promo Bar ── */
     .promo-bar {
       background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
@@ -41,22 +38,20 @@
       .promo-item { display: none; padding: 0 1rem; justify-content: center; }
       .promo-item.active { display: flex; }
     }
-
     /* ── Navbar ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.75); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+      padding: 0.45rem 5%; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.7);
       transform: translateY(0); transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .navbar.nav-hidden { transform: translateY(-100%); }
     .logo { display: flex; align-items: center; text-decoration: none; }
-    .logo img { height: clamp(60px, 6vw, 85px); width: auto; display: block; }
+    .logo img {height: clamp(48px, 5vw, 72px); width: auto; display: block; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
-    .nav-links a { text-decoration: none; color: #222; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.25s; display: block; padding: 0.5rem 0; }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.25s; display: block; padding: 0.35rem 0; }
     .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: var(--blue); transition: width 0.3s ease; }
     .nav-links a:hover, .nav-links a.active { color: var(--blue); }
     .nav-links a:hover::after { width: 100%; }
@@ -88,13 +83,11 @@
       .dropdown-menu { display: none !important; }
       .menu-btn { display: block; }
     }
-    @media (max-width: 600px) { .navbar { padding: 1rem 4%; } .nav-links { width: 85%; } }
-
+    @media (max-width: 600px) { .navbar { padding: 0.45rem 4%; } .nav-links { width: 85%; } }
     /* ══════════════════════
        STICKY HERO WRAPPER
     ══════════════════════ */
     .hero-stats-wrapper { display: block; }
-
     /* ══════════════════════
        HERO – FULL WIDTH REDESIGN
     ══════════════════════ */
@@ -106,17 +99,24 @@
       align-items: center;
       overflow: hidden;
     }
-
     /* Photo background */
     .hero-bg {
       position: absolute;
       inset: -10% 0;
       background: url('./OQCI430.jpg') center / cover no-repeat;
       z-index: 0;
-      transform: translateZ(0);
       will-change: transform;
+      -webkit-animation: kenburns-top-left 20s ease-out both infinite alternate;
+              animation: kenburns-top-left 20s ease-out both infinite alternate;
     }
-
+    @-webkit-keyframes kenburns-top-left {
+      0% { -webkit-transform: scale(1) translate(0,0); transform: scale(1) translate(0,0); -webkit-transform-origin: 16% 16%; transform-origin: 16% 16%; }
+      100% { -webkit-transform: scale(1.25) translate(-20px,-15px); transform: scale(1.25) translate(-20px,-15px); -webkit-transform-origin: top left; transform-origin: top left; }
+    }
+    @keyframes kenburns-top-left {
+      0% { -webkit-transform: scale(1) translate(0,0); transform: scale(1) translate(0,0); -webkit-transform-origin: 16% 16%; transform-origin: 16% 16%; }
+      100% { -webkit-transform: scale(1.25) translate(-20px,-15px); transform: scale(1.25) translate(-20px,-15px); -webkit-transform-origin: top left; transform-origin: top left; }
+    }
     /* Cinematic dark overlay */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -127,14 +127,12 @@
         rgba(0,0,0,0.18) 100%
       );
     }
-
     /* Grain texture */
     .hero-grain {
       position: absolute; inset: 0; z-index: 2; opacity: 0.035; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 200px 200px;
     }
-
     /* Decorative concentric rings */
     .hero-rings {
       position: absolute; right: -8vw; top: 50%; transform: translateY(-50%);
@@ -143,8 +141,7 @@
       z-index: 2; pointer-events: none;
     }
     .hero-rings::before { content: ''; position: absolute; inset: 10%; border-radius: 50%; border: 1px solid rgba(124,155,255,0.07); }
-    .hero-rings::after  { content: ''; position: absolute; inset: 20%; border-radius: 50%; border: 1px solid rgba(124,155,255,0.05); }
-
+    .hero-rings::after { content: ''; position: absolute; inset: 20%; border-radius: 50%; border: 1px solid rgba(124,155,255,0.05); }
     /* Inner layout */
     .hero-inner {
       position: relative; z-index: 3; width: 100%;
@@ -153,9 +150,7 @@
       display: flex; align-items: center; gap: clamp(3rem,6vw,6rem);
       flex-direction: row-reverse;
     }
-
     .hero-text { flex: 1; min-width: 0; }
-
     /* Eyebrow pill */
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.6rem;
@@ -167,7 +162,6 @@
     }
     .hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--blue-light); flex-shrink: 0; animation: blink 2s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.5)} }
-
     /* Heading */
     .hero h1 {
       font-family: var(--display-font);
@@ -184,9 +178,26 @@
     }
     @keyframes slideLeft { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-
-    
-    
+    /* Hero h1 flip word */
+    .hero-flip-wrapper {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 1.1em;
+      vertical-align: bottom;
+      min-width: 210px;
+    }
+    .hero-flip-word {
+      position: absolute;
+      top: 0; left: 0;
+      display: block;
+      opacity: 0;
+      transform: translateY(110%);
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .hero-flip-word.active { opacity: 1; transform: translateY(0); }
+    .hero-flip-word.exit { opacity: 0; transform: translateY(-110%); }
     /* Sub */
     .hero-sub {
       font-size: clamp(1rem,2vw,1.15rem); color: rgba(255,255,255,0.65);
@@ -194,7 +205,6 @@
       opacity: 0; animation: fadeUp 0.7s ease-out 0.95s forwards;
     }
     .hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 500; }
-
     /* CTA buttons */
     .hero-cta-row {
       display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
@@ -217,7 +227,6 @@
       cursor: pointer; transition: all 0.3s; backdrop-filter: blur(8px);
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
-
     /* Trust row */
     .hero-trust {
       display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap;
@@ -227,7 +236,6 @@
     .trust-item { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.5); font-size: 0.82rem; }
     .trust-item svg { width: 14px; height: 14px; color: var(--blue-light); flex-shrink: 0; }
     .trust-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
-
     /* Image side */
     .hero-visual {
       flex: 0 0 auto; position: relative;
@@ -242,10 +250,9 @@
     }
     .hero-img-wrap img {
       position: relative; z-index: 1; width: 100%; height: auto;
-      display: block; object-fit: cover;
-      
+      border-radius: 50% ; display: block; object-fit: cover;
+      border: 2px solid rgba(124,155,255,0.2); box-shadow: 0 40px 80px rgba(0,0,0,0.4);
     }
-
     /* Floating badges */
     .img-badge {
       position: absolute; z-index: 2;
@@ -263,7 +270,6 @@
     .badge-text { line-height: 1.2; }
     .badge-text strong { display: block; font-family: var(--display-font); font-size: 1rem; font-weight: 700; color: #111; }
     .badge-text span { font-size: 0.72rem; color: #888; }
-
     /* Scroll cue */
     .hero-scroll-cue {
       position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
@@ -273,7 +279,6 @@
     }
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent); animation: scrollDrop 2s ease-in-out infinite; }
     @keyframes scrollDrop { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
     /* Hero responsive */
     @media (max-width: 991px) {
       .hero-inner { flex-direction: column; text-align: center; gap: 3.5rem; padding-top: clamp(7rem,15vw,10rem); }
@@ -295,9 +300,8 @@
       .trust-divider { display: none; }
       .hero-trust { gap: 1rem; }
     }
-
     /* ── Stats ── */
-    .stats { background: url(./tech\ bckgrnd.jpg); padding: 5rem 5%; position: relative; z-index: 10; background-image: url(./tech\ bckgrnd.jpg); background-size: cover;}
+    .stats { background: #ffffff; padding: 5rem 5%; position: relative; z-index: 10; }
     .stats-grid { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; align-items: flex-start; gap: clamp(2rem,6vw,5rem); flex-wrap: wrap; }
     .stat-box { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; min-width: 130px; }
     .stat-icon { width: 64px; height: 64px; color: var(--blue); margin-bottom: 0.4rem; }
@@ -308,12 +312,10 @@
       .stats { padding: 3.5rem 5%; }
       .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; justify-items: center; }
     }
-
     /* ══════════════════════
        SECTIONS OVER STICKY HERO
     ══════════════════════ */
     .elevate-section, .services-wrapper, .choose-webify, .footer { position: relative; z-index: 10; }
-
     /* ── Elevate ── */
     .elevate-section { max-width: 100vw; padding: 0 5%; display: flex; align-items: center; gap: clamp(3rem,6vw,5rem); background-color: #0e153d; background-image: url(./hex\ tech\ bckrnd.jpg); background-size: cover; background-position: center; }
     .elevate-image { flex: 1; opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
@@ -324,7 +326,6 @@
     .elevate-content h2 { font-family: var(--display-font); font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
     .elevate-content p { font-size: clamp(1.05rem,2.2vw,1.15rem); line-height: 1.8; color: rgba(255,255,255,0.8); margin-bottom: 1.2rem; }
     .highlight { color: var(--blue); }
-
     /* ── Services ── */
     .services-wrapper { max-width: 100vw; padding: 5rem 5%; background-color: #f8fbff; }
     .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -336,7 +337,6 @@
     .services { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; }
     .service-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 10px 28px rgba(0,0,0,0.08); transition: all 0.4s ease; opacity: 0; transform: translateY(50px); position: relative; overflow: hidden; }
     .service-card.visible { opacity: 1; transform: translateY(0); }
-
     /* Rotating gradient border layer */
     .service-card::before {
       content: '';
@@ -359,11 +359,9 @@
       z-index: 1;
     }
     @keyframes spinBorder { to { transform: rotate(360deg); } }
-
     /* Show the rotating border on hover */
     .service-card:hover::before { opacity: 1; }
     .service-card:hover { transform: translateY(-10px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); border-color: transparent; }
-
     /* Lift all direct card children above the ::after white layer */
     .service-card > * { position: relative; z-index: 2; }
     .icon-box { width: 56px; height: 56px; border-radius: 14px; background: #e8edff; color: var(--blue); display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 1.3rem; transition: all 0.4s; }
@@ -375,12 +373,10 @@
     .service-card ul li::before { content: "✔ "; color: var(--blue); margin-right: 0.4rem; }
     .view-more-btn { display: inline-block; margin-top: 1.2rem; padding: 0.6rem 1.3rem; background: transparent; color: var(--blue); border: 2px solid var(--blue); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; }
     .view-more-btn:hover { background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%); color: white; transform: translateX(5px); }
-
     /* ── WhatsApp Float ── */
     .chat-widget { position: fixed; bottom: 1.8rem; left: 1.8rem; background: #25D366; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(37,211,102,0.4); cursor: pointer; transition: all 0.3s; z-index: 999; text-decoration: none; }
     .chat-widget:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(37,211,102,0.55); }
     .chat-widget svg { width: 28px; height: 28px; flex-shrink: 0; }
-
     /* ── Why Choose ── */
     .choose-webify { padding: clamp(6rem,12vh,10rem) 5%; background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%); text-align: center; overflow: hidden; }
     .cw-container { max-width: 1280px; margin: 0 auto; }
@@ -404,7 +400,6 @@
     .cw-card:hover .cw-icon { background: var(--blue); color: #fff; transform: scale(1.15) translateY(-4px); box-shadow: 0 10px 30px rgba(58,88,255,0.3); }
     .cw-card h3 { font-family: var(--display-font); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff; }
     .cw-card p { font-size: 1rem; line-height: 1.6; opacity: 0.9; color: #e2e8f0; }
-
     @media (max-width: 991px) {
       .elevate-section { flex-direction: column; text-align: center; gap: 2.5rem; }
       .elevate-image img { max-width: 100%; }
@@ -416,10 +411,11 @@
       .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 52px; height: 52px; }
       .chat-widget svg { width: 26px; height: 26px; }
     }
-
     /* ── Footer ── */
-    .footer { background: linear-gradient(135deg, var(--navy) 0%, #1a1f3a 100%); color: white; padding: 4rem 5% 2rem; }
-    .footer-container { max-width: 1200px; margin: 0 auto; }
+    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a2560 100%); color: white; padding: 4rem 5% 2rem; position: relative; overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -40%; right: -15%; width: 600px; height: 600px; border-radius: 50%; background: rgba(58,88,255,0.08); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: rgba(58,88,255,0.06); pointer-events: none; }
+    .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
     .footer-col h3 { font-family: var(--display-font); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
     .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
@@ -456,7 +452,6 @@
   </style>
 </head>
 <body>
-
 <div class="promo-bar">
   <div class="promo-content">
     <span class="promo-item">Let us build your dream website</span>
@@ -467,12 +462,10 @@
     <span class="promo-item">Webify your online presence now</span>
   </div>
 </div>
-
 <div class="mobile-menu-overlay" id="mobileOverlay"></div>
-
 <header>
   <nav class="navbar" id="mainNavbar">
-   <a href="./index.html" class="logo">
+    <a href="./index.html" class="logo">
       <img src="./webie 2.png" alt="Webify">
     </a>
     <ul class="nav-links" id="navLinks">
@@ -488,7 +481,7 @@
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </li>
-     
+      <li><a href="#">Pricing</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
       <li style="border-bottom:none"><button class="get-started-mobile">Get Started</button></li>
@@ -497,7 +490,6 @@
     <div class="menu-btn" id="menuBtn">&#9776;</div>
   </nav>
 </header>
-
 <!-- ══ STICKY HERO WRAPPER ══ -->
 <div class="hero-stats-wrapper">
   <section class="hero">
@@ -505,35 +497,30 @@
     <div class="hero-overlay"></div>
     <div class="hero-grain"></div>
     <div class="hero-rings"></div>
-
     <div class="hero-inner">
       <div class="hero-visual">
         <div class="hero-img-wrap">
           <img src="./no bckrnd image.png" alt="Happy business owner with phone and laptop">
           <div class="img-badge img-badge-1">
             <div class="badge-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/></svg></div>
-            <div class="badge-text"><strong>50+ Clients</strong><span>Online &amp; growing</span></div>
+            <div class="badge-text"><strong>15+ online</strong><span>Online &amp; growing</span></div>
           </div>
           <div class="img-badge img-badge-2">
             <div class="badge-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/></svg></div>
-            <div class="badge-text"><strong>2+ Years</strong><span>Operational</span></div>
+            <div class="badge-text"><strong>1+ Years</strong><span>Operational</span></div>
           </div>
         </div>
       </div>
-
       <div class="hero-text">
-        <div class="hero-eyebrow">Premium Digital Solutions for your Business</div>
-
+        <div class="hero-eyebrow">Digital Solutions for Local Business</div>
         <h1>
           <span class="line1">From local hustle</span>
           <span class="line2">to <span class="gradient-text">online success</span></span>
         </h1>
-
         <p class="hero-sub">
           We help <strong>township and small businesses</strong> get found online.
           No tech stress, we handle everything so you can focus on growing.
         </p>
-
         <div class="hero-cta-row">
           <a class="btn-primary" href="https://wa.me/27791646006" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg>
@@ -543,7 +530,6 @@
         </div>
       </div>
     </div>
-
     <div class="hero-scroll-cue">
       <div class="scroll-line"></div>
       <span>Scroll</span>
@@ -551,20 +537,18 @@
   </section>
 </div>
 <!-- ══ END STICKY HERO WRAPPER ══ -->
-
 <a href="https://wa.me/27791646006" target="_blank" class="chat-widget" aria-label="Chat on WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
 </a>
-
 <section class="stats">
   <div class="stats-grid">
     <div class="stat-box">
       <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-      <h2>15+</h2><p>Businesses<br>Online</p>
+      <h2>50+</h2><p>Businesses<br>Online</p>
     </div>
     <div class="stat-box">
       <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
-      <h2>R999</h2><p>Starting<br>From</p>
+      <h2>R499</h2><p>Starting<br>From</p>
     </div>
     <div class="stat-box">
       <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
@@ -572,11 +556,10 @@
     </div>
     <div class="stat-box">
       <div class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg></div>
-      <h2>1+</h2><p>Years<br>Operational</p>
+      <h2>2+</h2><p>Years<br>Operational</p>
     </div>
   </div>
 </section>
-
 <section class="elevate-section">
   <div class="elevate-image">
     <img src="./portrait-young-african-american-man-with-vr-glasses.jpg" alt="Business growth and success">
@@ -587,7 +570,6 @@
     <p>From creating stunning websites to managing your social media, we provide complete digital solutions that attract customers and grow your business. No technical knowledge required, we handle everything so you can focus on what you do best.</p>
   </div>
 </section>
-
 <section class="services-wrapper" id="service-scroll">
   <div class="section-heading">
     <p class="section-pretitle">What We Offer</p>
@@ -603,7 +585,6 @@
     <div class="service-card"><div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/></svg></div><h3>Digital Marketing</h3><p>Reach more customers with targeted ads that fit your budget.</p><ul><li>Email marketing</li><li>Facebook ads</li><li>Google ads</li><li>WhatsApp marketing</li></ul><a href="./marketing.html" class="view-more-btn">View More &#8594;</a></div>
   </div>
 </section>
-
 <section class="choose-webify" id="choose-webify">
   <div class="cw-container">
     <div class="cw-header"><p class="cw-pretitle">WHY CHOOSE WEBIFY?</p><h2>Built for local success</h2></div>
@@ -617,15 +598,14 @@
     </div>
     <div class="cw-grid">
       <div class="cw-card" data-index="0"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5M8 12c-2.29 0-3.5-1.168-3.5-2h7C11.5 10.832 10.29 12 8 12"/></svg></div><h3>We Understand You</h3><p>We know township business inside out. We speak your language and truly get your challenges.</p></div>
-      <div class="cw-card" data-index="1"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/><path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/></svg></div><h3>Affordable Prices</h3><p>Quality work that fits real small business budgets, no compromise, no overcharging.</p></div>
+      <div class="cw-card" data-index="1"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/><path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/></svg></div><h3>Affordable Prices</h3><p>Quality work that fits real small-business budgets, no compromise, no overcharging.</p></div>
       <div class="cw-card" data-index="2"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></div><h3>Quick Turnaround</h3><p>Your site live in as little as 3–5 days. Fast, efficient, no endless waiting.</p></div>
-      <div class="cw-card" data-index="3"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/></svg></div><h3>Real Support</h3><p>WhatsApp us anytime. Real people reply fast so that your needs are met.</p></div>
+      <div class="cw-card" data-index="3"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/></svg></div><h3>Real Support</h3><p>WhatsApp us anytime.</p></div>
       <div class="cw-card" data-index="4"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/><path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/></svg></div><h3>No Hidden Costs</h3><p>The price we quote is the price you pay. Transparent from day one.</p></div>
       <div class="cw-card" data-index="5"><div class="cw-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/></svg></div><h3>We Handle Everything</h3><p>Domain, design, hosting, updates — you don't need to be tech-savvy. We've got you.</p></div>
     </div>
   </div>
 </section>
-
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-grid">
@@ -644,11 +624,22 @@
           <li><a href="./index.html">Home</a></li>
           <li><a href="index.html#service-scroll">Services</a></li>
           <li><a href="#choose-webify">About Us</a></li>
+          <li><a href="#">Pricing</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
-      
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul class="footer-links">
+          <li><a href="./google.html">Google My Business</a></li>
+          <li><a href="./media.html">Social Media Pages</a></li>
+          <li><a href="./web.html">Professional Websites</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
+          <li><a href="./marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
       <div class="footer-col">
         <h3>Get in Touch</h3>
         <ul class="footer-contact">
@@ -668,10 +659,8 @@
     </div>
   </div>
 </footer>
-
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', () => {
-
   // Promo rotation
   const promoItems = document.querySelectorAll('.promo-item');
   let promoIdx = 0;
@@ -684,7 +673,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   rotatePromo(); setInterval(rotatePromo, 3000);
   window.addEventListener('resize', () => { if (window.innerWidth > 768) promoItems.forEach(i => i.classList.remove('active')); else rotatePromo(); });
-
   // Mobile menu
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
@@ -692,7 +680,6 @@ document.addEventListener('DOMContentLoaded', () => {
   menuBtn.addEventListener('click', () => { const open = navLinks.classList.toggle('active'); mobileOverlay.classList.toggle('active', open); menuBtn.textContent = open ? '✕' : '☰'; document.body.style.overflow = open ? 'hidden' : ''; });
   mobileOverlay.addEventListener('click', () => { navLinks.classList.remove('active'); mobileOverlay.classList.remove('active'); menuBtn.textContent = '☰'; document.body.style.overflow = ''; });
   document.querySelectorAll('.dropdown-menu a').forEach(l => l.addEventListener('click', () => { navLinks.classList.remove('active'); mobileOverlay.classList.remove('active'); menuBtn.textContent = '☰'; document.body.style.overflow = ''; }));
-
   // Smart navbar
   const navbar = document.getElementById('mainNavbar');
   const promoBar = document.querySelector('.promo-bar');
@@ -708,24 +695,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.addEventListener('scroll', updateNavbar, { passive: true });
   updateNavbar();
-
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
-
   // Service cards
   const cardObs = new IntersectionObserver((entries) => { entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120); }); }, { threshold: 0.15 });
   document.querySelectorAll('.service-card').forEach(c => cardObs.observe(c));
-
   // Elevate
   const elevObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 });
   const elev = document.querySelector('.elevate-section');
   if (elev) elevObs.observe(elev);
-
   // CW intro
   const cwIObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 });
   const cwI = document.querySelector('.cw-intro');
   if (cwI) cwIObs.observe(cwI);
-
   // Stats counter
   const statNums = document.querySelectorAll('.stat-box h2');
   statNums.forEach(el => { const n = el.textContent.trim(); el.innerHTML = `<span data-target="${n}">${n}</span>`; });
@@ -744,15 +726,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const statsObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) statNums.forEach(el => { const s=el.querySelector('span'); if(s) countUp(s); }); }); }, { threshold: 0.4 });
   const statsEl = document.querySelector('.stats');
   if (statsEl) statsObs.observe(statsEl);
-
   // CW cards
   const cwObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { const idx = parseInt(e.target.dataset.index||0); setTimeout(() => e.target.classList.add('visible'), 120+idx*160); } }); }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
   document.querySelectorAll('.cw-card').forEach(c => cwObs.observe(c));
-
   // Headings
   const hObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 });
   document.querySelectorAll('.section-heading').forEach(h => hObs.observe(h));
-
   // Hero h1 flip text
   const heroFlipWords = document.querySelectorAll('.hero-flip-word');
   let heroFlipIdx = 0;
@@ -766,7 +745,6 @@ document.addEventListener('DOMContentLoaded', () => {
       heroFlipWords[heroFlipIdx].classList.add('active');
     }, 2800);
   }
-
   // Footer flip text
   const flipWords = document.querySelectorAll('.flip-word');
   let flipIdx = 0;
@@ -780,7 +758,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
-
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -796,4 +773,3 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 </body>
 </html>
-
