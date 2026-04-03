@@ -34,6 +34,7 @@
     .navbar.nav-hidden { transform: translateY(-100%); }
 
     .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); text-decoration: none; cursor: pointer; }
+    .logo img {height: clamp(48px, 5vw, 72px); width: auto; display: block; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
     .nav-links a { 
@@ -323,9 +324,10 @@
 <div class="mobile-menu-overlay" id="mobileOverlay"></div>
 
 <header>
-  <nav class="navbar" id="mainNavbar">
-    <a href="./index.html" class="logo">Webify</a>
-
+ <nav class="navbar" id="mainNavbar">
+    <a href="./index.html" class="logo">
+      <img src="./webie 2.png" alt="Webify">
+    </a>
     <ul class="nav-links" id="navLinks">
       <li class="dropdown">
         <a href="./index.html#service-scroll">Services</a>

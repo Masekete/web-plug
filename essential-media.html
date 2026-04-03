@@ -23,7 +23,7 @@
       .promo-item.active { display: flex; }
     }
 
-    /* ── Navbar (THIN VERSION) ── */
+    /* ── Navbar (THINNED) ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 0.45rem 5%; display: flex; align-items: center; justify-content: space-between;
@@ -34,16 +34,11 @@
     .navbar.nav-hidden { transform: translateY(-100%); }
 
     .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); text-decoration: none; cursor: pointer; }
+    .logo img {height: clamp(48px, 5vw, 72px); width: auto; display: block; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
-    .nav-links a { 
-      text-decoration: none; color: #222; font-weight: 500; 
-      position: relative; transition: color 0.25s; display: block; padding: 0.35rem 0; 
-    }
-    .nav-links a::after { 
-      content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; 
-      background: #3a58ff; transition: width 0.3s ease; 
-    }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; position: relative; transition: color 0.25s; display: block; padding: 0.35rem 0; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #3a58ff; transition: width 0.3s ease; }
     .nav-links a:hover, .nav-links a.active { color: #3a58ff; }
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
@@ -60,55 +55,30 @@
     }
     .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu li { list-style: none; }
-    .dropdown-menu a { 
-      padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; 
-      transition: all 0.25s; border-left: 3px solid transparent; 
-    }
-    .dropdown-menu a:hover { 
-      background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; 
-    }
+    .dropdown-menu a { padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; border-left: 3px solid transparent; }
+    .dropdown-menu a:hover { background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; }
     .dropdown-menu a::after { display: none; }
 
-    .get-started { 
-      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); 
-      color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; 
-      font-weight: 600; cursor: pointer; transition: all 0.25s; 
-    }
+    .get-started { padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.25s; }
     .get-started:hover { background: #3a58ff; transform: translateY(-1px); }
     .get-started-mobile { display: none; }
     .menu-btn { display: none; font-size: 1.9rem; cursor: pointer; color: #222; z-index: 1002; }
-    .mobile-menu-overlay { 
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); 
-      z-index: 998; opacity: 0; transition: opacity 0.3s ease; 
-    }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { display: block; opacity: 1; }
 
     @media (max-width: 991px) {
-      .nav-links { 
-        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; 
-        flex-direction: column; background: white; padding: 6rem 2rem 2rem; 
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); 
-        z-index: 999; overflow-y: auto; 
-      }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; flex-direction: column; background: white; padding: 6rem 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); z-index: 999; overflow-y: auto; }
       .nav-links.active { right: 0; }
       .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
       .nav-links a { padding: 1rem 0; }
       .menu-btn { display: block; }
       .get-started { display: none; }
-      .get-started-mobile { 
-        display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; 
-        background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; 
-        border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; 
-        font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; 
-      }
+      .get-started-mobile { display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; }
       .get-started-mobile:hover { opacity: 0.92; transform: translateY(-1px); }
       .dropdown > a::before { display: none; }
       .dropdown-menu { display: none !important; }
     }
-    @media (max-width: 600px) { 
-      .navbar { padding: 0.45rem 4%; } 
-      .nav-links { width: 85%; } 
-    }
+    @media (max-width: 600px) { .navbar { padding: 0.45rem 4%; } .nav-links { width: 85%; } }
 
     /* ══════════════════════
        STICKY HERO WRAPPER
@@ -120,7 +90,7 @@
       will-change: transform;
     }
 
-    /* Page Hero */
+    /* ── Page Hero ── */
     .page-hero {
       height: 100vh;
       min-height: 580px;
@@ -138,7 +108,8 @@
 
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%); z-index: 1;
+      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%);
+      z-index: 1;
     }
 
     .hero-body { position: relative; z-index: 2; padding: 0 5%; max-width: 800px; width: 100%; }
@@ -153,39 +124,18 @@
     .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
     .hero-breadcrumb .current { color: rgba(255,255,255,0.9); }
 
-    .hero-badge { 
-      display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 2rem; 
-      background: rgba(58,88,255,0.2); border: 1px solid rgba(58,88,255,0.4); 
-      border-radius: 50px; color: white; font-size: 0.75rem; font-weight: 700; 
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; 
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 2rem; background: rgba(58,88,255,0.2); border: 1px solid rgba(58,88,255,0.4); border-radius: 50px; color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; }
 
-    .page-hero h1 { 
-      font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 800; color: #ffffff; 
-      line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; 
-    }
+    .page-hero h1 { font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
     .page-hero h1 .highlight { color: #7c9bff; }
-    .page-hero p { 
-      font-size: clamp(1rem,2.3vw,1.15rem); color: rgba(255,255,255,0.85); 
-      max-width: 580px; margin: 0 auto 2rem; line-height: 1.7; 
-    }
+    .page-hero p { margin-top: 1rem; font-size: clamp(1rem,2.3vw,1.15rem); color: rgba(255,255,255,0.85); max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; margin-bottom: 2rem; }
     .hero-price { font-size: clamp(2rem,5vw,2.8rem); font-weight: 800; color: white; margin-bottom: 2.5rem; }
     .hero-price .from { font-size: 1rem; font-weight: 500; opacity: 0.8; }
     .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-    .cta-primary { 
-      padding: 1rem 2.2rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); 
-      color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; 
-      font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; 
-      box-shadow: 0 8px 30px rgba(58,88,255,0.4); text-decoration: none; display: inline-block; 
-    }
+    .cta-primary { padding: 1rem 2.2rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 30px rgba(58,88,255,0.4); text-decoration: none; display: inline-block; }
     .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(58,88,255,0.5); }
-    .cta-secondary { 
-      padding: 1rem 2.2rem; background: rgba(255,255,255,0.15); color: white; 
-      border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-weight: 600; 
-      font-size: 1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); 
-      text-decoration: none; display: inline-block; 
-    }
+    .cta-secondary { padding: 1rem 2.2rem; background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); text-decoration: none; display: inline-block; }
     .cta-secondary:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
 
     @media (max-width: 600px) {
@@ -208,9 +158,10 @@
       width: 100%;
     }
 
+    /* ── Content Sections ── */
     .content-section { padding: 4rem 5%; background: #ffffff; }
 
-    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s , transform 0.7s ; }
+    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .section-heading.visible { opacity: 1; transform: translateY(0); }
     .section-pretitle { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #3a58ff; margin-bottom: 0.8rem; }
     .section-heading h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: #111; line-height: 1.1; margin-bottom: 1rem; }
@@ -229,7 +180,7 @@
 
     /* Why */
     .why-bg { background: #f8fbff; padding-top: 4rem; padding-bottom: 4rem; }
-    .why-inner { width: 100%; padding: 0 5%; }
+    .why-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
     .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
     .why-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
     .why-card.visible { opacity: 1; transform: translateY(0); }
@@ -249,9 +200,9 @@
     .feature-item p { font-size: 0.875rem; color: #666; line-height: 1.5; }
 
     /* Pricing */
-    .pricing-section { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
+    .pricing-section { padding: 6rem 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
     .pricing-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%); pointer-events: none; }
-    .pricing-container { width: 100%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .pricing-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
     .pricing-section .section-pretitle { color: #7c9bff; }
     .pricing-section .section-heading h2, .pricing-section .section-heading p { color: white; }
     .pricing-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; margin-top: 3rem; }
@@ -278,7 +229,7 @@
     .faq-item.active .faq-answer { max-height: 500px; margin-top: 1rem; }
 
     /* Final CTA */
-    .final-cta { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); text-align: center; overflow: hidden; }
+    .final-cta { padding: 6rem 5%; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); text-align: center; overflow: hidden; }
     .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%); }
     .final-cta-content { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
     .final-cta h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 1.2rem; }
@@ -292,10 +243,7 @@
     .chat-widget svg { width: 28px; height: 28px; }
 
     /* Responsive */
-    @media (max-width: 900px) { 
-      .why-grid { grid-template-columns: 1fr; } 
-      .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } 
-    }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
     @media (max-width: 600px) { 
       .pricing-card { padding: 2rem 1.5rem; } 
       .price-amount { font-size: 3rem; } 
@@ -305,8 +253,8 @@
     }
 
     /* Footer */
-    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 4rem 5% 2rem; }
-    .footer-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 6rem 5% 3rem; }
+    .footer-container { max-width: 1200px; margin: 0 auto; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
     .footer-col h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
     .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
@@ -329,6 +277,10 @@
 
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-col { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-contact li { justify-content: center; }
+      .footer-links a:hover { transform: none; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
     }
@@ -386,8 +338,10 @@
 <div class="mobile-menu-overlay" id="mobileOverlay"></div>
 
 <header>
-  <nav class="navbar" id="mainNavbar">
-    <a href="./index.html" class="logo">Webify</a>
+ <nav class="navbar" id="mainNavbar">
+    <a href="./index.html" class="logo">
+      <img src="./webie 2.png" alt="Webify">
+    </a>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="./index.html">Home</a></li>
@@ -398,7 +352,7 @@
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
           <li><a href="#">WhatsApp Business</a></li>
-          <li><a href="./branding.html">Logo & Branding</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </li>
@@ -411,7 +365,7 @@
     </ul>
 
     <button class="get-started">Get Started</button>
-    <div class="menu-btn" id="menuBtn">☰</div>
+    <div class="menu-btn" id="menuBtn">&#9776;</div>
   </nav>
 </header>
 
@@ -432,7 +386,7 @@
       </div>
 
       <div class="hero-badge">ESSENTIAL PACKAGE</div>
-      <h1>Social Media Page <span class="highlight">Setup</span> & Branding</h1>
+      <h1>Social Media Page <span class="highlight">Setup</span> &amp; Branding</h1>
       <p>Professional Facebook and Instagram pages with optimized profiles, contact info, and basic branding that makes a great first impression.</p>
       <div class="hero-price"><span class="from">From</span> R399</div>
       <div class="hero-cta">
@@ -451,11 +405,11 @@
     <p>The Essential Social Media Page Setup package is designed for businesses that need professional Facebook and Instagram profiles to make a strong first impression online.</p>
   </div>
   <div class="ideal-grid">
-    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Salons & Barbershops</h3><p>Showcase your styles and services with professional profiles that attract local clients.</p></div>
+    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Salons &amp; Barbershops</h3><p>Showcase your styles and services with professional profiles that attract local clients.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><h3>Small Retailers</h3><p>Build an engaging online presence to drive traffic to your store and showcase products.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h3>Service Businesses</h3><p>Plumbers, electricians – create profiles that highlight your expertise and contact details.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg></div><h3>Food Vendors</h3><p>Share your menu and specials with branded pages that entice customers.</p></div>
-    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><h3>Tutors & Coaches</h3><p>Attract students with professional pages showcasing your qualifications.</p></div>
+    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><h3>Tutors &amp; Coaches</h3><p>Attract students with professional pages showcasing your qualifications.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Fitness Trainers</h3><p>Engage potential clients with branded profiles highlighting your programs.</p></div>
   </div>
 </section>
@@ -485,7 +439,7 @@
     <p>Your Essential Social Media Page Setup package includes setup for both Facebook and Instagram with basic branding.</p>
   </div>
   <div class="features-grid">
-    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h4>Page Creation</h4><p>Setup new Facebook & Instagram business pages</p></div>
+    <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h4>Page Creation</h4><p>Setup new Facebook &amp; Instagram business pages</p></div>
     <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h4>Profile Optimization</h4><p>Professional bio, about section, and categories</p></div>
     <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><h4>Contact Info Setup</h4><p>Phone, email, website, location added</p></div>
     <div class="feature-item"><div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h4>Basic Branding</h4><p>Profile picture, cover photo, and highlights</p></div>
@@ -512,7 +466,7 @@
         <p class="price-duration">One-time payment</p>
       </div>
       <ul class="features-list">
-        <li>Facebook & Instagram page creation</li>
+        <li>Facebook &amp; Instagram page creation</li>
         <li>Optimized profile and bio writing</li>
         <li>Contact info and call-to-action setup</li>
         <li>Basic branding (profile/cover photos)</li>
@@ -593,7 +547,7 @@
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
           <li><a href="#">WhatsApp Business</a></li>
-          <li><a href="./branding.html">Logo & Branding</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </div>
@@ -621,6 +575,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
   // Promo bar mobile rotation
   const promoItems = document.querySelectorAll('.promo-item');
   let promoIndex = 0;
@@ -669,9 +624,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY;
     const promoH = promoBar ? promoBar.offsetHeight : 0;
     navbar.style.top = Math.max(0, promoH - scrollY) + 'px';
-    if (scrollY < 80) navbar.classList.remove('nav-hidden');
-    else if (scrollY > lastScrollY) navbar.classList.add('nav-hidden');
-    else navbar.classList.remove('nav-hidden');
+    if (scrollY < 80) {
+      navbar.classList.remove('nav-hidden');
+    } else if (scrollY > lastScrollY) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
     lastScrollY = scrollY;
   }
   window.addEventListener('scroll', updateNavbar, { passive: true });
@@ -722,6 +681,15 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+</script>
+
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ii init Di qi Sr Bi Zi Pi capture calculateEventProperties Yi register register_once register_for_session unregister unregister_for_session Xi getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Ji identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty Wi Vi createPersonProfile setInternalOrTestUser Gi Fi Ki opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing $i debug Tr Ui getPageViewId captureTraceFeedback captureTraceMetric Ri".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_vJQ92gSZZ723YeFFcvQmQujYmhApDgNVDYijqw4ScMw6', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-01-30',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
 </script>
 </body>
 </html>

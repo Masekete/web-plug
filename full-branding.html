@@ -23,7 +23,7 @@
       .promo-item.active { display: flex; }
     }
 
-    /* ── Navbar (THIN VERSION) ── */
+    /* ── Navbar (THINNED) ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 0.45rem 5%; display: flex; align-items: center; justify-content: space-between;
@@ -34,16 +34,11 @@
     .navbar.nav-hidden { transform: translateY(-100%); }
 
     .logo { color: #3a58ff; font-weight: 800; font-size: clamp(1.6rem,5vw,2rem); text-decoration: none; cursor: pointer; }
+    .logo img {height: clamp(48px, 5vw, 72px); width: auto; display: block; }
     .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
     .nav-links > li { position: relative; }
-    .nav-links a { 
-      text-decoration: none; color: #222; font-weight: 500; 
-      position: relative; transition: color 0.25s; display: block; padding: 0.35rem 0; 
-    }
-    .nav-links a::after { 
-      content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; 
-      background: #3a58ff; transition: width 0.3s ease; 
-    }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; position: relative; transition: color 0.25s; display: block; padding: 0.35rem 0; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #3a58ff; transition: width 0.3s ease; }
     .nav-links a:hover, .nav-links a.active { color: #3a58ff; }
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
@@ -60,55 +55,30 @@
     }
     .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu li { list-style: none; }
-    .dropdown-menu a { 
-      padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; 
-      transition: all 0.25s; border-left: 3px solid transparent; 
-    }
-    .dropdown-menu a:hover { 
-      background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; 
-    }
+    .dropdown-menu a { padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; border-left: 3px solid transparent; }
+    .dropdown-menu a:hover { background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; }
     .dropdown-menu a::after { display: none; }
 
-    .get-started { 
-      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); 
-      color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; 
-      font-weight: 600; cursor: pointer; transition: all 0.25s; 
-    }
+    .get-started { padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.25s; }
     .get-started:hover { background: #3a58ff; transform: translateY(-1px); }
     .get-started-mobile { display: none; }
     .menu-btn { display: none; font-size: 1.9rem; cursor: pointer; color: #222; z-index: 1002; }
-    .mobile-menu-overlay { 
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); 
-      z-index: 998; opacity: 0; transition: opacity 0.3s ease; 
-    }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { display: block; opacity: 1; }
 
     @media (max-width: 991px) {
-      .nav-links { 
-        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; 
-        flex-direction: column; background: white; padding: 6rem 2rem 2rem; 
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); 
-        z-index: 999; overflow-y: auto; 
-      }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; flex-direction: column; background: white; padding: 6rem 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); z-index: 999; overflow-y: auto; }
       .nav-links.active { right: 0; }
       .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
       .nav-links a { padding: 1rem 0; }
       .menu-btn { display: block; }
       .get-started { display: none; }
-      .get-started-mobile { 
-        display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; 
-        background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; 
-        border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; 
-        font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; 
-      }
+      .get-started-mobile { display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; }
       .get-started-mobile:hover { opacity: 0.92; transform: translateY(-1px); }
       .dropdown > a::before { display: none; }
       .dropdown-menu { display: none !important; }
     }
-    @media (max-width: 600px) { 
-      .navbar { padding: 0.45rem 4%; } 
-      .nav-links { width: 85%; } 
-    }
+    @media (max-width: 600px) { .navbar { padding: 0.45rem 4%; } .nav-links { width: 85%; } }
 
     /* ══════════════════════
        STICKY HERO WRAPPER
@@ -120,7 +90,7 @@
       will-change: transform;
     }
 
-    /* Page Hero */
+    /* ── Page Hero ── */
     .page-hero {
       height: 100vh;
       min-height: 580px;
@@ -138,7 +108,8 @@
 
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%); z-index: 1;
+      background: linear-gradient(135deg, rgba(58,88,255,0.28) 0%, rgba(10,10,40,0.55) 100%);
+      z-index: 1;
     }
 
     .hero-body { position: relative; z-index: 2; padding: 0 5%; max-width: 800px; width: 100%; }
@@ -153,39 +124,18 @@
     .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
     .hero-breadcrumb .current { color: rgba(255,255,255,0.9); }
 
-    .hero-badge { 
-      display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 2rem; 
-      background: rgba(58,88,255,0.2); border: 1px solid rgba(58,88,255,0.4); 
-      border-radius: 50px; color: white; font-size: 0.75rem; font-weight: 700; 
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; 
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 2rem; background: rgba(58,88,255,0.2); border: 1px solid rgba(58,88,255,0.4); border-radius: 50px; color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; }
 
-    .page-hero h1 { 
-      font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 800; color: #ffffff; 
-      line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; 
-    }
+    .page-hero h1 { font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
     .page-hero h1 .highlight { color: #7c9bff; }
-    .page-hero p { 
-      font-size: clamp(1rem,2.3vw,1.15rem); color: rgba(255,255,255,0.85); 
-      max-width: 580px; margin: 0 auto 2rem; line-height: 1.7; 
-    }
+    .page-hero p { margin-top: 1rem; font-size: clamp(1rem,2.3vw,1.15rem); color: rgba(255,255,255,0.85); max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; margin-bottom: 2rem; }
     .hero-price { font-size: clamp(2rem,5vw,2.8rem); font-weight: 800; color: white; margin-bottom: 2.5rem; }
     .hero-price .from { font-size: 1rem; font-weight: 500; opacity: 0.8; }
     .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-    .cta-primary { 
-      padding: 1rem 2.2rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); 
-      color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; 
-      font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; 
-      box-shadow: 0 8px 30px rgba(58,88,255,0.4); text-decoration: none; display: inline-block; 
-    }
+    .cta-primary { padding: 1rem 2.2rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 30px rgba(58,88,255,0.4); text-decoration: none; display: inline-block; }
     .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(58,88,255,0.5); }
-    .cta-secondary { 
-      padding: 1rem 2.2rem; background: rgba(255,255,255,0.15); color: white; 
-      border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-weight: 600; 
-      font-size: 1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); 
-      text-decoration: none; display: inline-block; 
-    }
+    .cta-secondary { padding: 1rem 2.2rem; background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); text-decoration: none; display: inline-block; }
     .cta-secondary:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
 
     @media (max-width: 600px) {
@@ -208,12 +158,10 @@
       width: 100%;
     }
 
-    .content-section { 
-      padding: 4rem 5%; 
-      background: #ffffff; 
-    }
+    /* ── Content Sections ── */
+    .content-section { padding: 4rem 5%; background: #ffffff; }
 
-    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s , transform 0.7s ; }
+    .section-heading { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .section-heading.visible { opacity: 1; transform: translateY(0); }
     .section-pretitle { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #3a58ff; margin-bottom: 0.8rem; }
     .section-heading h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: #111; line-height: 1.1; margin-bottom: 1rem; }
@@ -232,10 +180,7 @@
 
     /* Why */
     .why-bg { background: #f8fbff; padding-top: 4rem; padding-bottom: 4rem; }
-    .why-inner { 
-      width: 100%; 
-      padding: 0 5%; 
-    }
+    .why-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
     .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
     .why-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
     .why-card.visible { opacity: 1; transform: translateY(0); }
@@ -255,15 +200,9 @@
     .feature-item p { font-size: 0.875rem; color: #666; line-height: 1.5; }
 
     /* Pricing */
-    .pricing-section { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
+    .pricing-section { padding: 6rem 5%; background: linear-gradient(135deg, #0b1426 0%, #1e293b 100%); overflow: hidden; }
     .pricing-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(58,88,255,0.18), transparent 60%); pointer-events: none; }
-    .pricing-container { 
-      width: 100%; 
-      max-width: 1100px;
-      margin: 0 auto; 
-      position: relative; 
-      z-index: 1; 
-    }
+    .pricing-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
     .pricing-section .section-pretitle { color: #7c9bff; }
     .pricing-section .section-heading h2, .pricing-section .section-heading p { color: white; }
     .pricing-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; margin-top: 3rem; }
@@ -279,10 +218,7 @@
     .price-cta .cta-primary { width: 100%; max-width: 400px; font-size: 1.05rem; }
 
     /* FAQ */
-    .faq-section { 
-      padding: 4rem 5%; 
-      background: #ffffff; 
-    }
+    .faq-section { padding: 4rem 5%; background: #ffffff; }
     .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1.5rem 0; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
     .faq-item.visible { opacity: 1; transform: translateY(0); }
     .faq-question { font-size: 1.1rem; font-weight: 700; color: #111; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color 0.3s; }
@@ -293,7 +229,7 @@
     .faq-item.active .faq-answer { max-height: 500px; margin-top: 1rem; }
 
     /* Final CTA */
-    .final-cta { padding: clamp(5rem,10vh,8rem) 5%; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); text-align: center; overflow: hidden; }
+    .final-cta { padding: 6rem 5%; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); text-align: center; overflow: hidden; }
     .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%); }
     .final-cta-content { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
     .final-cta h2 { font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 800; color: white; line-height: 1.1; margin-bottom: 1.2rem; }
@@ -307,10 +243,7 @@
     .chat-widget svg { width: 28px; height: 28px; }
 
     /* Responsive */
-    @media (max-width: 900px) { 
-      .why-grid { grid-template-columns: 1fr; } 
-      .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } 
-    }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } .ideal-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
     @media (max-width: 600px) { 
       .pricing-card { padding: 2rem 1.5rem; } 
       .price-amount { font-size: 3rem; } 
@@ -320,8 +253,8 @@
     }
 
     /* Footer */
-    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 4rem 5% 2rem; }
-    .footer-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a1f3a 100%); color: white; padding: 6rem 5% 3rem; }
+    .footer-container { max-width: 1200px; margin: 0 auto; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
     .footer-col h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
     .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
@@ -406,7 +339,9 @@
 
 <header>
   <nav class="navbar" id="mainNavbar">
-    <a href="./index.html" class="logo">Webify</a>
+    <a href="./index.html" class="logo">
+      <img src="./webie 2.png" alt="Webify">
+    </a>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="./index.html">Home</a></li>
@@ -417,7 +352,7 @@
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
           <li><a href="#">WhatsApp Business</a></li>
-          <li><a href="./branding.html" class="active">Logo & Branding</a></li>
+          <li><a href="./branding.html" class="active">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </li>
@@ -440,7 +375,6 @@
     <div class="hero-bg-img"></div>
     <div class="hero-overlay"></div>
     <div class="hero-body">
-
       <!-- Breadcrumb -->
       <div class="hero-breadcrumb">
         <a href="./index.html">Home</a>
@@ -474,7 +408,7 @@
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><h3>Small Retailers</h3><p>Create consistent branding for packaging, signs, and marketing materials to attract customers.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h3>Service Businesses</h3><p>Develop a professional brand identity that communicates reliability and expertise.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg></div><h3>Food Vendors</h3><p>Design appetizing branding that unifies your menu, packaging, and online presence.</p></div>
-    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><h3>Tutors & Coaches</h3><p>Build an educational brand that inspires confidence and attracts more students.</p></div>
+    <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><h3>Tutors &amp; Coaches</h3><p>Build an educational brand that inspires confidence and attracts more students.</p></div>
     <div class="ideal-card"><div class="ideal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Fitness Trainers</h3><p>Create dynamic branding that energizes your clients and grows your fitness business.</p></div>
   </div>
 </section>
@@ -491,7 +425,7 @@
       <div class="why-card"><div class="why-number">01</div><h3>Consistent Image</h3><p>Maintain a professional look across all touchpoints, from website to business cards.</p></div>
       <div class="why-card"><div class="why-number">02</div><h3>Build Recognition</h3><p>Make your business memorable with cohesive visuals that stand out in the market.</p></div>
       <div class="why-card"><div class="why-number">03</div><h3>Establish Trust</h3><p>Professional branding signals reliability, encouraging customers to choose you.</p></div>
-      <div class="why-card"><div class="why-number">04</div><h3>Save Time & Money</h3><p>Get everything in one package, avoiding costly redesigns down the line.</p></div>
+      <div class="why-card"><div class="why-number">04</div><h3>Save Time &amp; Money</h3><p>Get everything in one package, avoiding costly redesigns down the line.</p></div>
     </div>
   </div>
 </div>
@@ -613,7 +547,7 @@
           <li><a href="./media.html">Social Media Pages</a></li>
           <li><a href="./web.html">Professional Websites</a></li>
           <li><a href="#">WhatsApp Business</a></li>
-          <li><a href="./branding.html">Logo & Branding</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
           <li><a href="./marketing.html">Digital Marketing</a></li>
         </ul>
       </div>
@@ -641,6 +575,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
   // Promo bar mobile rotation
   const promoItems = document.querySelectorAll('.promo-item');
   let promoIndex = 0;
@@ -689,9 +624,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY;
     const promoH = promoBar ? promoBar.offsetHeight : 0;
     navbar.style.top = Math.max(0, promoH - scrollY) + 'px';
-    if (scrollY < 80) navbar.classList.remove('nav-hidden');
-    else if (scrollY > lastScrollY) navbar.classList.add('nav-hidden');
-    else navbar.classList.remove('nav-hidden');
+    if (scrollY < 80) {
+      navbar.classList.remove('nav-hidden');
+    } else if (scrollY > lastScrollY) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
     lastScrollY = scrollY;
   }
   window.addEventListener('scroll', updateNavbar, { passive: true });
