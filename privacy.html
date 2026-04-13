@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – Webify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #ffffff; color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
+
+    /* ── Promo Bar ── */
+    .promo-bar { background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; padding: 0.75rem 0; overflow: hidden; font-weight: 500; font-size: 0.9rem; }
+    .promo-content { display: flex; animation: marquee 25s linear infinite; white-space: nowrap; }
+    .promo-item { padding: 0 3rem; display: inline-flex; align-items: center; }
+    .promo-item::before { content: "✦"; margin-right: 0.75rem; font-size: 0.6rem; opacity: 0.7; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @media (max-width: 768px) {
+      .promo-content { animation: none; display: block; text-align: center; }
+      .promo-item { display: none; padding: 0 1rem; justify-content: center; }
+      .promo-item.active { display: flex; }
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.7);
+      transform: translateY(0); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+    }
+    .navbar.nav-hidden { transform: translateY(-100%); }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 40px; width: auto; display: block; }
+    .nav-links { display: flex; gap: clamp(1.6rem,4vw,2.8rem); list-style: none; }
+    .nav-links > li { position: relative; }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.25s; display: block; padding: 0.5rem 0; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: #3a58ff; transition: width 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: #3a58ff; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .dropdown { position: relative; }
+    .dropdown > a { display: flex; align-items: center; gap: 0.3rem; }
+    .dropdown > a::before { content: '▼'; font-size: 0.65rem; transition: transform 0.3s; }
+    .dropdown:hover > a::before { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); min-width: 240px; border-radius: 12px; padding: 0.75rem 0; box-shadow: 0 12px 40px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; margin-top: 0.5rem; border: 1px solid rgba(58,88,255,0.1); }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu li { list-style: none; }
+    .dropdown-menu a { padding: 0.75rem 1.5rem; color: #222; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; border-left: 3px solid transparent; }
+    .dropdown-menu a:hover { background: #f0f4ff; color: #3a58ff; border-left-color: #3a58ff; padding-left: 1.7rem; }
+    .dropdown-menu a::after { display: none; }
+    .get-started { padding: 0.65rem 1.4rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.25s; }
+    .get-started:hover { transform: translateY(-1px); opacity: 0.92; }
+    .get-started-mobile { display: none; }
+    .menu-btn { display: none; font-size: 1.9rem; cursor: pointer; color: #222; z-index: 1002; background: none; border: none; padding: 0; line-height: 1; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
+    .mobile-menu-overlay.active { display: block; opacity: 1; }
+    @media (max-width: 991px) {
+      .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; flex-direction: column; background: white; padding: 6rem 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); z-index: 999; overflow-y: auto; }
+      .nav-links.active { right: 0; }
+      .nav-links > li { width: 100%; border-bottom: 1px solid #f0f0f0; }
+      .nav-links a { padding: 1rem 0; }
+      .menu-btn { display: block; }
+      .get-started { display: none; }
+      .get-started-mobile { display: block; margin-top: 1.5rem; width: 100%; padding: 0.85rem 1.5rem; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; }
+      .dropdown > a::before { display: none; }
+      .dropdown-menu { display: none !important; }
+    }
+    @media (max-width: 600px) { .navbar { padding: 1rem 4%; } .nav-links { width: 85%; } }
+
+    /* ══════════════════════
+       HERO
+    ══════════════════════ */
+    .hero-sticky-wrapper { position: sticky; top: 0; z-index: 1; }
+    .page-hero {
+      height: 52vh; min-height: 380px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      overflow: hidden; position: relative;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background: url(./social-media-marketing-concept-marketing-with-applications.jpg) center/cover no-repeat;
+      filter: blur(0.8px) brightness(0.42); z-index: 1;
+      -webkit-animation: kenburns-top-left 20s ease-out both infinite alternate;
+              animation: kenburns-top-left 20s ease-out both infinite alternate;
+    }
+    @-webkit-keyframes kenburns-top-left {
+      0% { -webkit-transform: scale(1) translate(0,0); transform: scale(1) translate(0,0); -webkit-transform-origin: 16% 16%; transform-origin: 16% 16%; }
+      100% { -webkit-transform: scale(1.25) translate(-20px,-15px); transform: scale(1.25) translate(-20px,-15px); -webkit-transform-origin: top left; transform-origin: top left; }
+    }
+    @keyframes kenburns-top-left {
+      0% { -webkit-transform: scale(1) translate(0,0); transform: scale(1) translate(0,0); -webkit-transform-origin: 16% 16%; transform-origin: 16% 16%; }
+      100% { -webkit-transform: scale(1.25) translate(-20px,-15px); transform: scale(1.25) translate(-20px,-15px); -webkit-transform-origin: top left; transform-origin: top left; }
+    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(14,21,61,0.93) 0%, rgba(58,88,255,0.28) 60%, rgba(0,0,0,0.2) 100%); z-index: 2; }
+    .hero-body { position: relative; z-index: 3; padding: 0 5%; max-width: 720px; width: 100%; }
+    .hero-breadcrumb { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 500; margin-bottom: 1.2rem; }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: white; }
+    .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-breadcrumb .current { color: rgba(255,255,255,0.9); }
+    .hero-label { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.45rem 1.1rem; background: rgba(58,88,255,0.2); border: 1px solid rgba(124,155,255,0.35); border-radius: 50px; color: #a8c5ff; font-size: 0.78rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 1.4rem; opacity: 0; animation: heroUp 0.7s ease-out 0.2s forwards; }
+    .page-hero h1 { font-size: clamp(2.2rem,5.5vw,3.6rem); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 0.9rem; opacity: 0; animation: heroUp 0.75s ease-out 0.38s forwards; }
+    .page-hero h1 .accent { color: #7c9bff; }
+    .page-hero p { font-size: clamp(0.92rem,2vw,1.05rem); color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto; line-height: 1.7; opacity: 0; animation: heroUp 0.75s ease-out 0.56s forwards; }
+    @keyframes heroUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ══════════════════════
+       CONTENT
+    ══════════════════════ */
+    .policy-body, .footer { position: relative; z-index: 10; }
+
+    .policy-body { background: #f8fbff; padding: clamp(3rem,7vh,5rem) 5%; }
+    .policy-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: clamp(2.5rem,5vw,5rem); align-items: start; }
+
+    /* ── Sidebar TOC ── */
+    .toc {
+      position: sticky; top: 100px;
+      background: white; border-radius: 16px;
+      padding: 1.6rem; border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+    .toc h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3a58ff; margin-bottom: 1.2rem; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+    .toc-list a {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.88rem; color: #555; text-decoration: none;
+      padding: 0.55rem 0.75rem; border-radius: 8px; font-weight: 500;
+      transition: all 0.2s; border-left: 2px solid transparent;
+    }
+    .toc-list a:hover, .toc-list a.active { color: #3a58ff; background: #f0f4ff; border-left-color: #3a58ff; }
+    .toc-list a .num { font-size: 0.72rem; font-weight: 700; color: #bbb; min-width: 18px; }
+    .toc-list a:hover .num, .toc-list a.active .num { color: #3a58ff; }
+
+    .toc-updated { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid #f0f0f0; font-size: 0.8rem; color: #999; }
+    .toc-updated strong { display: block; color: #555; font-weight: 600; margin-bottom: 0.2rem; }
+
+    /* ── Policy content ── */
+    .policy-content { background: white; border-radius: 20px; padding: clamp(2rem,4vw,3.5rem); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 40px rgba(0,0,0,0.06); }
+
+    .policy-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #f0f4ff; }
+    .policy-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+    .section-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3a58ff; margin-bottom: 0.6rem; display: block; }
+    .policy-section h2 { font-size: clamp(1.3rem,2.5vw,1.65rem); font-weight: 800; color: #111; margin-bottom: 1.2rem; line-height: 1.2; }
+
+    .policy-section p { font-size: 0.97rem; color: #444; line-height: 1.85; margin-bottom: 1rem; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section p a { color: #3a58ff; text-decoration: none; font-weight: 500; }
+    .policy-section p a:hover { text-decoration: underline; }
+
+    .policy-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.65rem; }
+    .policy-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.97rem; color: #444; line-height: 1.7; }
+    .policy-list li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #3a58ff; flex-shrink: 0; margin-top: 0.5rem; }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8edff 100%);
+      border: 1px solid rgba(58,88,255,0.15); border-left: 4px solid #3a58ff;
+      border-radius: 10px; padding: 1.2rem 1.4rem; margin: 1.2rem 0;
+      font-size: 0.94rem; color: #333; line-height: 1.7;
+    }
+    .highlight-box strong { color: #3a58ff; }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: #f8fbff; border: 1px solid rgba(58,88,255,0.12);
+      border-radius: 12px; padding: 1.2rem 1.5rem; margin-top: 1.2rem;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .contact-card:hover { background: #f0f4ff; transform: translateX(4px); }
+    .contact-card-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, #3a58ff 0%, #0e153d 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; }
+    .contact-card-icon svg { width: 20px; height: 20px; }
+    .contact-card-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: #111; }
+    .contact-card-text span { font-size: 0.85rem; color: #777; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.08s; } .delay-2 { transition-delay: 0.16s; } .delay-3 { transition-delay: 0.24s; }
+
+    @media (max-width: 900px) {
+      .policy-inner { grid-template-columns: 1fr; }
+      .toc { position: static; display: none; }
+    }
+
+    /* WhatsApp Float */
+    .chat-widget { position: fixed; bottom: 1.8rem; left: 1.8rem; background: #25D366; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(37,211,102,0.4); transition: all 0.3s; z-index: 999; text-decoration: none; }
+    .chat-widget:hover { transform: scale(1.1); }
+    .chat-widget svg { width: 28px; height: 28px; }
+
+    /* ── Footer ── */
+    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a2560 100%); color: white; padding: 4rem 5% 2rem; overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -40%; right: -15%; width: 600px; height: 600px; border-radius: 50%; background: rgba(58,88,255,0.08); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: rgba(58,88,255,0.06); pointer-events: none; }
+    .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.8rem; }
+    .footer-links a { color: rgba(255,255,255,0.75); text-decoration: none; transition: all 0.3s; display: inline-block; font-size: 0.95rem; }
+    .footer-links a:hover { color: #7c9bff; transform: translateX(5px); }
+    .footer-contact { list-style: none; }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+    .footer-contact svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: #7c9bff; }
+    .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-link { width: 40px; height: 40px; border-radius: 8px; background: rgba(58,88,255,0.15); display: flex; align-items: center; justify-content: center; color: #7c9bff; transition: all 0.3s; text-decoration: none; }
+    .social-link:hover { background: #3a58ff; color: white; transform: translateY(-3px); }
+    .social-link svg { width: 20px; height: 20px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.88rem; }
+    .footer-legal { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
+    .footer-legal a:hover { color: #7c9bff; }
+    .footer-brand-heading { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: white; line-height: 1.55; }
+    .footer-flip-wrapper { display: inline-block; position: relative; overflow: hidden; height: 1.2em; min-width: 90px; vertical-align: middle; }
+    .flip-word { position: absolute; top: 0; left: 0; color: #7c9bff; font-weight: 800; font-size: 1.3rem; line-height: 1.2em; opacity: 0; transform: translateY(110%); transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1); white-space: nowrap; }
+    .flip-word.active { opacity: 1; transform: translateY(0); }
+    .flip-word.exit { opacity: 0; transform: translateY(-110%); }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-col { text-align: center; }
+      .footer-social { justify-content: center; }
+      .footer-contact li { justify-content: center; }
+      .footer-links a:hover { transform: none; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Promo Bar -->
+<div class="promo-bar">
+  <div class="promo-content">
+    <span class="promo-item">Let us build your dream website</span>
+    <span class="promo-item">If you can dream it, we can build it</span>
+    <span class="promo-item">Webify your online presence now</span>
+    <span class="promo-item">Let us build your dream website</span>
+    <span class="promo-item">If you can dream it, we can build it</span>
+    <span class="promo-item">Webify your online presence now</span>
+  </div>
+</div>
+
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+<header>
+   <nav class="navbar" id="mainNavbar">
+    <a href="./index.html" class="logo">
+      <img src="./webie 2.png" alt="Webify">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="./index.html#service-scroll">Services</a>
+        <ul class="dropdown-menu">
+          <li><a href="./google.html">Google My Business</a></li>
+          <li><a href="./media.html">Social Media Pages</a></li>
+          <li><a href="./web.html">Professional Websites</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
+          <li><a href="./marketing.html">Digital Marketing</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+      <li style="border-bottom:none"><button class="get-started-mobile">Get Started</button></li>
+    </ul>
+    <button class="get-started">Get Started</button>
+    <div class="menu-btn" id="menuBtn">&#9776;</div>
+  </nav>
+</header>
+
+<!-- ══ HERO ══ -->
+<div class="hero-sticky-wrapper">
+  <section class="page-hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+      <div class="hero-breadcrumb">
+        <a href="./index.html">Home</a>
+        <span class="sep">›</span>
+        <span class="current">Privacy Policy</span>
+      </div>
+      <div class="hero-label">Legal</div>
+      <h1>Privacy <span class="accent">Policy</span></h1>
+      <p>We believe you deserve to know exactly how your information is used. This policy explains it simply and clearly.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══ CONTENT ══ -->
+<div class="policy-body">
+  <div class="policy-inner">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc">
+      <h4>On This Page</h4>
+      <ul class="toc-list" id="tocList">
+        <li><a href="#s1"><span class="num">01</span> Introduction</a></li>
+        <li><a href="#s2"><span class="num">02</span> Information We Collect</a></li>
+        <li><a href="#s3"><span class="num">03</span> How We Use It</a></li>
+        <li><a href="#s4"><span class="num">04</span> Sharing Your Information</a></li>
+        <li><a href="#s5"><span class="num">05</span> Data Storage &amp; Security</a></li>
+        <li><a href="#s6"><span class="num">06</span> Cookies</a></li>
+        <li><a href="#s7"><span class="num">07</span> Your Rights</a></li>
+        <li><a href="#s8"><span class="num">08</span> Third-Party Links</a></li>
+        <li><a href="#s9"><span class="num">09</span> Children's Privacy</a></li>
+        <li><a href="#s10"><span class="num">10</span> Changes to This Policy</a></li>
+        <li><a href="#s11"><span class="num">11</span> Contact Us</a></li>
+      </ul>
+      <div class="toc-updated">
+        <strong>Last Updated</strong>
+        April 2025
+      </div>
+    </aside>
+
+    <!-- Policy Content -->
+    <div class="policy-content">
+
+      <div class="policy-section reveal" id="s1">
+        <span class="section-num">01 — Introduction</span>
+        <h2>We Take Your Privacy Seriously</h2>
+        <p>Welcome to Webify. We are a South African digital services company based in Tembisa, Gauteng, helping small and township businesses get online. We are committed to protecting your personal information and being transparent about how we use it.</p>
+        <p>This Privacy Policy applies to all services offered by Webify, including our website, contact forms, WhatsApp communications, and any work we carry out on your behalf. By engaging with our services, you agree to the practices described in this policy.</p>
+        <div class="highlight-box">
+          <strong>Plain language summary:</strong> We only collect information we actually need, we never sell it, and we use it solely to deliver and improve our services to you.
+        </div>
+      </div>
+
+      <div class="policy-section reveal delay-1" id="s2">
+        <span class="section-num">02 — Information We Collect</span>
+        <h2>What Information Do We Collect?</h2>
+        <p>We collect information in two ways — what you give us directly, and what we collect automatically when you use our website.</p>
+        <p><strong>Information you provide to us:</strong></p>
+        <ul class="policy-list">
+          <li>Your name and contact details (email address, phone/WhatsApp number)</li>
+          <li>Your business name, industry, and any details you share with us about your business</li>
+          <li>Messages, briefs, or content you send us via our contact form, email, or WhatsApp</li>
+          <li>Payment information processed through third-party payment platforms (we do not store card details)</li>
+          <li>Photos, logos, or other brand assets you share with us for project delivery</li>
+        </ul>
+        <p><strong>Information collected automatically:</strong></p>
+        <ul class="policy-list">
+          <li>Your browser type, device type, and operating system</li>
+          <li>Your IP address and approximate location</li>
+          <li>Pages visited on our website and time spent on each page</li>
+          <li>How you arrived at our website (e.g. a Google search or a social media link)</li>
+        </ul>
+      </div>
+
+      <div class="policy-section reveal" id="s3">
+        <span class="section-num">03 — How We Use Your Information</span>
+        <h2>How We Use Your Information</h2>
+        <p>We use your information only for purposes that are necessary and relevant to delivering our services. Specifically, we use your information to:</p>
+        <ul class="policy-list">
+          <li>Respond to your enquiries and communicate with you about your project</li>
+          <li>Deliver the services you've contracted us for (websites, logos, social media pages, etc.)</li>
+          <li>Send you quotes, invoices, and project updates</li>
+          <li>Improve our website and service offerings based on how users interact with them</li>
+          <li>Comply with legal obligations under South African law, including POPIA</li>
+          <li>Send you relevant marketing communications about our services — only if you've opted in</li>
+        </ul>
+        <p>We do not use your information for automated decision-making or profiling that would have a significant impact on you.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s4">
+        <span class="section-num">04 — Sharing Your Information</span>
+        <h2>Who Do We Share Your Information With?</h2>
+        <p>We do not sell, rent, or trade your personal information to any third party. We only share your information in the following limited circumstances:</p>
+        <ul class="policy-list">
+          <li><strong>Service providers:</strong> Trusted tools we use to operate our business, such as Google Workspace, WhatsApp Business, and website hosting platforms. These providers are contractually bound to protect your data.</li>
+          <li><strong>Payment processors:</strong> If you pay us online, your payment is handled by a third-party processor. We never see or store your card details.</li>
+          <li><strong>Legal requirements:</strong> If required by South African law, a court order, or a regulatory authority, we may disclose your information.</li>
+          <li><strong>Business transfers:</strong> In the unlikely event that Webify is acquired or merged with another business, your information may be transferred. We would notify you before this happens.</li>
+        </ul>
+        <div class="highlight-box">
+          <strong>Bottom line:</strong> Your information is only shared when strictly necessary to deliver your service, or when the law requires it. We never sell your data.
+        </div>
+      </div>
+
+      <div class="policy-section reveal" id="s5">
+        <span class="section-num">05 — Data Storage &amp; Security</span>
+        <h2>How We Store and Protect Your Data</h2>
+        <p>Your information is stored securely using industry-standard tools and platforms. We use Google Workspace for email and document storage, which provides enterprise-grade encryption and security.</p>
+        <p>We take appropriate technical and organisational measures to protect your personal information against unauthorised access, accidental loss, destruction, or disclosure. These include:</p>
+        <ul class="policy-list">
+          <li>Password-protected accounts with two-factor authentication where possible</li>
+          <li>Limited access — only team members who need the information to do their job can access it</li>
+          <li>Regular review of who has access to what information</li>
+          <li>Secure deletion of information that is no longer needed</li>
+        </ul>
+        <p>We retain your personal information only for as long as necessary to deliver our services and meet our legal obligations — typically no longer than 5 years after our last interaction, unless you request earlier deletion.</p>
+        <p>While we take every reasonable precaution, no method of electronic storage is 100% secure. If a data breach occurs that is likely to affect your rights, we will notify you as required by the Protection of Personal Information Act (POPIA).</p>
+      </div>
+
+      <div class="policy-section reveal" id="s6">
+        <span class="section-num">06 — Cookies</span>
+        <h2>Cookies &amp; Tracking Technologies</h2>
+        <p>Our website may use cookies — small text files stored on your device — to improve your experience. We use cookies for the following purposes:</p>
+        <ul class="policy-list">
+          <li><strong>Essential cookies:</strong> Required for the website to function correctly. These cannot be disabled.</li>
+          <li><strong>Analytics cookies:</strong> Help us understand how visitors use our site so we can improve it. We may use Google Analytics for this purpose.</li>
+          <li><strong>Live chat cookies:</strong> Our Tawk.to live chat widget uses cookies to remember your session and provide support.</li>
+        </ul>
+        <p>You can control cookies through your browser settings. Disabling cookies may affect some features of our website. By continuing to use our site, you consent to our use of cookies as described above.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s7">
+        <span class="section-num">07 — Your Rights</span>
+        <h2>Your Rights Under POPIA</h2>
+        <p>As a South African business, we comply with the Protection of Personal Information Act (POPIA). Under this Act and in general, you have the following rights regarding your personal information:</p>
+        <ul class="policy-list">
+          <li><strong>Right to access:</strong> You may request a copy of the personal information we hold about you.</li>
+          <li><strong>Right to correction:</strong> You may ask us to correct inaccurate or incomplete information.</li>
+          <li><strong>Right to deletion:</strong> You may request that we delete your personal information, subject to legal retention requirements.</li>
+          <li><strong>Right to object:</strong> You may object to us processing your information for marketing purposes at any time.</li>
+          <li><strong>Right to withdraw consent:</strong> Where processing is based on your consent, you may withdraw it at any time without affecting prior processing.</li>
+          <li><strong>Right to complain:</strong> You have the right to lodge a complaint with the Information Regulator of South Africa if you believe we have violated your privacy rights.</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us using the details at the bottom of this page. We will respond within 30 days.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s8">
+        <span class="section-num">08 — Third-Party Links</span>
+        <h2>Links to Other Websites</h2>
+        <p>Our website may contain links to third-party websites, such as our social media profiles (Facebook, Instagram, Twitter/X) or payment platforms. We are not responsible for the privacy practices or content of those websites.</p>
+        <p>We encourage you to review the privacy policies of any third-party sites you visit. Clicking on an external link means you are leaving Webify's website and are subject to that site's own terms and privacy policy.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s9">
+        <span class="section-num">09 — Children's Privacy</span>
+        <h2>Children's Privacy</h2>
+        <p>Our services are not directed at children under the age of 18. We do not knowingly collect personal information from anyone under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately and we will delete it promptly.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s10">
+        <span class="section-num">10 — Changes to This Policy</span>
+        <h2>Updates to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our services, technology, or legal requirements. When we do, we will update the "Last Updated" date at the top of this page.</p>
+        <p>If we make significant changes that affect your rights, we will notify you directly via email or WhatsApp. We encourage you to review this policy periodically to stay informed about how we protect your information.</p>
+        <p>Your continued use of our services after any changes constitutes your acceptance of the updated policy.</p>
+      </div>
+
+      <div class="policy-section reveal" id="s11">
+        <span class="section-num">11 — Contact Us</span>
+        <h2>Questions or Concerns?</h2>
+        <p>If you have any questions about this Privacy Policy, want to exercise your rights, or have a concern about how we've handled your information, please reach out to us. We take every concern seriously and will respond within 30 days.</p>
+        <a href="mailto:info@webify.co.za" class="contact-card">
+          <div class="contact-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg></div>
+          <div class="contact-card-text"><strong>info@webify.co.za</strong><span>Email us about privacy concerns</span></div>
+        </a>
+        <a href="https://wa.me/27791646006" target="_blank" class="contact-card" style="margin-top:0.8rem">
+          <div class="contact-card-icon" style="background:#25D366"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg></div>
+          <div class="contact-card-text"><strong>+27 79 164 6006</strong><span>WhatsApp us directly</span></div>
+        </a>
+        <p style="margin-top:1.4rem; font-size:0.88rem; color:#888;">You may also contact the <strong style="color:#555">Information Regulator of South Africa</strong> at <a href="https://inforegulator.org.za" target="_blank">inforegulator.org.za</a> if you believe your rights have been violated.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/27791646006" target="_blank" class="chat-widget" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-brand-heading">Webify, Built to <span class="footer-flip-wrapper"><span class="flip-word active">Connect</span><span class="flip-word">Impress</span><span class="flip-word">Attract</span></span></h3>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a>
+          <a href="#" class="social-link" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
+          <a href="https://wa.me/27791646006" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#service-scroll">Services</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul class="footer-links">
+          <li><a href="./google.html">Google My Business</a></li>
+          <li><a href="./media.html">Social Media Pages</a></li>
+          <li><a href="./web.html">Professional Websites</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
+          <li><a href="./marketing.html">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Get in Touch</h3>
+        <ul class="footer-contact">
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg><span>+27 79 164 6006</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span>info@webify.co.za</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>Tembisa, Gauteng<br>South Africa</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Webify. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="./privacy.html">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Promo rotation
+  const promoItems = document.querySelectorAll('.promo-item');
+  let promoIdx = 0;
+  function rotatePromo() {
+    if (window.innerWidth <= 768) {
+      promoItems.forEach(i => i.classList.remove('active'));
+      Array.from(promoItems).slice(0,3)[promoIdx].classList.add('active');
+      promoIdx = (promoIdx + 1) % 3;
+    }
+  }
+  rotatePromo(); setInterval(rotatePromo, 3000);
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) promoItems.forEach(i => i.classList.remove('active')); else rotatePromo(); });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const overlay = document.getElementById('mobileOverlay');
+  menuBtn.addEventListener('click', () => { const open = navLinks.classList.toggle('active'); overlay.classList.toggle('active', open); menuBtn.textContent = open ? '✕' : '☰'; document.body.style.overflow = open ? 'hidden' : ''; });
+  overlay.addEventListener('click', () => { navLinks.classList.remove('active'); overlay.classList.remove('active'); menuBtn.textContent = '☰'; document.body.style.overflow = ''; });
+  document.querySelectorAll('.dropdown-menu a').forEach(l => l.addEventListener('click', () => { navLinks.classList.remove('active'); overlay.classList.remove('active'); menuBtn.textContent = '☰'; document.body.style.overflow = ''; }));
+
+  // Smart navbar
+  const navbar = document.getElementById('mainNavbar');
+  const promoBar = document.querySelector('.promo-bar');
+  let lastScrollY = 0;
+  function updateNavbar() {
+    const scrollY = window.scrollY;
+    const promoH = promoBar ? promoBar.offsetHeight : 0;
+    navbar.style.top = Math.max(0, promoH - scrollY) + 'px';
+    if (scrollY < 80) navbar.classList.remove('nav-hidden');
+    else if (scrollY > lastScrollY) navbar.classList.add('nav-hidden');
+    else navbar.classList.remove('nav-hidden');
+    lastScrollY = scrollY;
+  }
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar();
+
+  // Reveal animations
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // TOC active state
+  const sections = document.querySelectorAll('.policy-section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => tocObserver.observe(s));
+
+  // Smooth scroll for TOC links
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+
+  // Footer flip text
+  const flipWords = document.querySelectorAll('.flip-word');
+  let flipIdx = 0;
+  if (flipWords.length) {
+    setInterval(() => {
+      flipWords[flipIdx].classList.add('exit'); flipWords[flipIdx].classList.remove('active');
+      const ex = flipWords[flipIdx]; setTimeout(() => ex.classList.remove('exit'), 500);
+      flipIdx = (flipIdx + 1) % flipWords.length;
+      flipWords[flipIdx].classList.add('active');
+    }, 2400);
+  }
+});
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/699f84b59825341c37479445/1jibhspoo';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+</body>
+</html>
