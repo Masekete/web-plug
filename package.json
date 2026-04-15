@@ -1,0 +1,21 @@
+{
+  "name": "web-plug",
+  "version": "1.0.0",
+  "description": "Webify - Get Your Business Online",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static HTML site - no build step required'",
+    "dev": "echo 'Use a local server to preview the site'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.18"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "static",
+    "html",
+    "website"
+  ],
+  "author": "",
+  "license": "ISC"
+}
