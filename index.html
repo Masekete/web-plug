@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <!-- ═══ PRIMARY SEO ═══ -->
   <title>Webify – Website Design & Digital Marketing South Africa</title>
   <meta name="description" content="Get your business found online with Webify. We build professional websites, set up Google My Business, manage social media, and run digital marketing for township and small businesses across South Africa. Packages from R499. Based in Tembisa, Gauteng." />
@@ -12,12 +13,14 @@
   <link rel="canonical" href="https://webify.co.za/" />
   <link rel="alternate" hreflang="en-ZA" href="https://webify.co.za/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
   <!-- ═══ FAVICON ═══ -->
   <link rel="icon" type="image/png" href="./webie 2.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./webie 2.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./webie 2.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="./webie 2.png" />
   <meta name="theme-color" content="#3a58ff" />
+
   <!-- ═══ OPEN GRAPH ═══ -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Webify | Professional Websites & Digital Marketing from R499" />
@@ -29,12 +32,14 @@
   <meta property="og:image:alt" content="Webify – Affordable Website Design and Digital Marketing South Africa" />
   <meta property="og:site_name" content="Webify" />
   <meta property="og:locale" content="en_ZA" />
+
   <!-- ═══ TWITTER CARD ═══ -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Webify | Get Your Business Online from R499" />
   <meta name="twitter:description" content="Professional websites, Google My Business, social media & digital marketing for South African small businesses. Chat with us on WhatsApp." />
   <meta name="twitter:image" content="https://webify.co.za/og-image.jpg" />
   <meta name="twitter:image:alt" content="Webify – Affordable Website Design and Digital Marketing South Africa" />
+
   <!-- ═══ SCHEMA.ORG – LOCAL BUSINESS ═══ -->
   <script type="application/ld+json">
   {
@@ -88,10 +93,12 @@
     }
   }
   </script>
-  <!-- ═══ FONTS ═══ -->
+
+  <!-- ═══ FONTS: Plus Jakarta Sans + DM Sans ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --blue: #3a58ff;
@@ -129,6 +136,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+
     /* ══════════════════════════════
        PROMO BAR
     ══════════════════════════════ */
@@ -146,6 +154,7 @@
       .promo-item { display: none; justify-content: center; }
       .promo-item.active { display: flex; }
     }
+
     /* ══════════════════════════════
        NAVBAR
     ══════════════════════════════ */
@@ -207,6 +216,7 @@
       .menu-btn { display: block; }
     }
     @media (max-width: 600px) { .navbar { padding: 0.55rem 4%; } .nav-links { width: 85%; } }
+
     /* ══════════════════════════════
        HERO
     ══════════════════════════════ */
@@ -270,28 +280,29 @@
     .hero-img-wrap { position: relative; width: clamp(340px,44vw,580px); }
     .hero-img-wrap::before { content: ''; position: absolute; inset: -14%; background: radial-gradient(ellipse at center, rgba(58,88,255,0.18) 0%, transparent 68%); z-index: 0; }
     .hero-img-wrap img { position: relative; z-index: 1; width: 100%; height: auto; border-radius: 50%; display: block; object-fit: cover; border: 2px solid rgba(124,155,255,0.2); box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
-    .img-badge { position: absolute; z-index: 2; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-radius: var(--radius-md); padding: 0.65rem 0.95rem; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.65rem; animation: floatY 3.5s ease-in-out infinite; }
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-    .img-badge-1 { bottom: 12%; left: -14%; }
-    .img-badge-2 { top: 14%; right: -12%; animation-delay: 1.2s; }
-    .badge-icon { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, var(--blue) 0%, var(--navy-mid) 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .badge-icon svg { width: 16px; height: 16px; color: white; }
+    .img-badge { position: absolute; z-index: 2; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-radius: var(--radius-sm); padding: 0.4rem 0.6rem; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 0.4rem; animation: floatY 3.5s ease-in-out infinite; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .img-badge-1 { bottom: 10%; left: 5%; }
+    .img-badge-2 { top: 10%; right: 5%; animation-delay: 1.2s; }
+    .badge-icon { width: 26px; height: 26px; border-radius: 6px; background: linear-gradient(135deg, var(--blue) 0%, var(--navy-mid) 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .badge-icon svg { width: 13px; height: 13px; color: white; }
     .badge-text { line-height: 1.2; }
-    .badge-text strong { display: block; font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: #111; }
-    .badge-text span { font-size: 0.7rem; color: #888; }
+    .badge-text strong { display: block; font-family: var(--display); font-size: 0.75rem; font-weight: 700; color: #111; }
+    .badge-text span { font-size: 0.62rem; color: #888; }
     .stars-row { display: flex; gap: 2px; margin-bottom: 0.15rem; }
     .stars-row span { color: var(--gold); font-size: 0.72rem; }
     .hero-scroll-cue { position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.45rem; color: rgba(255,255,255,0.28); font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; opacity: 0; animation: fadeUp 0.7s ease-out 2.1s forwards; }
     .scroll-line { width: 1px; height: 38px; background: linear-gradient(to bottom, rgba(255,255,255,0.22), transparent); animation: scrollDrop 2.2s ease-in-out infinite; }
     @keyframes scrollDrop { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
     @media (max-width: 991px) {
       .hero-inner { flex-direction: column; text-align: center; padding-top: clamp(7rem,14vw,10rem); gap: 3rem; }
       .hero-sub { margin: 0 auto 2.2rem; }
       .hero-cta-row { justify-content: center; }
       .hero-trust { justify-content: center; }
       .hero-img-wrap { width: clamp(260px,68vw,400px); }
-      .img-badge-1 { left: -4%; bottom: 4%; }
-      .img-badge-2 { right: -4%; top: 5%; }
+      .img-badge-1 { left: 5%; bottom: 8%; }
+      .img-badge-2 { right: 5%; top: 8%; }
       .hero-rings { display: none; }
       .hero-scroll-cue { display: none; }
     }
@@ -299,6 +310,7 @@
       .trust-divider { display: none; }
       .hero-trust { gap: 0.9rem; }
     }
+
     /* ══════════════════════════════
        STATS
     ══════════════════════════════ */
@@ -315,6 +327,7 @@
     .stat-box p { font-size: 0.76rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); line-height: 1.4; }
     @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2,1fr); gap: 2rem 1rem; } }
     @media (max-width: 420px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+
     /* ══════════════════════════════
        HOW IT WORKS
     ══════════════════════════════ */
@@ -339,6 +352,7 @@
       .hiw-steps { grid-template-columns: 1fr; max-width: 480px; }
       .hiw-connector { display: none; }
     }
+
     /* ══════════════════════════════
        ELEVATE
     ══════════════════════════════ */
@@ -363,6 +377,7 @@
     .elevate-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: rgba(255,255,255,0.78); font-size: 0.97rem; }
     .elevate-list li::before { content: ''; width: 20px; height: 20px; border-radius: 50%; background: rgba(58,88,255,0.25); border: 1.5px solid var(--blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 16 16'%3E%3Cpath fill='%237c9bff' d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; margin-top: 1px; }
     @media (max-width: 991px) { .elevate-section { flex-direction: column; text-align: center; gap: 2.5rem; } .elevate-list li { justify-content: center; } .elevate-image img { max-width: 100%; } }
+
     /* ══════════════════════════════
        SERVICES
     ══════════════════════════════ */
@@ -390,6 +405,7 @@
     .view-more-btn:hover { background: var(--blue); color: white; }
     .view-more-btn svg { width: 14px; height: 14px; transition: transform 0.26s; }
     .view-more-btn:hover svg { transform: translateX(3px); }
+
     /* ══════════════════════════════
        TESTIMONIALS
     ══════════════════════════════ */
@@ -409,6 +425,7 @@
     .testi-info strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--navy); }
     .testi-info span { font-size: 0.8rem; color: var(--text-muted); }
     .testi-service-badge { display: inline-block; padding: 0.2rem 0.6rem; background: var(--blue-pale); color: var(--blue); border-radius: 50px; font-size: 0.72rem; font-weight: 600; margin-top: 0.2rem; }
+
     /* ══════════════════════════════
        WHY CHOOSE
     ══════════════════════════════ */
@@ -441,6 +458,7 @@
       .cw-intro-content { text-align: center; }
       .cw-intro-image img { max-width: 100%; }
     }
+
     /* ══════════════════════════════
        PRICING
     ══════════════════════════════ */
@@ -475,6 +493,7 @@
     .pricing-cta.featured-cta:hover { background: #2844e8; box-shadow: 0 12px 36px rgba(58,88,255,0.5); transform: translateY(-2px); }
     .pricing-note { text-align: center; margin-top: 1.8rem; font-size: 0.88rem; color: var(--text-muted); }
     .pricing-note a { color: var(--blue); text-decoration: none; font-weight: 600; }
+
     /* ══════════════════════════════
        FAQ
     ══════════════════════════════ */
@@ -495,6 +514,7 @@
     .faq-a p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; }
     .faq-a a { color: var(--blue); font-weight: 600; text-decoration: none; }
     .faq-a a:hover { text-decoration: underline; }
+
     /* ══════════════════════════════
        FINAL CTA
     ══════════════════════════════ */
@@ -518,6 +538,7 @@
     .cta-band-trust { display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
     .cta-trust-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); }
     .cta-trust-item strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
     /* ══════════════════════════════
        WHATSAPP FLOAT
     ══════════════════════════════ */
@@ -525,50 +546,57 @@
     .chat-widget:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(37,211,102,0.58); }
     .chat-widget svg { width: 28px; height: 28px; flex-shrink: 0; }
     @media (max-width: 600px) { .chat-widget { bottom: 1.2rem; left: 1.2rem; width: 52px; height: 52px; } .chat-widget svg { width: 24px; height: 24px; } }
+
     /* ══════════════════════════════
-       FOOTER (NEW - exact match from your first page + flip animation)
+       FOOTER
     ══════════════════════════════ */
-    .footer { background: linear-gradient(135deg, #0e153d 0%, #1a2560 100%); color: white; padding: 4rem 5% 2rem; position: relative; overflow: hidden; }
-    .footer::before { content: ''; position: absolute; top: -40%; right: -15%; width: 600px; height: 600px; border-radius: 50%; background: rgba(58,88,255,0.08); pointer-events: none; }
-    .footer::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: rgba(58,88,255,0.06); pointer-events: none; }
+    .footer { background: linear-gradient(140deg, #06093a 0%, #0e153d 40%, #111d5e 100%); color: white; padding: 5rem 5% 2rem; position: relative; overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -30%; right: -12%; width: 550px; height: 550px; border-radius: 50%; background: rgba(58,88,255,0.07); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: -25%; left: -8%; width: 400px; height: 400px; border-radius: 50%; background: rgba(58,88,255,0.05); pointer-events: none; }
     .footer-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
-    .footer-col h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
-    .footer-col p { color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.2rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3,1fr); gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h4 { font-family: var(--display); font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; color: white; }
+    .footer-col p { color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 1.2rem; font-size: 0.93rem; }
     .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 0.8rem; }
-    .footer-links a { color: rgba(255,255,255,0.75); text-decoration: none; transition: all 0.3s; display: inline-block; font-size: 0.95rem; }
-    .footer-links a:hover { color: var(--blue-light); transform: translateX(5px); }
+    .footer-links li { margin-bottom: 0.7rem; }
+    .footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.24s; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.92rem; }
+    .footer-links a::before { content: '→'; font-size: 0.75rem; opacity: 0; transition: opacity 0.24s, transform 0.24s; transform: translateX(-4px); color: var(--blue-light); }
+    .footer-links a:hover { color: var(--blue-light); padding-left: 4px; }
+    .footer-links a:hover::before { opacity: 1; transform: translateX(0); }
     .footer-contact { list-style: none; }
-    .footer-contact li { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; }
-    .footer-contact svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: var(--blue-light); }
-    .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
-    .social-link { width: 40px; height: 40px; border-radius: 8px; background: rgba(58,88,255,0.15); display: flex; align-items: center; justify-content: center; color: var(--blue-light); transition: all 0.3s; text-decoration: none; }
-    .social-link:hover { background: var(--blue); color: white; transform: translateY(-3px); }
-    .social-link svg { width: 20px; height: 20px; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.88rem; }
-    .footer-legal { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; color: rgba(255,255,255,0.65); font-size: 0.92rem; }
+    .footer-contact svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--blue-light); }
+    .footer-contact a { color: inherit; text-decoration: none; }
+    .footer-contact a:hover { color: var(--blue-light); }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.4rem; }
+    .social-link { width: 38px; height: 38px; border-radius: var(--radius-sm); background: rgba(58,88,255,0.14); display: flex; align-items: center; justify-content: center; color: var(--blue-light); transition: all 0.26s; text-decoration: none; border: 1px solid rgba(58,88,255,0.2); }
+    .social-link:hover { background: var(--blue); color: white; border-color: var(--blue); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .footer-legal { display: flex; gap: 1.4rem; list-style: none; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.24s; }
     .footer-legal a:hover { color: var(--blue-light); }
-    .footer-brand-heading { font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: white; line-height: 1.55; }
-    .footer-flip-wrapper { display: inline-block; position: relative; overflow: hidden; height: 1.2em; min-width: 90px; vertical-align: middle; perspective: 400px; }
-    .flip-word { position: absolute; top: 0; left: 0; color: var(--blue-light); font-weight: 800; font-size: 1.3rem; line-height: 1.2em; opacity: 0; transform: rotateX(90deg); transform-origin: center bottom; transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4,0,0.2,1); white-space: nowrap; }
-    .flip-word.active { opacity: 1; transform: rotateX(0deg); }
-    .flip-word.exit { opacity: 0; transform: rotateX(-90deg); }
+    @media (max-width: 991px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-col { text-align: center; }
       .footer-social { justify-content: center; }
       .footer-contact li { justify-content: center; }
+      .footer-links a:hover { padding-left: 0; }
+      .footer-links a::before { display: none; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-legal { flex-direction: column; gap: 0.5rem; align-items: center; }
     }
 
-    
+    /* Shared helpers */
+    .container { max-width: 1200px; margin: 0 auto; }
+    .text-center { text-align: center; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   </style>
 </head>
 <body>
+
 <!-- ══ PROMO BAR ══ -->
 <div class="promo-bar" role="marquee" aria-label="Promotions">
   <div class="promo-content">
@@ -579,10 +607,12 @@
     <span class="promo-item"><span class="promo-dot"></span>Starting from only R499 – get online today</span>
     <span class="promo-item"><span class="promo-dot"></span>Website live in as little as 3–5 business days</span>
     <span class="promo-item"><span class="promo-dot"></span>No tech knowledge needed, we handle everything</span>
-
+    <span class="promo-item"><span class="promo-dot"></span>Free consultation, chat with us now!</span>
   </div>
 </div>
+
 <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
 <!-- ══ NAVBAR ══ -->
 <header>
   <nav class="navbar" id="mainNavbar" aria-label="Main navigation">
@@ -604,11 +634,15 @@
       </li>
       <li role="none"><a href="./About.html" role="menuitem">About</a></li>
       <li role="none"><a href="./contact.html" role="menuitem">Contact</a></li>
+      <li style="border-bottom:none" role="none">
+        <a href="https://wa.me/27791646006" target="_blank" rel="noopener noreferrer" class="btn-nav-mobile">Get Free Quote</a>
+      </li>
     </ul>
     <a href="https://wa.me/27791646006" target="_blank" rel="noopener noreferrer" class="btn-nav">Get Free Quote</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">&#9776;</button>
   </nav>
 </header>
+
 <!-- ══ HERO ══ -->
 <section class="hero" aria-label="Webify – Professional Digital Solutions for South African Businesses">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -680,10 +714,12 @@
     <span>Scroll</span>
   </div>
 </section>
+
 <!-- ══ WHATSAPP FLOAT ══ -->
 <a href="https://wa.me/27791646006" target="_blank" rel="noopener noreferrer" class="chat-widget" aria-label="Chat with Webify on WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
 </a>
+
 <!-- ══ STATS ══ -->
 <section class="stats" aria-label="Webify by the numbers">
   <div class="stats-grid">
@@ -713,10 +749,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/></svg>
       </div>
       <h2>100%</h2>
-      <p>Satisfaction<br>rate</p>
+      <p>Satisfaction<br>Focus</p>
     </div>
   </div>
 </section>
+
 <!-- ══ HOW IT WORKS ══ -->
 <section class="how-it-works" aria-labelledby="hiw-heading">
   <div class="hiw-header">
@@ -746,6 +783,7 @@
     <div class="hiw-connector" aria-hidden="true"></div>
   </div>
 </section>
+
 <!-- ══ ELEVATE ══ -->
 <section class="elevate-section" aria-labelledby="elevate-heading">
   <div class="elevate-image">
@@ -755,15 +793,16 @@
     <div class="section-tag">Why Digital Presence Matters</div>
     <h2 class="section-title" id="elevate-heading">If Your Business<br>Isn't Online, <span class="hl">You're Invisible</span></h2>
     <p class="section-sub">Over 70% of South African consumers search for businesses online before they buy. Without a digital presence, you're sending those customers straight to your competition.</p>
-    <p class="section-sub">Webify simplifies everything. We give township and small businesses the same professional digital presence that big brands have, at prices that make sense for your budget.</p>
+    <p class="section-sub">Webify levels the playing field. We give township and small businesses the same professional digital presence that big brands have at prices that make sense for your budget.</p>
     <ul class="elevate-list" aria-label="Key benefits">
       <li>Customers find your business on Google 24/7</li>
       <li>Professional image builds trust and credibility instantly</li>
-      <li>Get more calls, messages, and attract more clients</li>
+      <li>Get more calls, messages, and walk-ins every month</li>
       <li>Compete with bigger businesses in your area</li>
     </ul>
   </div>
 </section>
+
 <!-- ══ SERVICES ══ -->
 <section class="services-wrapper" id="service-scroll" aria-labelledby="services-heading">
   <div class="section-heading">
@@ -858,6 +897,7 @@
     </article>
   </div>
 </section>
+
 <!-- ══ TESTIMONIALS ══ -->
 <section class="testimonials" aria-labelledby="testi-heading">
   <div class="testimonials-header">
@@ -910,19 +950,20 @@
     </div>
   </div>
 </section>
+
 <!-- ══ WHY CHOOSE ══ -->
 <section class="choose-webify" id="choose-webify" aria-labelledby="cw-heading">
   <div class="cw-container">
     <div class="cw-header">
       <div class="section-tag">Why Choose Webify</div>
-      <h2 class="section-title" id="cw-heading">Built for Online Success.<br>Designed for <span style="color:var(--blue-light)">Real Growth.</span></h2>
+      <h2 class="section-title" id="cw-heading">Built for Local Success.<br>Designed for <span style="color:var(--blue-light)">Real Growth.</span></h2>
     </div>
     <div class="cw-intro">
       <div class="cw-intro-image">
         <img src="./positive-hesitant-business-lady-speads-palms-clueless-looks-up-ceiling-hesitates-choice-dressed-formally.jpg" alt="Business owner confident in their digital strategy with Webify" loading="lazy" width="520" height="480">
       </div>
       <div class="cw-intro-content">
-        <h3>We're Not Just a Service Provider. We are Your Digital Partner.</h3>
+        <h3>We're Not Just a Service Provider. We're Your Digital Partner.</h3>
         <p>We understand the real challenges facing township and small businesses in South Africa. Budget constraints, unreliable suppliers, and clients who don't take you seriously, we've heard it all.</p>
         <p>That's why everything we do is built around making you look professional, getting you found, and turning online attention into real paying customers. We speak your language, understand your market, and we're invested in your success.</p>
       </div>
@@ -931,7 +972,7 @@
       <div class="cw-card" data-index="0" role="listitem">
         <div class="cw-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5M8 12c-2.29 0-3.5-1.168-3.5-2h7C11.5 10.832 10.29 12 8 12"/></svg></div>
         <h3>We Understand You</h3>
-        <p>Born in the township, we know small businesses inside out. We speak your language and genuinely understand your challenges and goals.</p>
+        <p>Based in the township, we know township business inside out. We speak your language and genuinely understand your challenges and goals.</p>
       </div>
       <div class="cw-card" data-index="1" role="listitem">
         <div class="cw-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/><path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/></svg></div>
@@ -946,7 +987,7 @@
       <div class="cw-card" data-index="3" role="listitem">
         <div class="cw-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/></svg></div>
         <h3>Always Here for You</h3>
-        <p>WhatsApp us anytime. Before, during, and after your project. We are committed to helping you grow.</p>
+        <p>WhatsApp us anytime, before, during, and after your project. We are commited to helping you</p>
       </div>
       <div class="cw-card" data-index="4" role="listitem">
         <div class="cw-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524z"/></svg></div>
@@ -956,11 +997,12 @@
       <div class="cw-card" data-index="5" role="listitem">
         <div class="cw-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814z"/></svg></div>
         <h3>We Handle Everything</h3>
-        <p>Domain name, hosting, design, setup, and updates. You focus on your business, we handle the technical side completely.</p>
+        <p>Domain name, hosting, design, setup, and updates, you focus on your business, we handle the technical side completely.</p>
       </div>
     </div>
   </div>
 </section>
+
 <!-- ══ PRICING ══ -->
 <section class="pricing-section" aria-labelledby="pricing-heading">
   <div class="pricing-header">
@@ -971,9 +1013,9 @@
   <div class="pricing-grid" role="list">
     <div class="pricing-card" role="listitem">
       <div class="pricing-badge-placeholder" aria-hidden="true"></div>
-      <div class="pricing-name">Essential</div>
+      <div class="pricing-name">Premium</div>
       <div class="pricing-price"><sup>R</sup>499</div>
-      <div class="pricing-price-note">once-off setup fee</div>
+      <div class="pricing-price-note">once-off plus R100/year for domain</div>
       <div class="pricing-divider" aria-hidden="true"></div>
       <ul class="pricing-features" aria-label="Starter plan features">
         <li>
@@ -1003,11 +1045,12 @@
       </ul>
       <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%27m%20interested%20in%20the%20Starter%20package." target="_blank" rel="noopener noreferrer" class="pricing-cta">Get Started</a>
     </div>
+
     <div class="pricing-card featured" role="listitem">
       <div class="pricing-badge" aria-label="Most popular">⭐ Most Popular</div>
-      <div class="pricing-name">Professional</div>
+      <div class="pricing-name">Proffesional</div>
       <div class="pricing-price"><sup>R</sup>1,499</div>
-      <div class="pricing-price-note">once-off payment + R99/pm for Domain</div>
+      <div class="pricing-price-note">once-off plus R100/year for domain</div>
       <div class="pricing-divider" aria-hidden="true"></div>
       <ul class="pricing-features" aria-label="Growth plan features">
         <li>
@@ -1032,7 +1075,7 @@
           <span class="feat-check" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/></svg>
           </span>
-          Custom logo &amp; brand identity
+          brand identity kit
         </li>
         <li>
           <span class="feat-check" aria-hidden="true">
@@ -1043,6 +1086,7 @@
       </ul>
       <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%27m%20interested%20in%20the%20Growth%20package." target="_blank" rel="noopener noreferrer" class="pricing-cta featured-cta">Get Started</a>
     </div>
+
     <div class="pricing-card" role="listitem">
       <div class="pricing-badge-placeholder" aria-hidden="true"></div>
       <div class="pricing-name">Premium</div>
@@ -1084,8 +1128,9 @@
       <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%27m%20interested%20in%20the%20Pro%20package.%20Can%20we%20discuss%20what%20I%20need%3F" target="_blank" rel="noopener noreferrer" class="pricing-cta">Let's Talk</a>
     </div>
   </div>
-  <p class="pricing-note">Not sure which package is right for you? <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%27m%20not%20sure%20which%20package%20I%20need.%20Can%20you%20help%3F" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp</a> we'll help you choose at no cost.</p>
+  <p class="pricing-note">Not sure which package is right for you? <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%27m%20not%20sure%20which%20package%20I%20need.%20Can%20you%20help%3F" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp</a> — we'll help you choose at no cost.</p>
 </section>
+
 <!-- ══ FAQ ══ -->
 <section class="faq-section" aria-labelledby="faq-heading">
   <!-- FAQ Schema -->
@@ -1097,7 +1142,8 @@
       {"@type":"Question","name":"Do I need technical knowledge to work with Webify?","acceptedAnswer":{"@type":"Answer","text":"Not at all. We handle absolutely everything — from buying your domain and setting up hosting to designing and launching your website. You just need to tell us about your business and we do the rest."}},
       {"@type":"Question","name":"How long does it take to go live?","acceptedAnswer":{"@type":"Answer","text":"Most projects are completed and live within 3 to 5 business days, depending on the package. We'll give you a clear timeline when we start."}},
       {"@type":"Question","name":"What's included after my website goes live?","acceptedAnswer":{"@type":"Answer","text":"All packages include at least a handover walkthrough so you understand what you have. Our Growth and Pro packages include ongoing support periods. And regardless of package, you can always WhatsApp us when you need help."}},
-      {"@type":"Question","name":"Do I need to pay monthly, or is it once-off?","acceptedAnswer":{"@type":"Answer","text":"Most of our setup packages are once-off payments. The only ongoing costs are your domain (around R100/year) and hosting (from R100/month) — which we'll be transparent about upfront."}},
+      {"@type":"Question","name":"Do I need to pay monthly, or is it once-off?","acceptedAnswer":{"@type":"Answer","text":"Most of our setup packages are once-off payments. The only ongoing costs are your domain (around R200/year) and hosting (from R100/month) — which we'll be transparent about upfront."}},
+      {"@type":"Question","name":"Can you help me even if I'm not in Tembisa?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. We serve businesses across all of South Africa. Everything can be done remotely over WhatsApp and email — we don't need to meet in person to deliver great results."}},
       {"@type":"Question","name":"What if I already have a website but want to improve it?","acceptedAnswer":{"@type":"Answer","text":"We can definitely help. Chat with us on WhatsApp, share your current site, and we'll give you honest feedback on what can be improved and at what cost."}}
     ]
   }
@@ -1115,7 +1161,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </div>
         <div class="faq-a" id="faq-a-1" role="region">
-          <p>Not at all. We handle absolutely everything, from buying your domain name and setting up hosting to designing, building, and launching your full online presence. You just need to tell us about your business and we do the rest. No computer skills required.</p>
+          <p>Not at all. We handle absolutely everything — from buying your domain name and setting up hosting to designing, building, and launching your full online presence. You just need to tell us about your business and we do the rest. No computer skills required.</p>
         </div>
       </div>
       <div class="faq-item" role="listitem">
@@ -1133,17 +1179,10 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </div>
         <div class="faq-a" id="faq-a-3" role="region">
-          <p>All our setup packages are <strong>once-off payments</strong>. The only ongoing costs are things like domain registration (approximately R200/year) and web hosting (from R100/month) — which we'll explain clearly before you commit to anything. No surprises.</p>
+          <p>All our setup packages are <strong>once-off payments</strong>. The only ongoing costs are things like domain registration (approximately R200/year) which we'll explain clearly before you commit to anything. No surprises.</p>
         </div>
       </div>
-      <div class="faq-item" role="listitem">
-        <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-4">
-          <h3>Can you help my business even if I'm not in Tembisa?</h3>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </div>
-        <div class="faq-a" id="faq-a-4" role="region">
-          <p>Absolutely! We serve businesses across all of South Africa. Everything is handled remotely over WhatsApp and email — no in-person meetings required. We've worked with clients from Cape Town to Limpopo.</p>
-        </div>
+      
       </div>
       <div class="faq-item" role="listitem">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-5">
@@ -1166,6 +1205,7 @@
     </div>
   </div>
 </section>
+
 <!-- ══ FINAL CTA BAND ══ -->
 <section class="cta-band" aria-labelledby="cta-heading">
   <div class="cta-band-inner">
@@ -1187,40 +1227,69 @@
   </div>
 </section>
 
-<!-- ══ FOOTER (EXACT MATCH FROM YOUR FIRST PAGE + FLIP ANIMATION) ══ -->
-<footer class="footer">
+<!-- ══ FOOTER ══ -->
+<footer class="footer" aria-label="Site footer">
   <div class="footer-container">
     <div class="footer-grid">
       <div class="footer-col">
-        <h3 class="footer-brand-heading">Webify, Built to <span class="footer-flip-wrapper"><span class="flip-word active">Connect</span><span class="flip-word">Impress</span><span class="flip-word">Attract</span></span></h3>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/share/.1CrYZdsh21/?mibextid=wwXIfr" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
-          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a>
-          <a href="#" class="social-link" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
-          <a href="https://wa.me/27791646006" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg></a>
-        </div>
+        <a href="./index.html" class="logo" style="display:inline-block; margin-bottom:1rem;" aria-label="Webify Home">
+          <img src="./webie 2.png" alt="Webify" width="72" height="72" loading="lazy">
+        </a>
+        <p>Helping township and small businesses across South Africa get online, get found, and get more customers. Professional digital solutions from R499.</p>
+        <nav aria-label="Social media links">
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/.1CrYZdsh21/?mibextid=wwXIfr" class="social-link" aria-label="Webify on Facebook" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Webify on Instagram" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+            </a>
+            <a href="https://wa.me/27791646006" class="social-link" aria-label="Chat with Webify on WhatsApp" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg>
+            </a>
+          </div>
+        </nav>
       </div>
+
+      
+
       <div class="footer-col">
-        <h3>Quick Links</h3>
+        <h4>Company</h4>
         <ul class="footer-links">
           <li><a href="./index.html">Home</a></li>
-          <li><a href="index.html#service-scroll">Services</a></li>
-          <li><a href="#choose-webify">About Us</a></li>
+          <li><a href="./About.html">About Us</a></li>
+          <li><a href="#choose-webify">Why Webify</a></li>
           <li><a href="#">Portfolio</a></li>
           <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
-        <h3>Get in Touch</h3>
+        <h4>Get in Touch</h4>
         <ul class="footer-contact">
-          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg><span>+27 79 164 6006</span></li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b22252d240b3c2e29222d3265282465312a">webifyrsa@gmail.co.za</a></span></li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>Tembisa, Gauteng<br>South Africa</span></li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z"/></svg>
+            <span><a href="tel:+27791646006">+27 79 164 6006</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>
+            <span><a href="mailto:webifyrsa@gmail.co.za">webifyrsa@gmail.co.za</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+            <span>Tembisa, Gauteng<br>South Africa</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" transform="scale(0.67)"/></svg>
+            <span>Mon – Sun, 9am – 7pm</span>
+          </li>
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; 2026 Webify. All rights reserved.</p>
+      <p>&copy; 2026 Webify. All rights reserved. Registered in South Africa.</p>
       <ul class="footer-legal">
         <li><a href="./privacy.html">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
@@ -1321,6 +1390,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollObserver = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); scrollObserver.unobserve(e.target); } });
   }, { threshold: 0.15 });
+
   document.querySelectorAll('.section-heading, .elevate-section, .cw-intro').forEach(el => scrollObserver.observe(el));
 
   // Staggered service cards
@@ -1362,22 +1432,9 @@ document.addEventListener('DOMContentLoaded', () => {
     q.addEventListener('click', toggle);
     q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
   });
-
-  // Footer flip animation
-  const flipWords = document.querySelectorAll('.flip-word');
-  let flipIdx = 0;
-  if (flipWords.length) {
-    setInterval(() => {
-      flipWords[flipIdx].classList.add('exit');
-      flipWords[flipIdx].classList.remove('active');
-      const ex = flipWords[flipIdx];
-      setTimeout(() => ex.classList.remove('exit'), 500);
-      flipIdx = (flipIdx + 1) % flipWords.length;
-      flipWords[flipIdx].classList.add('active');
-    }, 2400);
-  }
 });
 </script>
+
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -1391,9 +1448,11 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ii init Di qi Sr Bi Zi Pi capture calculateEventProperties Yi register register_once register_for_session unregister unregister_for_session Xi getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Ji identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty Wi Vi createPersonProfile setInternalOrTestUser Gi Fi Ki opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing $i debug Tr Ui getPageViewId captureTraceFeedback captureTraceMetric Ri".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_vJQ92gSZZ723YeFFcvQmQujYmhApDgNVDYijqw4ScMw6',{api_host:'https://us.i.posthog.com',defaults:'2026-01-30',person_profiles:'identified_only'})
 </script>
+
 </body>
 </html>
