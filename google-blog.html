@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">Blog Post – Webify</title>
+  <meta name="description" id="pageDesc" content="Webify blog – practical digital tips for South African small businesses." />
+  <link rel="icon" type="image/png" href="./webie 2.png" />
+  <meta name="theme-color" content="#3a58ff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#3a58ff; --navy:#060b35; --navy-mid:#0e153d;
+      --blue-light:#7c9bff; --blue-pale:#e8eeff;
+      --accent:#ff6b35; --gold:#f5c428;
+      --white:#ffffff; --off-white:#f6f8ff;
+      --text-dark:#0f1729; --text-mid:#3d4763; --text-muted:#7a859e;
+      --border:rgba(58,88,255,0.12);
+      --display:'Plus Jakarta Sans',system-ui,sans-serif;
+      --body:'DM Sans',system-ui,sans-serif;
+      --radius-sm:8px; --radius-md:14px; --radius-lg:20px;
+      --shadow-sm:0 2px 12px rgba(15,23,60,0.06);
+      --shadow-md:0 8px 32px rgba(15,23,60,0.1);
+      --shadow-lg:0 20px 60px rgba(15,23,60,0.15);
+      --shadow-blue:0 12px 40px rgba(58,88,255,0.28);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--body);background:var(--white);color:var(--text-dark);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+    /* ── PROMO BAR ── */
+    .promo-bar{background:linear-gradient(90deg,var(--navy) 0%,#1a2f80 50%,var(--navy) 100%);color:white;padding:.7rem 0;overflow:hidden;font-family:var(--body);font-weight:500;font-size:.85rem;letter-spacing:.3px;}
+    .promo-content{display:flex;animation:marquee 28s linear infinite;white-space:nowrap;}
+    .promo-item{padding:0 3rem;display:inline-flex;align-items:center;gap:.6rem;}
+    .promo-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media(max-width:768px){.promo-content{animation:none;display:block;text-align:center;}.promo-item{display:none;justify-content:center;}.promo-item.active{display:flex;}}
+
+    /* ── NAVBAR ── */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.55rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.72);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);box-shadow:0 1px 0 rgba(0,0,0,.06),0 4px 24px rgba(0,0,0,.06);transition:transform .36s cubic-bezier(.4,0,.2,1),top .3s ease;}
+    .navbar.nav-hidden{transform:translateY(-100%);}
+    .logo{display:flex;align-items:center;text-decoration:none;}
+    .logo img{height:clamp(46px,5vw,68px);width:auto;display:block;}
+    .nav-links{display:flex;gap:clamp(1.4rem,3.5vw,2.6rem);list-style:none;}
+    .nav-links>li{position:relative;}
+    .nav-links a{text-decoration:none;color:var(--text-dark);font-family:var(--body);font-weight:500;font-size:.92rem;position:relative;transition:color .22s;display:block;padding:.3rem 0;}
+    .nav-links a::after{content:'';position:absolute;width:0;height:2px;bottom:-3px;left:0;background:var(--blue);transition:width .28s ease;border-radius:2px;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blue);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .dropdown>a{display:flex;align-items:center;gap:.3rem;}
+    .dropdown>a::before{content:'▾';font-size:.7rem;transition:transform .28s;}
+    .dropdown:hover>a::before{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(255,255,255,.98);backdrop-filter:blur(16px);min-width:230px;border-radius:var(--radius-md);padding:.6rem 0;box-shadow:var(--shadow-lg);border:1px solid var(--border);opacity:0;visibility:hidden;transition:all .28s cubic-bezier(.4,0,.2,1);}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu li{list-style:none;}
+    .dropdown-menu a{padding:.65rem 1.3rem;color:var(--text-dark);font-size:.9rem;font-weight:500;transition:all .2s;border-left:3px solid transparent;display:block;}
+    .dropdown-menu a:hover{background:var(--blue-pale);color:var(--blue);border-left-color:var(--blue);padding-left:1.5rem;}
+    .dropdown-menu a::after{display:none!important;}
+    .btn-nav{padding:.6rem 1.35rem;background:var(--blue);color:white;border:none;border-radius:var(--radius-sm);font-family:var(--body);font-weight:600;font-size:.88rem;cursor:pointer;transition:all .22s;text-decoration:none;box-shadow:0 4px 16px rgba(58,88,255,.35);white-space:nowrap;display:inline-block;}
+    .btn-nav:hover{background:#2844e8;transform:translateY(-1px);}
+    .menu-btn{display:none;font-size:1.8rem;cursor:pointer;color:var(--text-dark);z-index:1002;background:none;border:none;line-height:1;}
+    .mobile-menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;opacity:0;transition:opacity .3s;}
+    .mobile-menu-overlay.active{display:block;opacity:1;}
+    @media(max-width:991px){
+      .btn-nav{display:none;}
+      .nav-links{position:fixed;top:0;right:-100%;width:280px;height:100vh;flex-direction:column;background:white;padding:5.5rem 1.8rem 2rem;box-shadow:-4px 0 30px rgba(0,0,0,.1);transition:right .4s cubic-bezier(.68,-.55,.27,1.55);z-index:999;overflow-y:auto;}
+      .nav-links.active{right:0;}
+      .nav-links>li{width:100%;border-bottom:1px solid #f0f2f8;}
+      .nav-links a{padding:.9rem 0;}
+      .dropdown>a::before{display:none;}
+      .dropdown-menu{display:none!important;}
+      .menu-btn{display:block;}
+    }
+
+    /* ── ARTICLE HERO ── */
+    .post-hero{
+      padding:clamp(9rem,18vw,12rem) 5% clamp(3.5rem,7vw,5rem);
+      background:linear-gradient(108deg,rgba(6,11,53,.98) 0%,rgba(8,15,58,.94) 45%,rgba(12,22,72,.88) 70%,rgba(20,35,100,.75) 100%),
+                 url('./hex\ tech\ bckrnd.jpg') center/cover no-repeat;
+      position:relative; overflow:hidden;
+    }
+    .post-hero::after{content:'';position:absolute;right:-6vw;top:50%;transform:translateY(-50%);width:clamp(200px,40vw,560px);height:clamp(200px,40vw,560px);border-radius:50%;background:radial-gradient(circle,rgba(58,88,255,.18) 0%,transparent 70%);pointer-events:none;}
+    .post-hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+    .back-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--body);font-size:.82rem;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.5px;margin-bottom:1.8rem;transition:color .2s;}
+    .back-link:hover{color:rgba(255,255,255,.95);}
+    .back-link svg{width:14px;height:14px;}
+    .post-eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem;background:rgba(124,155,255,.14);border:1px solid rgba(124,155,255,.28);border-radius:50px;color:var(--blue-light);font-family:var(--body);font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.4rem;}
+    .post-hero h1{font-family:var(--display);font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-1px;color:#fff;margin-bottom:1.4rem;}
+    .post-hero-meta{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-family:var(--body);font-size:.85rem;color:rgba(255,255,255,.55);}
+    .post-hero-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.35);}
+    .post-hero-meta strong{color:rgba(255,255,255,.85);}
+    .read-time-badge{padding:.25rem .75rem;background:rgba(58,88,255,.3);border:1px solid rgba(124,155,255,.3);border-radius:50px;font-family:var(--body);font-size:.72rem;font-weight:600;color:var(--blue-light);}
+
+    /* ── ARTICLE BODY ── */
+    .post-wrapper{max-width:780px;margin:0 auto;padding:clamp(3rem,7vw,5rem) 5% clamp(4rem,8vw,6rem);}
+    .post-content h2{font-family:var(--display);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;color:var(--navy);line-height:1.2;letter-spacing:-.4px;margin:2.4rem 0 1rem;}
+    .post-content h3{font-family:var(--display);font-size:clamp(1.1rem,2.4vw,1.35rem);font-weight:700;color:var(--navy);line-height:1.3;margin:2rem 0 .75rem;}
+    .post-content p{font-family:var(--body);font-size:1.05rem;color:var(--text-mid);line-height:1.85;margin-bottom:1.3rem;}
+    .post-content p strong{color:var(--text-dark);font-weight:600;}
+    .post-content ul,.post-content ol{margin:1rem 0 1.5rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;}
+    .post-content li{font-family:var(--body);font-size:1rem;color:var(--text-mid);line-height:1.75;}
+    .post-content li::marker{color:var(--blue);font-weight:700;}
+    .post-content a{color:var(--blue);font-weight:600;text-decoration:none;}
+    .post-content a:hover{text-decoration:underline;}
+    .post-content blockquote{margin:2rem 0;padding:1.4rem 1.8rem;background:var(--blue-pale);border-left:4px solid var(--blue);border-radius:0 var(--radius-md) var(--radius-md) 0;}
+    .post-content blockquote p{color:var(--navy);font-weight:500;font-size:1.05rem;margin:0;}
+    .tip-box{background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.4rem 1.6rem;margin:1.8rem 0;display:flex;gap:1rem;align-items:flex-start;}
+    .tip-icon{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--blue-pale);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;}
+    .tip-box p{margin:0;font-size:.95rem;color:var(--text-mid);}
+    .tip-box p strong{color:var(--navy);}
+    .divider{height:1px;background:var(--border);margin:2.5rem 0;}
+
+    /* ── CTA INLINE ── */
+    .post-cta{background:linear-gradient(135deg,var(--navy) 0%,#1a2870 100%);border-radius:var(--radius-lg);padding:2.4rem 2rem;text-align:center;margin:3rem 0;}
+    .post-cta h3{font-family:var(--display);font-size:1.5rem;font-weight:800;color:white;margin-bottom:.7rem;}
+    .post-cta p{font-family:var(--body);font-size:.97rem;color:rgba(255,255,255,.72);margin-bottom:1.6rem;line-height:1.7;}
+    .btn-primary{padding:.9rem 1.85rem;background:var(--blue);color:white;border-radius:var(--radius-sm);text-decoration:none;font-family:var(--body);font-weight:600;font-size:.93rem;transition:all .26s;box-shadow:var(--shadow-blue);display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;}
+    .btn-primary:hover{background:#2844e8;transform:translateY(-2px);}
+    .btn-primary svg{width:17px;height:17px;flex-shrink:0;}
+
+    /* ── RELATED POSTS ── */
+    .related-section{background:var(--off-white);padding:clamp(3rem,7vw,5rem) 5%;}
+    .related-inner{max-width:1100px;margin:0 auto;}
+    .section-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--body);font-size:.74rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem;}
+    .section-tag::before{content:'';width:20px;height:2px;background:var(--blue);border-radius:2px;}
+    .section-title{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:2rem;}
+    .section-title .hl{color:var(--blue);}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;}
+    .related-card{background:var(--white);border:1px solid rgba(58,88,255,.1);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s;}
+    .related-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);}
+    .related-thumb{height:140px;background:var(--navy);position:relative;}
+    .related-thumb svg{width:100%;height:100%;position:absolute;inset:0;}
+    .related-body{padding:1.2rem 1.4rem 1rem;flex:1;display:flex;flex-direction:column;gap:.6rem;}
+    .related-cat{font-family:var(--body);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);}
+    .related-title{font-family:var(--display);font-size:.97rem;font-weight:700;color:var(--navy);line-height:1.3;}
+    .related-foot{padding:.85rem 1.4rem;border-top:1px solid rgba(58,88,255,.08);display:flex;align-items:center;justify-content:space-between;font-family:var(--body);font-size:.75rem;color:var(--text-muted);}
+    .related-read{font-family:var(--body);font-size:.78rem;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:.3rem;}
+
+    /* ── FOOTER ── */
+    .footer{background:linear-gradient(135deg,#0e153d 0%,#1a2560 100%);color:white;padding:4rem 5% 2rem;position:relative;overflow:hidden;}
+    .footer::before{content:'';position:absolute;top:-40%;right:-15%;width:600px;height:600px;border-radius:50%;background:rgba(58,88,255,.08);pointer-events:none;}
+    .footer::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(58,88,255,.06);pointer-events:none;}
+    .footer-container{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem;margin-bottom:3rem;}
+    .footer-col h3{font-family:var(--display);font-size:1.2rem;font-weight:700;margin-bottom:1.2rem;color:white;}
+    .footer-col p{font-family:var(--body);color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:1.2rem;}
+    .footer-links{list-style:none;}
+    .footer-links li{margin-bottom:.8rem;}
+    .footer-links a{color:rgba(255,255,255,.75);text-decoration:none;font-family:var(--body);transition:all .3s;display:inline-block;font-size:.95rem;}
+    .footer-links a:hover{color:var(--blue-light);transform:translateX(5px);}
+    .footer-contact{list-style:none;}
+    .footer-contact li{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem;color:rgba(255,255,255,.75);font-family:var(--body);font-size:.95rem;}
+    .footer-contact svg{width:20px;height:20px;flex-shrink:0;margin-top:2px;color:var(--blue-light);}
+    .footer-social{display:flex;gap:1rem;margin-top:1.5rem;}
+    .social-link{width:40px;height:40px;border-radius:8px;background:rgba(58,88,255,.15);display:flex;align-items:center;justify-content:center;color:var(--blue-light);transition:all .3s;text-decoration:none;}
+    .social-link:hover{background:var(--blue);color:white;transform:translateY(-3px);}
+    .social-link svg{width:20px;height:20px;}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-bottom p{font-family:var(--body);color:rgba(255,255,255,.5);font-size:.88rem;}
+    .footer-legal{display:flex;gap:1.5rem;list-style:none;}
+    .footer-legal a{color:rgba(255,255,255,.5);text-decoration:none;font-family:var(--body);font-size:.88rem;transition:color .3s;}
+    .footer-legal a:hover{color:var(--blue-light);}
+    .footer-brand-heading{font-family:var(--display);font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;color:white;line-height:1.55;}
+    .footer-flip-wrapper{display:inline-block;position:relative;overflow:hidden;height:1.2em;min-width:90px;vertical-align:middle;perspective:400px;}
+    .flip-word{position:absolute;top:0;left:0;color:var(--blue-light);font-weight:800;font-size:1.3rem;line-height:1.2em;opacity:0;transform:rotateX(90deg);transform-origin:center bottom;transition:opacity .45s ease,transform .45s cubic-bezier(.4,0,.2,1);white-space:nowrap;}
+    .flip-word.active{opacity:1;transform:rotateX(0deg);}
+    .flip-word.exit{opacity:0;transform:rotateX(-90deg);}
+
+    /* ── WA FLOAT ── */
+    .chat-widget{position:fixed;bottom:1.8rem;left:1.8rem;background:#25D366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(37,211,102,.42);cursor:pointer;transition:all .28s;z-index:999;text-decoration:none;}
+    .chat-widget:hover{transform:scale(1.1);}
+    .chat-widget svg{width:28px;height:28px;flex-shrink:0;}
+
+    /* ── NOT FOUND ── */
+    .not-found{text-align:center;padding:8rem 5%;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;}
+    .not-found h2{font-family:var(--display);font-size:2rem;font-weight:800;color:var(--navy);}
+    .not-found p{font-family:var(--body);color:var(--text-mid);}
+
+    @media(max-width:600px){
+      .footer-grid{grid-template-columns:1fr;gap:2rem;}
+      .footer-col{text-align:center;}
+      .footer-social{justify-content:center;}
+      .footer-contact li{justify-content:center;}
+      .footer-bottom{flex-direction:column;text-align:center;}
+      .footer-legal{flex-direction:column;gap:.5rem;align-items:center;}
+      .chat-widget{bottom:1.2rem;left:1.2rem;width:52px;height:52px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- PROMO BAR -->
+<div class="promo-bar" role="marquee">
+  <div class="promo-content">
+    <span class="promo-item"><span class="promo-dot"></span>Starting from only R499, get online today</span>
+    <span class="promo-item"><span class="promo-dot"></span>Website live in as little as 3&ndash;5 business days</span>
+    <span class="promo-item"><span class="promo-dot"></span>No tech knowledge needed, we handle everything</span>
+    <span class="promo-item"><span class="promo-dot"></span>Free consultation, chat with us now!</span>
+    <span class="promo-item"><span class="promo-dot"></span>Starting from only R499 &ndash; get online today</span>
+    <span class="promo-item"><span class="promo-dot"></span>Website live in as little as 3&ndash;5 business days</span>
+    <span class="promo-item"><span class="promo-dot"></span>No tech knowledge needed, we handle everything</span>
+    <span class="promo-item"><span class="promo-dot"></span>Free consultation, chat with us now!</span>
+  </div>
+</div>
+
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+<!-- NAVBAR -->
+<header>
+  <nav class="navbar" id="mainNavbar">
+    <a href="./index.html" class="logo"><img src="./webie 2.png" alt="Webify" width="68" height="68"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="./index.html#service-scroll">Services</a>
+        <ul class="dropdown-menu">
+          <li><a href="./google.html">Google My Business</a></li>
+          <li><a href="./media.html">Social Media Pages</a></li>
+          <li><a href="./web.html">Professional Websites</a></li>
+          <li><a href="./index.html#service-scroll">WhatsApp Business</a></li>
+          <li><a href="./branding.html">Logo &amp; Branding</a></li>
+          <li><a href="./marketing.html">Digital Marketing</a></li>
+        </ul>
+      </li>
+      <li><a href="./About.html">About</a></li>
+      <li><a href="./blog.html" class="active">Blog</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/27791646006" target="_blank" rel="noopener noreferrer" class="btn-nav">Get Free Quote</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </nav>
+</header>
+
+<!-- DYNAMIC CONTENT rendered by JS -->
+<div id="app"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-brand-heading">Webify, Built to <span class="footer-flip-wrapper"><span class="flip-word active">Connect</span><span class="flip-word">Impress</span><span class="flip-word">Attract</span></span></h3>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/.1CrYZdsh21/" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a>
+          <a href="https://wa.me/27791646006" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#service-scroll">Services</a></li>
+          <li><a href="./About.html">About Us</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Get in Touch</h3>
+        <ul class="footer-contact">
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z"/></svg><span>+27 79 164 6006</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg><span>webifyrsa@gmail.co.za</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>Tembisa, Gauteng, South Africa</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Webify. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="./privacy.html">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/27791646006" target="_blank" rel="noopener noreferrer" class="chat-widget" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931a6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+</a>
+
+<script>
+// ═══════════════════════════════════════════
+// BLOG POST DATA — add new posts here
+// ═══════════════════════════════════════════
+const POSTS = {
+
+  'google-maps-2025': {
+    title: 'Why Your Business Needs to Be on Google Maps Right Now',
+    category: 'Google My Business',
+    date: 'June 27, 2026',
+    readTime: '4 min read',
+    author: 'Webify Team',
+    related: ['get-more-google-reviews', 'data-driven-marketing-small-business', 'facebook-page-mistakes'],
+    content: `
+      <p>Open Google Maps on your phone right now. Type in what your business does, followed by your area. Something like "hair salon Tembisa" or "electrician Soweto" or "mechanic Midrand."</p>
+
+      <p>Do you show up?</p>
+
+      <p>If the answer is no, or if you are not sure, then every single day people in your area are searching for exactly what you offer and finding your competitors instead. Not because those competitors are better. Just because they showed up on the map and you did not.</p>
+
+      <p>That is the whole problem. And the good news is that it is one of the easiest things to fix.</p>
+
+      <h2>What Google Business Profile Actually Is</h2>
+
+      <p>Google Business Profile (which most people still call <a href="https://business.google.com/" target="_blank" rel="noopener noreferrer">Google My Business</a>) is a free listing that shows your business on Google Search and Google Maps. It is completely free to set up and free to use.</p>
+
+      <p>When someone searches for a service near them, Google shows a block of three businesses at the top of the results before anything else. This is called the <a href="https://en.wikipedia.org/wiki/Google_local_search" target="_blank" rel="noopener noreferrer">Local Pack</a>. It shows the business name, star rating, address, phone number, opening hours, and directions. Most people click one of those three results and never scroll further.</p>
+
+      <p>If your business is not in that block, most local customers will never know you exist.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📍</div>
+        <p><strong>The numbers behind it:</strong> According to <a href="https://starfish.reviews/google-business-profile-statistics/" target="_blank" rel="noopener noreferrer">research on Google Business Profiles</a>, having a complete and verified listing makes your business 80% more likely to appear in local search results. Businesses with photos get 42% more direction requests and 35% more website clicks than those without.</p>
+      </div>
+
+      <h2>Why This Matters More in South Africa</h2>
+
+      <p>South Africans search on their phones constantly. Whether someone is in Mamelodi looking for a bakery, in Bellville looking for a plumber, or in Umlazi looking for a tailor, the first thing they do is open Google.</p>
+
+      <p><a href="https://seo-durban.co.za/blog/google-my-business-south-africa-guide" target="_blank" rel="noopener noreferrer">Local SEO research specific to South Africa</a> shows that without an optimised Google Business Profile, your business is largely invisible to mobile searchers in your area. And in townships and suburbs across the country, most small businesses still have not claimed their listing at all. That means the gap between showing up and not showing up is smaller to close than you might think.</p>
+
+      <p>Your competitor down the road who has 40 Google reviews and a fully filled-in profile will win every time over a business with nothing, even if your work is better. Perception on a phone screen is reality when someone is deciding who to call.</p>
+
+      <h2>What Your Listing Should Include</h2>
+
+      <p>A half-complete Google Business Profile is barely better than no profile at all. To actually rank in your area and convert searchers into customers, your listing needs to have all of the following:</p>
+
+      <ul>
+        <li>Your correct business name, exactly as you trade</li>
+        <li>Your physical address or service area clearly defined</li>
+        <li>Your opening hours, including whether you are open on weekends</li>
+        <li>A working phone number and WhatsApp link if you have one</li>
+        <li>Your website address</li>
+        <li>At least five good quality photos of your work, your premises, or your products</li>
+        <li>The right business category selected (this affects which searches you appear in)</li>
+        <li>A short business description using words your customers would actually search for</li>
+      </ul>
+
+      <p>Each one of these elements signals to Google that your business is real, active, and relevant. The more complete your profile, the better your chances of appearing when someone nearby is searching.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">⭐</div>
+        <p><strong>Reviews make a real difference:</strong> Research from <a href="https://starfish.reviews/google-business-profile-statistics/" target="_blank" rel="noopener noreferrer">Birdeye's 2025 study</a> found that each additional Google review a business receives generates an average of 80 extra website visits, 63 direction requests, and 16 phone calls. Reviews are not just good for trust. They directly drive traffic.</p>
+      </div>
+
+      <h2>The Verification Step Most People Get Stuck On</h2>
+
+      <p>One reason many South African business owners give up on Google Business Profile is the verification step. Google requires you to prove that your business is real before your listing goes fully live.</p>
+
+      <p>In South Africa, Google has moved most verifications to <strong>video</strong> since 2024. You record a single continuous video on your phone showing your business signage, the inside of your premises, and proof that you operate there. It sounds intimidating but it usually takes less than five minutes to record and most submissions in South Africa are approved within three to seven working days.</p>
+
+      <p>If you are a service-area business with no shop front, like a plumber, electrician, or delivery service, you can show your branded vehicle, your tools, or your equipment with your business name visible. You do not need a physical storefront to qualify.</p>
+
+      <p>Once verified, your listing goes live and Google starts showing your business in local search results in your area.</p>
+
+      <h2>One Thing That Catches SA Businesses Off Guard</h2>
+
+      <p>Load shedding. Seriously.</p>
+
+      <p>If your listed business hours say you are open but customers arrive or call during load shedding and find you closed, Google picks up the pattern through reviews and user feedback. It can quietly affect how your listing ranks and how much trust customers place in it.</p>
+
+      <p>If your business has adjusted hours because of load shedding, update them in your profile. Google allows you to set <a href="https://support.google.com/business/answer/9876800" target="_blank" rel="noopener noreferrer">special hours</a> for specific periods. Keeping your hours accurate is a small thing that protects your reputation with both Google and your customers.</p>
+
+      <h2>How Webify Can Help</h2>
+
+      <p>Setting up a Google Business Profile properly takes time if you want it done right. Choosing the wrong business category, skipping the photos, leaving the description vague, or getting stuck on video verification are all common reasons small businesses end up with listings that technically exist but never actually bring in customers.</p>
+
+      <p>At Webify, we set up and fully optimise Google Business Profiles for small businesses across South Africa from just <strong>R499</strong>. We handle the setup, the verification, the photos, the category selection, and the description, so that your listing is built to rank from day one and not just to exist.</p>
+
+      <p>If you are not showing up when people search for what you do in your area, that is costing you real customers every week.</p>
+
+      <p><strong><a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%20want%20to%20get%20my%20business%20on%20Google%20Maps" target="_blank" rel="noopener noreferrer">WhatsApp us and let's get you on the map.</a></strong></p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Is Google Business Profile free?</h3>
+      <p>Yes, completely free. <a href="https://business.google.com/" target="_blank" rel="noopener noreferrer">Google Business Profile</a> costs nothing to create or maintain. Anyone who charges you a fee to create the listing itself is not being honest with you. The only legitimate costs are if you hire someone to set it up and manage it for you, which is a service cost, not a Google cost.</p>
+
+      <h3>How long does it take to set up?</h3>
+      <p>The basic setup takes about 30 minutes. Verification in South Africa currently uses a video process and typically takes three to seven working days after you submit. Once approved your listing goes live and starts appearing in local search results.</p>
+
+      <h3>What if my business already has a Google listing I did not create?</h3>
+      <p>This happens often. Google sometimes creates listings automatically from publicly available information. If your business already has a listing, you need to claim it so you can control the information shown. Search for your business name on Google Maps and look for a "Claim this business" option.</p>
+
+      <h3>Do I need a website to use Google Business Profile?</h3>
+      <p>No. You can have a fully functional Google Business listing without a website. That said, having a website linked to your profile improves your credibility and gives customers more information about your business before they decide to contact you.</p>
+
+      <h3>How do I get more reviews on Google?</h3>
+      <p>The simplest way is to ask. After a good job or a happy customer interaction, send them a WhatsApp with your Google review link and a short message asking them to share their experience. Consistent reviews over time improve both your ranking and the trust new customers place in you.</p>
+    `
+  },    'do-you-need-a-website': {
+    title: 'Every South African Business Needs a Website. Here is Why Yours Does Not Have One Yet.',
+    category: 'Websites',
+    date: 'June 27, 2026',
+    readTime: '5 min read',
+    author: 'Webify Team',
+    related: ['google-maps-2026', 'data-driven-marketing-small-business', 'facebook-page-mistakes'],
+    content: `
+      <p>There is a conversation that happens in township hair salons, at spaza shop counters, in backyard mechanic bays, and at market stalls all over South Africa. Someone asks: "Do you have a website?" And the answer is almost always: "No, we just use Facebook" or "We can't afford that."</p>
+
+      <p>Both of those answers are understandable. But both of them are quietly costing those businesses customers every single day.</p>
+
+      <p>This post is not going to lecture you about the future of digital business. It is going to be honest with you about why a website matters for your specific situation in South Africa, why the pricing in this industry has historically locked out the people who need it most, and what a real solution looks like.</p>
+
+      <h2>South Africans Are Online. Your Customers Are Looking for You.</h2>
+
+      <p>South Africa has over <a href="https://helloyes.co.za/south-africa-digital-statistics-and-usage/" target="_blank" rel="noopener noreferrer">45 million active internet users</a>. The average South African spends more than nine hours online every day, mostly on a mobile phone. People in Tembisa, in Mitchells Plain, in Polokwane, in Butterworth are using Google to find plumbers, hair salons, caterers, mechanics, tutors, and every other kind of service you can think of.</p>
+
+      <p>When they search, Google shows them results. Those results include businesses with websites. If your business does not have a website, you are not in that conversation at all.</p>
+
+      <p>Facebook helps, and we will come back to that. But Facebook alone is not enough, and here is the honest reason why.</p>
+
+      <h2>Why Facebook Is Not a Substitute for a Website</h2>
+
+      <p>Facebook is useful. It lets you post updates, connect with customers, and run ads. But it has three fundamental problems that a website does not.</p>
+
+      <p>First, you do not own it. Facebook can restrict your page, reduce who sees your posts, or change its rules at any time. Businesses have had their pages removed overnight with no warning and no way to get them back. When that happens, every follower you built over years disappears with it. A website is yours. Nobody can take it from you.</p>
+
+      <p>Second, Facebook does not rank well on Google. When someone types "catering services in Durban" or "affordable electrician Pretoria" into Google, a Facebook page rarely appears near the top. A properly built website does. That difference in visibility translates directly into customers finding you or not finding you.</p>
+
+      <p>Third, a Facebook page does not look as professional as a website when someone is making a buying decision. Think about the last time you considered hiring someone for a significant job. You probably looked them up. A business with a website that clearly explains what they do, shows their work, and has a way to contact them instantly feels more trustworthy than one with just a Facebook page. That trust is what converts interest into a phone call.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <p><strong>Think of it this way:</strong> Facebook is the street outside your shop where people discover you. Your website is the actual shop where they decide whether to buy. You need both, but you cannot replace the shop with the street.</p>
+      </div>
+
+      <h2>The Real Reason Most Township and Small Businesses Do Not Have Websites</h2>
+
+      <p>It is not laziness. It is not that business owners do not understand the internet. It is pricing.</p>
+
+      <p>Walk into most web design agencies in South Africa and ask for a basic business website. You will hear numbers starting at R5,000, climbing quickly to R15,000 or R20,000, and sometimes much higher. For a large business with a healthy marketing budget, that is a normal business expense. For a hair salon in Mamelodi, a catering business in Khayelitsha, or a construction company just getting started in Limpopo, that number is not just expensive. It is impossible.</p>
+
+      <p>So people settle for Facebook. Not because it is better. Because it is free and the alternative feels out of reach.</p>
+
+      <p>This is the gap that exists in the South African market and it is the gap that leaves thousands of genuinely good, hardworking small businesses invisible online while their more resourced competitors take the customers that should rightfully be shared across the industry.</p>
+
+      <h2>What a Website Actually Does for a Small Business</h2>
+
+      <p>A website works for your business every hour of the day, including when you are asleep, on a job, or on holiday. Here is what that means in practice.</p>
+
+      <p>Someone in your area searches for the service you offer at 10pm on a Sunday night. They find your website. They read about what you do, see photos of your work, check your prices, and send you a WhatsApp enquiry. By the time you wake up on Monday morning, there is already a potential customer waiting for your response. That is a sale your business would have missed entirely without a website.</p>
+
+      <p>A website also gives your business something that no social media page can fully replicate: a professional address on the internet that belongs to you. An email address like yourname@yourbusiness.co.za instead of yourname@gmail.com. A place where everything about your business lives in one organised space. That kind of digital presence builds trust with customers in a way that is hard to put a number on but very easy to feel.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">🌍</div>
+        <p><strong>The shift is already happening:</strong> <a href="https://www.growthpulsemedia.co.za/digital-marketing-statistics-south-africa-2026/" target="_blank" rel="noopener noreferrer">South Africa's online market grew by 38% in 2025</a> while physical retail grew by under 3%. Customers are moving online faster than most businesses are moving with them. The businesses that have a strong web presence now are the ones that will capture that growth.</p>
+      </div>
+
+      <h2>What You Actually Need (And What You Do Not)</h2>
+
+      <p>A lot of the cost in web design comes from things that most small businesses simply do not need. Complex e-commerce systems. Custom animations. Ongoing monthly content management contracts. Database integrations. These are features built for large businesses with technical teams, and small business owners often end up paying for them because agencies bundle everything together.</p>
+
+      <p>What a township or small business in South Africa actually needs from a website is straightforward:</p>
+
+      <ul>
+        <li>A clean, professional design that works properly on a phone</li>
+        <li>A clear explanation of what you do and who you do it for</li>
+        <li>Photos of your work or your products</li>
+        <li>Your contact details, WhatsApp number, and location</li>
+        <li>A way for Google to find you through basic SEO</li>
+      </ul>
+
+      <p>That is it. A website that does those five things well will generate real enquiries for your business. It does not need to be complicated. It needs to be done properly.</p>
+
+      <h2>Why Webify Exists</h2>
+
+      <p>Webify was built in Tembisa for exactly this reason. We saw the gap between what most web agencies charge and what township and small businesses can realistically afford. We decided to close it.</p>
+
+      <p>A professional website from Webify starts at <strong>R1,499</strong>. Once-off. No monthly retainer unless you choose one. No hidden costs. We build it, we set it up properly for Google, and we make sure it works on every phone and every internet connection. Most websites are live within three to five business days.</p>
+
+      <p>That R1,499 is not a compromise version of a website. It is a properly built, mobile-first, Google-optimised website that gives your business a professional home on the internet. The kind that used to cost R10,000 at most agencies.</p>
+
+      <p>We also offer Google Business Profile setup from R499, social media page creation from R599, and logo design from R799 for businesses that want to build a complete digital presence from the ground up. Every service is priced so that a business that is just getting started can afford to get online without taking out a loan to do it.</p>
+
+      <blockquote><p>Getting your business online should not be a luxury reserved for businesses that already have money. In South Africa especially, a digital presence is one of the most powerful tools a small business owner has to compete with bigger, more established players. We built Webify so that tool is available to everyone.</p></blockquote>
+
+      <h2>How to Get Started</h2>
+
+      <p>You do not need to figure out hosting, domain names, or anything technical. Send us a WhatsApp, tell us about your business, and we will handle everything from there. We will ask you a few simple questions, put together a quote, and once you are happy with it, your website will be live within the week.</p>
+
+      <p>The businesses that are visible online right now are not more talented or more hardworking than you. They just got online sooner. That is a gap you can close this week.</p>
+
+      <p><strong><a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%20want%20to%20get%20a%20website%20for%20my%20business" target="_blank" rel="noopener noreferrer">WhatsApp Webify today and let's build your website.</a></strong></p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>How much does a website cost in South Africa?</h3>
+      <p>At most agencies, a basic business website costs between R5,000 and R20,000. At Webify, a professional, mobile-ready, Google-optimised business website starts at R1,499 once-off. We built our pricing specifically for township and small businesses that need a professional online presence without the agency price tag.</p>
+
+      <h3>Can I have a website without a domain name?</h3>
+      <p>You need a domain name for your website to have a proper web address, like www.yourbusiness.co.za. A .co.za domain typically costs around R150 to R200 per year. Webify helps you register the right domain for your business as part of the setup process.</p>
+
+      <h3>Do I need technical skills to manage my website after it is built?</h3>
+      <p>No. We build websites that are easy to work with and we walk you through everything you need to know before we hand it over. For simple updates like adding photos or changing your contact details, we can also show you exactly how to do it yourself. And if you ever get stuck, we are a WhatsApp message away.</p>
+
+      <h3>Will my website show up on Google?</h3>
+      <p>Every website Webify builds is set up with basic <a href="https://en.wikipedia.org/wiki/Search_engine_optimization" target="_blank" rel="noopener noreferrer">search engine optimisation (SEO)</a> from day one. This means Google can find and index your site properly. Ranking highly for competitive search terms takes time and ongoing work, but your site will be correctly set up to be discovered from the moment it goes live.</p>
+
+      <h3>What is the difference between a website and a Facebook page?</h3>
+      <p>A Facebook page is a profile on someone else's platform. You do not own it, you cannot customise it fully, and it does not rank on Google the way a website does. A website is your own space on the internet that you own and control completely. The two work best together, not as replacements for each other.</p>
+    `
+  },
+
+  /* DRAFT_START_facebook-page-mistakes */ /* 'facebook-page-mistakes': {
+    title: '5 Facebook Page Mistakes That Are Costing You Customers Right Now',
+    category: 'Social Media',
+    date: 'May 20, 2025',
+    readTime: '4 min read',
+    author: 'Webify Team',
+    related: ['google-maps-2025', 'facebook-ads-budget', 'do-you-need-a-website'],
+    content: `
+      <p>Facebook is still one of the most powerful tools a small business in South Africa can use — but only if you use it correctly. A poorly set-up page doesn't just fail to attract customers; it actively drives them away.</p>
+      <p>Here are the five mistakes we see over and over again, and exactly how to fix each one.</p>
+
+      <h2>Mistake 1: Using a Personal Profile Instead of a Business Page</h2>
+      <p>This is the most common mistake. Many business owners just post from their personal Facebook account because it's easy. But this creates real problems:</p>
+      <ul>
+        <li>You can't run ads from a personal profile</li>
+        <li>Customers can't "Like" or "Follow" a business — they have to friend-request you</li>
+        <li>You're violating Facebook's terms of service, which can get your account shut down</li>
+        <li>You have no access to analytics to see what's working</li>
+      </ul>
+      <p><strong>Fix it:</strong> Create a proper Facebook Business Page. It's free, takes about 15 minutes, and unlocks every business feature the platform offers.</p>
+
+      <h2>Mistake 2: Incomplete Profile Information</h2>
+      <p>When a potential customer lands on your page and can't find your phone number, your location, or your opening hours — they leave. They don't hunt for the information. They find someone else who made it easy.</p>
+      <p>Your Facebook page should have: your full business name, category, phone number, WhatsApp link, physical address or service area, opening hours, website URL, and a clear description of what you do.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">✅</div>
+        <p><strong>Check this now:</strong> Open your Facebook page on mobile and pretend you're a new customer. Can you find your phone number in under 10 seconds? If not, fix it today.</p>
+      </div>
+
+      <h2>Mistake 3: A Blurry or Unprofessional Profile Picture</h2>
+      <p>Your profile picture is the tiny image that appears next to every post, every comment, and every message you send. If it's blurry, pixelated, or just a random photo — it kills trust instantly.</p>
+      <p><strong>Fix it:</strong> Use your logo. Make sure it's high resolution (at least 400x400 pixels) and that the important part of the design is centred, since Facebook crops profile pictures into a circle.</p>
+
+      <h2>Mistake 4: Posting Inconsistently (or Not at All)</h2>
+      <p>A page that hasn't posted in 3 months looks abandoned. Facebook's algorithm also significantly reduces how many people see your posts if you're not posting regularly. Customers who visit and see an empty feed assume you've closed down.</p>
+      <p>You don't need to post every day. But you do need a basic rhythm. Even 2–3 posts a week — showing your work, sharing a customer story, or posting a tip — keeps your page alive and your audience engaged.</p>
+
+      <h2>Mistake 5: No Clear Call to Action</h2>
+      <p>Most small business Facebook pages are full of product photos and "check us out" posts — but they never tell people what to do next. Should they call? WhatsApp? Visit the store? Order online?</p>
+      <p>Every post should end with a clear, simple instruction. "WhatsApp us on 079 164 6006 to order." "Click the link to book your appointment." "Call us before 5pm today." Make it dead simple for someone to take the next step.</p>
+
+      <blockquote><p>A half-complete Facebook page is worse than no page at all. It shows customers you started something but didn't finish — and they wonder what else you leave half-done.</p></blockquote>
+
+      <h2>The Bigger Picture</h2>
+      <p>Facebook done right is a genuine business asset. It's where your customers spend their time, it's where word-of-mouth happens digitally, and it's one of the most cost-effective advertising platforms on the planet. But it only works when your foundation is solid.</p>
+      <p>At Webify, we set up professional Facebook and Instagram pages for South African small businesses from just <strong>R599</strong>. We handle the profile setup, design the cover and profile graphics, write your bio, and get everything looking professional from day one.</p>
+    `
+  },
+
+
+
+   */ /* 'logo-and-branding': {
+    title: 'How a Professional Logo Transforms Customer Perception Overnight',
+    category: 'Branding',
+    date: 'April 28, 2025',
+    readTime: '5 min read',
+    author: 'Webify Team',
+    related: ['do-you-need-a-website', 'google-maps-2025', 'facebook-page-mistakes'],
+    content: `
+      <p>Your logo is often the very first thing a potential customer sees. Before they read a single word about what you offer, before they know your prices or your story — they see your logo. And in that split second, they form an impression.</p>
+      <p>That impression either builds trust or destroys it. There's rarely a middle ground.</p>
+
+      <h2>Why First Impressions Happen So Fast</h2>
+      <p>Research consistently shows that people form a first impression in as little as 50 milliseconds — about the time it takes to blink. Your visual identity communicates things like professionalism, reliability, and quality before a single word is read.</p>
+      <p>A pixelated logo made on a free app, with clashing colours and a generic font, says: "I didn't invest in this business." A clean, professional logo says: "I take my work seriously." Customers feel that difference even when they can't articulate why.</p>
+
+      <h2>The Difference Between a Logo and a Brand Identity</h2>
+      <p>Many business owners think a logo is just a picture. But your brand identity is a full system:</p>
+      <ul>
+        <li><strong>Logo:</strong> The primary mark — icon, wordmark, or combination</li>
+        <li><strong>Colour palette:</strong> The specific colours that represent your business consistently</li>
+        <li><strong>Typography:</strong> The fonts used across all your materials</li>
+        <li><strong>Visual style:</strong> The overall look and feel — clean, bold, friendly, premium</li>
+      </ul>
+      <p>When all of these work together consistently — across your WhatsApp, Facebook, website, business cards, signage, and uniforms — you create recognition. Customers start to recognise you instantly, even before they read your name.</p>
+
+      <blockquote><p>"My new logo and website look so professional that even big companies take me seriously now. Best investment I've made for my business." — Katlego Dlamini, KD Electrical Contractors</p></blockquote>
+
+      <h2>Colour Psychology in the South African Market</h2>
+      <p>Colour is one of the most powerful tools in branding. Different colours evoke different feelings and associations:</p>
+      <ul>
+        <li><strong>Blue:</strong> Trust, reliability, professionalism (popular for financial and tech businesses)</li>
+        <li><strong>Green:</strong> Growth, health, nature (food, wellness, eco-friendly businesses)</li>
+        <li><strong>Red/Orange:</strong> Energy, urgency, appetite (food, retail, fast-moving businesses)</li>
+        <li><strong>Black/Gold:</strong> Luxury, exclusivity, premium quality</li>
+      </ul>
+      <p>The right colour choice for your brand depends on your industry, your target customers, and what you want them to feel when they interact with your business.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">🎨</div>
+        <p><strong>Quick Exercise:</strong> Look at the logos of the three most successful businesses in your industry. What colours do they use? What feeling do those colours give you? That's intentional — and it works.</p>
+      </div>
+
+      <h2>When Your Logo Is Holding You Back</h2>
+      <p>Signs that your current logo might be hurting your business more than helping it:</p>
+      <ul>
+        <li>It looks blurry or pixelated when you enlarge it</li>
+        <li>You feel embarrassed to put it on a professional document</li>
+        <li>It looks very different from how your competitors present themselves</li>
+        <li>You made it yourself on a free app years ago and haven't updated it</li>
+        <li>Customers have commented on it (or noticeably haven't)</li>
+      </ul>
+      <p>If any of these ring true, your branding might be the thing quietly costing you customers — especially in situations where you're being compared to a competitor with a polished, professional look.</p>
+
+      <h2>What Professional Branding Costs vs. What It Returns</h2>
+      <p>Many small business owners think professional branding is only for big companies with big budgets. It's not. At Webify, a full logo and branding package starts from <strong>R799</strong> — that's a once-off cost that continues to represent your business professionally for years.</p>
+      <p>Think of it as the difference between showing up to a job interview in clean, pressed clothes versus a wrinkled shirt. The content of what you say is the same. But one version gets the job, and the other doesn't.</p>
+      <p>Your branding is your outfit in the business world. Make sure it's working for you.</p>
+    `
+  },
+
+  /* DRAFT_START_facebook-ads-budget */ /* 'facebook-ads-budget': {
+    title: 'How to Run Facebook Ads on a R500 Budget — And Actually Get Results',
+    category: 'Marketing',
+    date: 'April 14, 2025',
+    readTime: '7 min read',
+    author: 'Webify Team',
+    related: ['facebook-page-mistakes', 'do-you-need-a-website', 'google-maps-2025'],
+    content: `
+      <p>One of the biggest myths about Facebook advertising is that you need a massive budget to see results. You don't. With R500 and the right approach, a small business can generate real leads, real calls, and real customers.</p>
+      <p>Here's the strategy we use for our clients — broken down simply.</p>
+
+      <h2>First: Get Your Foundation Right</h2>
+      <p>Before you spend a single rand on ads, your Facebook page needs to be in order. A complete profile, professional photos, clear contact information, and some existing posts. Ads drive people to your page — if your page looks abandoned or unprofessional, you'll waste your budget.</p>
+      <p>Also make sure your WhatsApp number is visible and clickable. In South Africa, most customers want to contact businesses via WhatsApp. If you make it difficult, they won't bother.</p>
+
+      <h2>Understand the Two Types of Facebook Ads</h2>
+      <p>For small budgets, you really only need to know about two types:</p>
+      <ul>
+        <li><strong>Awareness ads:</strong> Show your business to as many people in your area as possible. Good for building recognition.</li>
+        <li><strong>Lead/conversion ads:</strong> Drive people to take a specific action — call you, WhatsApp you, visit your website. Good for getting actual enquiries.</li>
+      </ul>
+      <p>With a R500 budget, focus entirely on conversion-style ads. You want direct responses, not just views.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">💰</div>
+        <p><strong>Budget tip:</strong> R500 over 10 days = R50/day. This is enough to reach thousands of people in a targeted local area. Don't blow it all in one or two days — spread it out to gather data.</p>
+      </div>
+
+      <h2>Targeting: The Most Important Part</h2>
+      <p>Facebook's targeting is extraordinarily powerful — and it's what separates effective small-budget ads from wasted money. For a local South African small business, target:</p>
+      <ul>
+        <li><strong>Location:</strong> Your city, township, or a radius around your business (e.g. 10km)</li>
+        <li><strong>Age:</strong> The age range most likely to buy from you</li>
+        <li><strong>Interests:</strong> Things your ideal customer cares about (e.g. for a hair salon: beauty, hair care, fashion)</li>
+        <li><strong>Behaviours:</strong> People who use certain apps, make online purchases, etc.</li>
+      </ul>
+      <p>The tighter your targeting, the less you waste on people who will never buy from you. Don't try to reach everyone in South Africa — reach the right 5,000 people in your area.</p>
+
+      <h2>What Your Ad Creative Should Look Like</h2>
+      <p>With a small budget, you can't afford weak creative. Your ad image or video needs to stop someone mid-scroll. Here's what works:</p>
+      <ul>
+        <li><strong>Real photos</strong> of your actual work, products, or yourself — not stock images</li>
+        <li><strong>Before and after</strong> comparisons (extremely effective for beauty, home improvement, car services)</li>
+        <li><strong>A clear, specific offer</strong> — "First booking 20% off this month" beats "Great service guaranteed"</li>
+        <li><strong>Faces</strong> — ads with human faces consistently outperform product-only images</li>
+      </ul>
+
+      <blockquote><p>The most effective ad copy we've ever written for a local business was 8 words: "Best bunny chow in Durban. WhatsApp us now." It ran on R400 and drove 60+ messages in a week.</p></blockquote>
+
+      <h2>Write Ad Copy That Converts</h2>
+      <p>Keep your ad text short, specific, and action-focused. A formula that works:</p>
+      <ol>
+        <li><strong>Hook:</strong> A bold first line that speaks directly to the customer's problem or desire</li>
+        <li><strong>Proof:</strong> One piece of evidence — a result, a number, a testimonial quote</li>
+        <li><strong>Offer:</strong> What you're offering, clearly stated</li>
+        <li><strong>CTA:</strong> What to do next — "WhatsApp us on 079 XXX XXXX" or "Click to book now"</li>
+      </ol>
+      <p>That's it. No essays. No jargon. Speak the way your customers speak.</p>
+
+      <h2>Track What's Working</h2>
+      <p>After your R500 is spent, look at the data. Facebook Ads Manager will show you which age group responded best, which location had the most clicks, what time of day people engaged most. Use that information to make your next campaign better.</p>
+      <p>Most small business owners run one ad, get frustrated, and give up. The ones who win run multiple campaigns, learn from each one, and gradually improve their results every month.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📊</div>
+        <p><strong>Key metrics to watch:</strong> Cost per result (what you paid per enquiry), click-through rate (% of people who clicked), and reach (how many unique people saw it). If your cost per result is lower than what a single customer is worth to you, keep running the ad.</p>
+      </div>
+
+      <h2>When to Get Professional Help</h2>
+      <p>Running your own ads can work well when your business is small and you have time to learn. But as you scale, bad ads become expensive quickly. Webify's digital marketing team manages Facebook and Instagram ad campaigns for South African small businesses — creating the ads, setting up the targeting, monitoring performance, and optimising continuously. Contact us to find out what's possible for your budget.</p>
+    `
+  },
+
+  /* DRAFT_START_get-more-google-reviews */ /* 'get-more-google-reviews': {
+    title: 'How to Get More 5-Star Reviews on Google Without Begging for Them',
+    category: 'Google My Business',
+    date: 'March 30, 2025',
+    readTime: '4 min read',
+    author: 'Webify Team',
+    related: ['google-maps-2025', 'facebook-page-mistakes', 'mobile-website-speed'],
+    content: `
+      <p>Google reviews are one of the most powerful tools a small business has. They build trust instantly, improve your ranking in local search results, and they're completely free. The problem is most business owners don't have a system for getting them — so they end up with 3 reviews while their competitor has 47.</p>
+      <p>Here's how to change that, without awkward begging or fake reviews.</p>
+
+      <h2>Why Reviews Matter More Than You Think</h2>
+      <p>When two businesses show up side by side on Google Maps — one with 4 reviews and one with 38 reviews averaging 4.8 stars — 95% of customers will choose the second one. It doesn't matter if the first business is actually better. Perception is reality in the digital world.</p>
+      <p>Reviews also directly affect your ranking. Google uses review quantity, quality, and recency as ranking factors. A business collecting 2–3 reviews a month will steadily outrank one that stopped at 10 reviews two years ago.</p>
+
+      <h2>The Simplest System That Actually Works</h2>
+      <p>The key is timing and simplicity. Ask for a review at the right moment, and make it ridiculously easy to do.</p>
+      <p><strong>Step 1: Get your review link.</strong> Go to your Google Business Profile, click "Get more reviews," and copy the direct link. This link takes customers straight to the review box — no searching required.</p>
+      <p><strong>Step 2: Save it as a WhatsApp message template.</strong> Something like: "Hi [Name]! Thanks so much for choosing us. If you had a good experience, we'd really appreciate a quick Google review — it helps other customers find us! Here's the link: [your review link] 🙏"</p>
+      <p><strong>Step 3: Send it at the right moment.</strong> The best time to ask is right after a successful service or delivery — when the customer is still feeling good about the experience. That's when they're most motivated to leave a review.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📱</div>
+        <p><strong>Pro tip:</strong> Print a small card with a QR code linking to your review page. Hand it to customers at the end of each visit. Make the ask in person first, then follow up via WhatsApp.</p>
+      </div>
+
+      <h2>What to Say So It Doesn't Feel Awkward</h2>
+      <p>The reason most business owners don't ask for reviews is that it feels uncomfortable. Here's a frame that works: you're not asking for a favour — you're giving them an opportunity to help other people make a good decision.</p>
+      <p>"I'd really appreciate your review — it helps other people in [area] find us when they need [service]. Honestly, it only takes 30 seconds and it makes a huge difference for our small business."</p>
+      <p>That framing — helping others, quick and easy, meaningful impact — gets a far higher response rate than "Can you please leave us a review?"</p>
+
+      <h2>How to Respond to Reviews (Including Bad Ones)</h2>
+      <p>Responding to reviews is almost as important as getting them. Google sees that you're engaged, and customers see that you care.</p>
+      <ul>
+        <li><strong>For positive reviews:</strong> Thank them by name, mention something specific they said, and invite them back</li>
+        <li><strong>For negative reviews:</strong> Stay calm, apologise for the experience, offer to resolve it, and take the conversation offline via phone or WhatsApp</li>
+      </ul>
+      <p>A business that handles a negative review professionally often gains more trust than one with only perfect reviews. It shows you're real, responsive, and you care about making things right.</p>
+
+      <blockquote><p>Never respond to a bad review with defensiveness or excuses. Even if the customer is completely wrong, potential customers are watching how you handle it.</p></blockquote>
+
+      <h2>What NOT to Do</h2>
+      <ul>
+        <li>Don't offer discounts or gifts in exchange for reviews — Google can remove your listing for this</li>
+        <li>Don't buy fake reviews — Google's systems detect patterns and will penalise you</li>
+        <li>Don't ask all your friends and family to review at once — a sudden spike looks suspicious</li>
+        <li>Don't ignore reviews — both good and bad ones deserve a response</li>
+      </ul>
+
+      <h2>Build It Into Your Process</h2>
+      <p>The businesses with 100+ reviews didn't get there in a week. They built review collection into their standard business process — just like invoicing or following up on payments. Make it a habit: every satisfied customer gets the WhatsApp message. Every happy client gets a review card.</p>
+      <p>Do that consistently for 6 months and you'll have more reviews than 90% of your local competitors.</p>
+    `
+  },
+
+  /* DRAFT_START_mobile-website-speed */ /* 'mobile-website-speed': {
+    title: 'Why Your Website Must Load Fast on Mobile — Especially in SA',
+    category: 'Websites',
+    date: 'March 18, 2025',
+    readTime: '5 min read',
+    author: 'Webify Team',
+    related: ['do-you-need-a-website', 'google-maps-2025', 'get-more-google-reviews'],
+    content: `
+      <p>South Africa has one of the highest mobile internet usage rates on the continent. Most of your customers are browsing on their phones — often on 3G or limited data. If your website takes more than 3 seconds to load, more than half of them will leave before they see a single word of what you offer.</p>
+      <p>That's not an estimate. That's data. And it has a direct impact on your revenue.</p>
+
+      <h2>The Real Cost of a Slow Website</h2>
+      <p>Google research shows that <strong>53% of mobile visitors abandon a site if it takes longer than 3 seconds to load</strong>. For every additional second of loading time, conversion rates drop by roughly 7%.</p>
+      <p>Let's make that concrete: if your website currently brings in 10 enquiries per month, and slow loading is causing 50% of visitors to leave — you could potentially be getting 20 enquiries instead. That's double the business, same marketing spend.</p>
+      <p>Speed isn't a technical detail. It's a revenue lever.</p>
+
+      <h2>Why Speed Matters Even More in South Africa</h2>
+      <p>South Africa's mobile infrastructure, while improving, is still characterised by significant data cost sensitivity. Many users are on prepaid data plans and actively avoid websites that burn through their data quickly. A website bloated with large images, unnecessary scripts, and poorly optimised code is costing your visitors money — and they know it.</p>
+      <p>Users on slow connections also experience slow websites much more harshly. A site that loads in 2 seconds on fibre might take 8 seconds on 3G. That's a completely different user experience — one that drives customers away before they give you a chance.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📊</div>
+        <p><strong>Test your site right now:</strong> Go to PageSpeed Insights (pagespeed.web.dev), paste your website URL, and check your mobile score. A score below 50 is poor. Below 70 is needs improvement. Aim for 80+.</p>
+      </div>
+
+      <h2>Google Cares About Speed Too</h2>
+      <p>In 2021, Google officially made page speed a ranking factor through its Core Web Vitals update. Websites that load slowly on mobile are actively penalised in search rankings. This means your slow website isn't just losing customers — it's also making it harder for new customers to find you in the first place.</p>
+      <p>Two websites with similar content and similar SEO work: the faster one wins in rankings. Every time.</p>
+
+      <h2>The Most Common Causes of Slow Websites</h2>
+      <ul>
+        <li><strong>Unoptimised images:</strong> A photo taken on a smartphone can be 4–8MB. Web images should be under 200KB. This single issue accounts for most slow websites.</li>
+        <li><strong>Too many plugins:</strong> WordPress sites especially suffer from this — each plugin adds loading time</li>
+        <li><strong>Cheap shared hosting:</strong> Budget hosting means slow server response times</li>
+        <li><strong>No caching:</strong> Without caching, the server rebuilds every page from scratch on every visit</li>
+        <li><strong>Unminified code:</strong> CSS and JavaScript files with unnecessary whitespace and comments add unnecessary size</li>
+      </ul>
+
+      <h2>What a Well-Built Website Looks Like</h2>
+      <p>A properly built website for a South African small business should:</p>
+      <ul>
+        <li>Load in under 2 seconds on a mobile connection</li>
+        <li>Display perfectly on any screen size — from the smallest smartphone to a desktop</li>
+        <li>Use compressed, web-optimised images that look sharp but load fast</li>
+        <li>Have a mobile-first design (designed for phones first, then scaled up for desktop)</li>
+        <li>Be hosted on reliable, fast South African or CDN-backed servers</li>
+      </ul>
+
+      <blockquote><p>Speed is respect. When your website loads fast, you're respecting your customer's time and their data. They feel that — even if they can't explain it.</p></blockquote>
+
+      <h2>What to Do If Your Site Is Slow</h2>
+      <p>If your PageSpeed score is low, the options are: fix it yourself (requires technical knowledge), hire a developer to optimise it, or have Webify rebuild it properly from scratch.</p>
+      <p>We build all our websites with speed as a priority from day one — optimised images, clean code, proper hosting, and mobile-first design. The result is sites that score 85+ on PageSpeed and give customers a fast, smooth experience regardless of what device or connection they're on.</p>
+      <p>Starting from <strong>R1,499</strong> — once-off, no hidden costs, live in 3–5 days.</p>
+    `
+  },
+
+  /* DRAFT_START_scientific-approach-to-marketing */ /* 'scientific-approach-to-marketing': {
+    title: 'The Scientific Approach to Marketing',
+    category: 'Marketing',
+    date: 'June 11, 2025',
+    readTime: '8 min read',
+    author: 'Webify Team',
+    related: ['facebook-ads-budget', 'get-more-google-reviews', 'facebook-page-mistakes'],
+    content: `
+      <p>Here's a pattern that probably sounds familiar: you run an ad, it does okay, you run a different ad, that one flops, you try again with a slightly different picture and maybe better luck this time. After six months of this you have strong opinions about what works — but almost none of them are based on anything you can actually prove.</p>
+
+      <p>That's not a marketing strategy. It's superstition with a budget.</p>
+
+      <p>Somewhere between biology class and running a business, most people forgot that there's already a reliable method for figuring out what works and what doesn't. Scientists have been using it for centuries. It's not complicated. And applied to marketing, it's the difference between guessing and knowing.</p>
+
+      <h2>Start With Observation, Not Action</h2>
+
+      <p>The first thing a scientist does before running any experiment is look at what's already happening. Not what they think is happening — what the evidence actually shows.</p>
+
+      <p>Most business owners skip this step entirely. They go straight to posting content or boosting ads without a clear picture of where they currently stand. Then, when something changes, they have no way of knowing whether they caused it.</p>
+
+      <p>Pull your numbers before you do anything else. How many people visit your website in a month? Of those, how many actually contact you? Where did your last ten customers come from — Google, Facebook, a referral, a walk-in? Which post from the last three months got the most real engagement, not just likes from your cousins?</p>
+
+      <p>If Google Analytics isn't set up on your site, set it up today. If you're running Facebook ads without checking Ads Manager, stop running Facebook ads. You need a baseline — a clear picture of where things are before you change anything — or every result you get will be uninterpretable.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">🔬</div>
+        <p><strong>The baseline test:</strong> Before your next campaign, write down three numbers: monthly website visitors, monthly enquiries, and your best-performing post this quarter. If you can't write them down, you don't have a baseline yet.</p>
+      </div>
+
+      <h2>A Hypothesis Is Not a Hope</h2>
+
+      <p>Once you have data, you can form a hypothesis — which is not the same as having a hunch. A hunch is "I think a video post will do better." A hypothesis is: <em>"If we post a 30-second video of a completed job on Thursday at 6pm, we'll get at least 15% more profile visits than our average static post, because our last three video posts all outperformed our images by that margin."</em></p>
+
+      <p>The difference matters. The hypothesis names what you're changing, what you expect to happen, by how much, and why you think that. It's written down before the experiment runs. That last part is what keeps you honest — because it's very easy, after the fact, to decide that whatever happened was actually what you were going for.</p>
+
+      <p>Weak hypotheses produce weak learnings. If your prediction is vague, any result will feel like confirmation. "We thought it would do better, and it sort of did." That's not useful. "We predicted 15%, got 22%, and here's what that tells us about our audience" — that's something you can act on.</p>
+
+      <blockquote><p>Write it down before you run it. That's the whole rule. If you won't commit to a prediction in writing, you're not testing a hypothesis — you're just doing stuff and watching what happens.</p></blockquote>
+
+      <h2>Change One Thing</h2>
+
+      <p>This is where most small business "experiments" fall apart, and it's completely understandable. You're impatient to improve things, so you update the image, rewrite the headline, adjust the budget, and shift the audience targeting — all at once. The campaign performs better. Great. But which of those four changes did it?</p>
+
+      <p>You have no idea. And next month you're back to guessing.</p>
+
+      <p>Controlling your variables — changing only one thing per test — is the discipline that makes everything else useful. It's slower. It's less satisfying in the short term. But a business that has run twenty controlled single-variable tests has actual knowledge about what moves its specific audience. That's worth more than ten campaigns that "sort of worked."</p>
+
+      <p>In practice: run the same ad copy with two different images. Same image, two different headlines. Same ad, two different audiences. Facebook's Ads Manager has an A/B test feature built in for exactly this. Use it. Run both versions simultaneously to a split audience and let the platform tell you which won. Two weeks. One variable. Clean result.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">⚗️</div>
+        <p><strong>The one-variable rule:</strong> Before launching anything, ask yourself: "What is the single thing I'm testing this time?" If the answer is more than one thing, you're not running an experiment — you're just running a campaign.</p>
+      </div>
+
+      <h2>Let It Run</h2>
+
+      <p>Three days into a two-week ad campaign, it's not going well and you're tempted to pull it. Don't.</p>
+
+      <p>Facebook's algorithm needs time to find your audience. A post might underperform on Monday and spike on Wednesday when it gets shared. A Google ad might look expensive on day four and become efficient by day ten as the targeting learns. Pulling experiments early doesn't save money — it just produces unusable data and forces you to start over.</p>
+
+      <p>Most small business marketing tests need at least 7 days to show a real pattern. Two weeks is better. If you're dealing with low traffic or a small audience, give it longer. The goal is enough data points that you can tell the difference between a genuine trend and a fluke. One good day is noise. Seven consistent days is signal.</p>
+
+      <p>While it runs, track the numbers that relate to your hypothesis. Click-through rate if you're testing creative. Cost per enquiry if you're testing audiences. Conversion rate if you're testing a landing page. Don't track everything — track the one metric that answers the question you asked at the start.</p>
+
+      <h2>Reading the Results Honestly</h2>
+
+      <p>This part is harder than it sounds, because human beings are bad at reading data objectively about things they care about. We look for confirmation. We find it even when it isn't there.</p>
+
+      <p>The question to ask is not "did this work?" The question is: "what does this result tell me about my customers?" Those are different questions. The first one is ego. The second one is useful.</p>
+
+      <p>If the hypothesis was confirmed, dig into why. Was it the image itself, or the fact that it showed a real person? Was it the 6pm timing, or was Thursday specifically more active for your audience? The result is a starting point, not an ending point. If the hypothesis failed, ask whether the prediction was wrong or whether the execution was off. A bad result with a good experiment design still teaches you something. A bad result from a poorly designed test teaches you nothing except that you spent money.</p>
+
+      <p>Also worth asking: did anything happen during the experiment that you didn't control for? Load shedding schedules, a public holiday, a competitor running a big promotion, school holidays — these are what scientists call confounding variables, outside factors that could explain the result independently of what you changed. Note them in your records. They matter.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📋</div>
+        <p><strong>Keep a marketing log.</strong> A simple spreadsheet with five columns: date, what you tested, what you predicted, what actually happened, what you concluded. After six months, this document is worth more than any course you could pay for.</p>
+      </div>
+
+      <h2>From Data Points to Actual Knowledge</h2>
+
+      <p>One experiment gives you a data point. Ten experiments give you a pattern. Twenty experiments give you genuine, proprietary knowledge about your specific customers in your specific market — knowledge that took time and discipline to build, and that no competitor can easily copy.</p>
+
+      <p>This is inductive reasoning: drawing reliable general conclusions from specific repeated observations. "We've run fourteen campaigns. Every time we feature before-and-after photos, cost per lead drops. Product-only images consistently underperform by 30%. Before-and-afters are our format." That conclusion isn't a guess anymore. It's earned.</p>
+
+      <p>The compounding effect here is real. Each experiment makes the next hypothesis smarter. Your targeting gets more precise because you know which audiences actually convert, not which ones look good on paper. Your creative gets tighter because you've killed what doesn't work. Your ad spend becomes more efficient because you're not repeating old mistakes — you've recorded them, learned from them, and moved past them.</p>
+
+      <blockquote><p>Most of your competitors are running on vibes. The ones who win over five years are the ones who treated every campaign as a question with a measurable answer.</p></blockquote>
+
+      <h2>Making It Practical</h2>
+
+      <p>None of this requires a data analyst or a marketing degree. It requires a bit of discipline and a monthly rhythm you can actually stick to.</p>
+
+      <p>Spend the first week of each month reviewing what happened last month. What was the best-performing thing you ran, and why do you think it worked? What flopped, and what might that tell you? Use that review to write one hypothesis for the coming month — one specific, written-down prediction about something you're going to test. Run it through weeks two and three with a single controlled variable and proper tracking. Spend week four measuring, documenting the result, and drawing a conclusion.</p>
+
+      <p>That's a four-week loop. Repeat it twelve times and you have a year's worth of compounding marketing knowledge that most businesses in your area will never build — not because it's difficult, but because most people never get structured enough to close the loop each month.</p>
+
+      <h2>The Right Foundation Makes It Possible</h2>
+
+      <p>The scientific approach only works when your tools are set up to give you clean data. A website without analytics is running dark. A Google Business profile that hasn't been claimed can't tell you how many people searched for you. Facebook pages without proper setup produce engagement numbers you can't trust.</p>
+
+      <p>At Webify, everything we build — websites, Google listings, social media pages, ad campaigns — is set up with measurement in mind from day one. When the infrastructure is right, the data flows cleanly, and the scientific method stops being a concept you read about and becomes something you actually use every month.</p>
+    `
+  }, */
+
+  'data-driven-marketing-small-business': {
+    title: 'How Small Businesses Can Use Data to Improve Marketing Results',
+    category: 'Marketing',
+    date: 'June 24, 2026',
+    readTime: '7 min read',
+    author: 'Webify Team',
+    related: ['scientific-approach-to-marketing', 'facebook-ads-budget', 'get-more-google-reviews'],
+    content: `
+      <p>Think about the last time you spent money on marketing. Maybe you boosted a Facebook post. Maybe you ran a Google ad. Maybe a friend told you to try Instagram reels and you gave it a shot for a week.</p>
+
+      <p>Did it work? Be honest. Do you actually know?</p>
+
+      <p>Most small business owners in South Africa spend money on digital marketing every month without really knowing what is working and what is not. They get a few calls here, a few enquiries there, and they assume it must be the ad they ran last week. But when you dig deeper, you realise most of those decisions are based on gut feeling, not real information.</p>
+
+      <p>Here is the truth: guessing is expensive. And in a tough economy like ours, no business can afford to keep paying for things that are not producing results.</p>
+
+      <p>The good news is that you do not need a marketing degree or a big budget to start making smarter decisions. You just need to start paying attention to the right things.</p>
+
+      <h2>Why Data Matters for Small Business Marketing in South Africa</h2>
+
+      <p>South Africa now has <a href="https://helloyes.co.za/south-africa-digital-statistics-and-usage/" target="_blank" rel="noopener noreferrer">over 45 million active internet users</a>, and the average South African spends more than <a href="https://www.meltwater.com/en/blog/social-media-statistics-south-africa" target="_blank" rel="noopener noreferrer">9 hours online every single day</a>. Your customers are online. The question is whether your business is reaching them in a way that actually converts to sales.</p>
+
+      <p>Big companies like Netflix and Amazon have known this for years. Netflix uses data to recommend shows to each viewer, and <a href="https://www.newamerica.org/oti/reports/why-am-i-seeing-this/case-study-netflix/" target="_blank" rel="noopener noreferrer">over 80% of what people watch</a> comes from those personalised recommendations. Amazon tracks what customers click, what they buy, and what they ignore, and that data drives <a href="https://www.rebuyengine.com/blog/netflix" target="_blank" rel="noopener noreferrer">about 35% of their total revenue</a>.</p>
+
+      <p>You might be thinking: "I'm not Netflix. I'm a hair salon in Soweto or a plumber in Pretoria." Fair enough. But the principle is the same whether you're a global brand or a local business: when you pay attention to what the numbers are telling you, you stop wasting money and start getting real results.</p>
+
+      <p>Research from <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/five-facts-how-customer-analytics-boosts-corporate-performance" target="_blank" rel="noopener noreferrer">McKinsey</a> backs this up. Businesses that use customer data properly are 23 times more likely to win new customers than those that don't. Twenty-three times. That is not a small difference. That is the gap between growing and struggling.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📊</div>
+        <p><strong>What that McKinsey number really means:</strong> If you and your competitor are both spending R1000 on marketing this month, the one using data properly is 23 times more likely to walk away with new customers. Same budget, very different results.</p>
+      </div>
+
+      <h2>Step 1: Find Out Where Your Customers Are Actually Coming From</h2>
+
+      <p>Before you spend another rand on advertising, you need to answer one simple question: where are your current customers coming from?</p>
+
+      <p>This sounds obvious, but most businesses cannot answer it. They say things like "Facebook is working for us" or "Google Ads are too expensive" without any real proof. They are going on feeling, not fact.</p>
+
+      <p>Start tracking. Every time a new customer contacts you, ask them how they found you. Was it Google? Facebook? A friend's recommendation? They drove past your shop? Write it down. A simple note in your phone or a column in a spreadsheet is enough to get started.</p>
+
+      <p>If you have a website, set up <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener noreferrer">Google Analytics</a> for free. It shows you exactly how many people visit your site, which pages they look at, and where they came from before they arrived. If you are running Facebook ads, check your <a href="https://www.facebook.com/business/insights/tools/audience-insights" target="_blank" rel="noopener noreferrer">Facebook Insights</a> regularly. These tools cost nothing and give you real information to work with.</p>
+
+      <p>At Webify, one of the most common things we see when we start working with a new client is this: they have been spending money on Facebook ads for months, but they have no idea how many customers those ads actually brought in. They just kept boosting posts and hoping for the best. That is not a strategy. That is a prayer.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">🔍</div>
+        <p><strong>Do this today:</strong> Write down where your last five customers came from. If you cannot remember or you genuinely do not know, that is your starting point. Fix the tracking before you spend anything more on advertising.</p>
+      </div>
+
+      <h2>Step 2: Test One Thing at a Time</h2>
+
+      <p>Here is something that trips up a lot of business owners. They run an ad, it does not perform well, and they change everything at once. New picture, new caption, new audience, new budget. Then when results improve, they have no idea what actually made the difference.</p>
+
+      <p>Next month they are back to square one, guessing again.</p>
+
+      <p>The smarter approach is to change one thing at a time. Run two versions of the same ad, where only one element is different. Maybe the image is different but the words are the same. Or the same image with two different headlines. This is called an <a href="https://en.wikipedia.org/wiki/A/B_testing" target="_blank" rel="noopener noreferrer">A/B test</a>, and Facebook Ads Manager has a built-in feature that makes it easy to do.</p>
+
+      <p>Think of it like a chef adjusting a recipe. If you change the salt, the pepper, the cooking time, and the heat all at once and the dish comes out better, you still don't know which change helped. But if you only add a little more salt this time, and it tastes better, now you know.</p>
+
+      <p>Small business marketing in South Africa works the same way. One change. Compare the results. Learn. Move forward.</p>
+
+      <p>According to <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/by-the-numbers-what-drives-sales-growth-outperformance" target="_blank" rel="noopener noreferrer">McKinsey research on business growth</a>, companies that make decisions based on data see a consistent 2 to 5% improvement in sales over time, and those gains keep building month after month. That might not sound like a lot, but over a year it adds up to something significant, especially for a small business where every rand counts.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">⚗️</div>
+        <p><strong>Before your next ad:</strong> Write down the one thing you want to test. Just one. If you cannot name it, you are not testing. You are just spending.</p>
+      </div>
+
+      <h2>Step 3: Make a Prediction Before You Spend</h2>
+
+      <p>This step sounds simple but most people skip it completely. Before you run any campaign, write down what you expect to happen.</p>
+
+      <p>Not just "I hope this works." Something more specific, like: "I think posting a short video of my work every Thursday evening will get me more enquiries because the last two videos I posted both got good responses."</p>
+
+      <p>Why does this matter? Because when you write down a prediction before you run something, you can actually measure whether you were right. And being wrong is not a failure. Being wrong and learning from it is exactly how you get better over time.</p>
+
+      <p>The <a href="https://blog.hubspot.com/marketing/hubspot-blog-marketing-industry-trends-report" target="_blank" rel="noopener noreferrer">HubSpot State of Marketing Report</a> found that nearly 56% of marketers say improving their conversion rates is much easier now than it was ten years ago. The reason is not that marketing got simpler. It is that the tools available for tracking and testing have improved dramatically, and the businesses using those tools properly are pulling ahead of everyone else.</p>
+
+      <blockquote><p>Writing down your prediction before a campaign is the difference between gambling and investing. One is hope. The other is a plan you can learn from.</p></blockquote>
+
+      <h2>Step 4: Give It Enough Time Before You Judge It</h2>
+
+      <p>Impatience is one of the most expensive habits in marketing. You run an ad for three days, the phone does not ring, and you switch it off. The problem is that three days is rarely enough time to get a clear picture.</p>
+
+      <p>Facebook's system typically needs at least seven days to figure out who in your audience is most likely to respond to your ad. Pull it too early and you have wasted your money without collecting enough information to know why it did not work.</p>
+
+      <p>Think of it like planting a vegetable garden. You do not dig up the seeds after three days because you cannot see anything growing yet. You give it time, you water it consistently, and then you assess.</p>
+
+      <p>Most digital marketing campaigns need at least seven to fourteen days before the results are reliable enough to make decisions from. While it runs, focus on the single number that relates to your goal. If you wanted more WhatsApp enquiries, count the WhatsApp enquiries. Do not get distracted by likes or reach. Track the thing that matters.</p>
+
+      <h2>Step 5: Look at the Results Honestly</h2>
+
+      <p>When a campaign ends, most people ask: "Did it work?" That is the wrong question because it only has two answers and neither of them teaches you much.</p>
+
+      <p>The better question is: "What did this tell me about my customers?"</p>
+
+      <p>If the campaign performed well, dig into why. Was it the image? The time of day? The specific offer you made? Understanding the reason means you can repeat it. If it did not perform well, ask yourself whether your prediction was wrong or whether something outside your control affected the result. Load shedding that week. A public holiday. School exams meaning parents were less focused on spending. These things happen in South Africa and they do affect results. Note them and factor them in next time.</p>
+
+      <div class="tip-box">
+        <div class="tip-icon">📋</div>
+        <p><strong>Keep a simple marketing record.</strong> A basic spreadsheet with columns for: what you ran, what you expected, what actually happened, and what you think caused the result. After three months of doing this, you will have more useful insight into your business than most of your competitors.</p>
+      </div>
+
+      <h2>Step 6: Let Your Results Build on Each Other</h2>
+
+      <p>One campaign teaches you one thing. Ten campaigns, tracked properly over time, teach you something much more powerful: what your specific customers actually respond to.</p>
+
+      <p>Maybe after a few months you notice that posts showing before-and-after photos of your work always perform better than posts showing just the final result. Or that your audience responds more in the evenings than in the mornings. Or that people in your area are more price-sensitive in January and February after the holiday season.</p>
+
+      <p>These are real insights about your real market in South Africa. You cannot buy them. You earn them by paying attention consistently over time.</p>
+
+      <p>That knowledge is what separates businesses that grow steadily from businesses that are always starting over. The ones that grow are not necessarily spending more money. They are just spending it more wisely, based on what they have learned from paying attention.</p>
+
+      <blockquote><p>Your competitors are mostly guessing. Every month you track your results properly, you are pulling further ahead without spending a single rand more.</p></blockquote>
+
+      <h2>How Webify Helps You Market Smarter</h2>
+
+      <p>The reason most small businesses in South Africa never get to this point is not laziness. It is that they do not have the right foundation in place to collect good data in the first place.</p>
+
+      <p>If your website was not built with analytics tracking, you are flying blind. If your <a href="https://business.google.com/" target="_blank" rel="noopener noreferrer">Google Business Profile</a> was never properly set up and verified, you cannot see how many people are searching for your type of business in your area. If your social media pages were created in a hurry without the right settings, the numbers they show you are not reliable.</p>
+
+      <p><a href="https://www.growthpulsemedia.co.za/digital-marketing-statistics-south-africa-2026/" target="_blank" rel="noopener noreferrer">South Africa's online market grew by 38% in 2025</a> while physical retail grew by less than 3%. The shift is happening fast and the businesses that have their digital presence properly set up are the ones capturing that growth.</p>
+
+      <p>At Webify, we build websites, set up Google Business Profiles, and create social media pages for small businesses across South Africa, and we make sure measurement is built in from day one. Not added later as an afterthought. From the start. Because a digital presence that cannot tell you what is working is just an expense. One that can tell you what is working is an investment.</p>
+
+      <p>If you are not sure whether your current setup is giving you the information you need to make good marketing decisions, chat with us. We will take a look and tell you honestly what is missing and what it would take to fix it.</p>
+
+      <p><strong><a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%20read%20your%20blog%20and%20want%20to%20understand%20my%20marketing%20data" target="_blank" rel="noopener noreferrer">Send us a WhatsApp and let's talk about your marketing.</a></strong></p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is data-driven marketing?</h3>
+      <p><a href="https://en.wikipedia.org/wiki/Data-driven_marketing" target="_blank" rel="noopener noreferrer">Data-driven marketing</a> means making your marketing decisions based on real numbers and results rather than guessing. Instead of assuming what might work, you track what is actually happening and use that information to improve over time.</p>
+
+      <h3>What should a small business in South Africa track first?</h3>
+      <p>Start simple. Track three things: how many people visit your website each month, how many enquiries or leads you get, and how each new customer says they found you. Once you have those three numbers consistently, everything else becomes easier to figure out.</p>
+
+      <h3>Is Google Analytics free to use?</h3>
+      <p>Yes, completely free. <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener noreferrer">Google Analytics 4</a> shows you how people find your website, which pages they visit, and where they drop off. It takes about 30 minutes to set up and provides valuable information that most small businesses in South Africa are not using at all.</p>
+
+      <h3>How long should I run a Facebook ad before I judge whether it worked?</h3>
+      <p>Give it at least seven days, ideally two weeks. Facebook's system needs time to learn who in your audience is most likely to respond. Switching off an ad after two or three days usually means you have paid for the learning phase without collecting the results it was working towards.</p>
+
+      <h3>My marketing budget is small. Does data tracking still matter?</h3>
+      <p>It matters even more when your budget is small. When you have R500 or R1000 to spend on advertising, you cannot afford to waste any of it. Tracking helps you understand what is actually generating results so you can put your money into what works and stop spending on what does not.</p>
+    `
+  }
+
+};
+
+// ═══════════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════════
+
+// SVG thumbnails per category (reused from blog listing)
+const THUMBS = {
+  'Google My Business': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#f6f8ff"/><circle cx="190" cy="100" r="72" fill="white" stroke="rgba(58,88,255,.15)" stroke-width="1.5"/><path d="M222 100h-38V82h58c2 7 3 14 3 22 0 34-22 56-60 56-34 0-60-26-60-60s26-60 60-60c16 0 30 6 40 16l-17 17c-6-6-14-10-23-10-20 0-38 18-38 38s18 38 38 38c20 0 31-12 34-29" fill="#3a58ff"/></svg>`,
+  'Social Media': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#1877F2"/><circle cx="50" cy="100" r="140" fill="rgba(255,255,255,.05)"/><text x="190" y="95" font-size="54" text-anchor="middle" fill="rgba(255,255,255,.85)" font-family="sans-serif" font-weight="900">f</text><rect x="112" y="116" width="156" height="5" rx="2.5" fill="rgba(255,255,255,.22)"/></svg>`,
+  'Websites': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#060b35"/><rect x="52" y="26" width="276" height="154" rx="11" fill="rgba(255,255,255,.04)" stroke="rgba(58,88,255,.35)" stroke-width="1"/><rect x="52" y="26" width="276" height="28" rx="11" fill="rgba(58,88,255,.55)"/><rect x="52" y="42" width="276" height="12" fill="rgba(58,88,255,.55)"/><circle cx="72" cy="40" r="5" fill="rgba(255,80,80,.8)"/><circle cx="88" cy="40" r="5" fill="rgba(245,196,40,.8)"/><circle cx="104" cy="40" r="5" fill="rgba(50,205,50,.8)"/><rect x="68" y="68" width="108" height="9" rx="3" fill="rgba(255,255,255,.28)"/><rect x="68" y="84" width="172" height="4" rx="2" fill="rgba(255,255,255,.1)"/></svg>`,
+  'Branding': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#f6f8ff"/><circle cx="190" cy="94" r="74" fill="rgba(58,88,255,.08)"/><polygon points="190,32 236,122 144,122" fill="#3a58ff" opacity=".88"/><circle cx="190" cy="94" r="26" fill="white"/><circle cx="190" cy="94" r="11" fill="#3a58ff"/></svg>`,
+  'Marketing': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#0a0f2e"/><rect x="52" y="136" width="32" height="44" rx="3" fill="rgba(58,88,255,.45)"/><rect x="94" y="112" width="32" height="68" rx="3" fill="rgba(58,88,255,.58)"/><rect x="136" y="86" width="32" height="94" rx="3" fill="rgba(58,88,255,.72)"/><rect x="178" y="58" width="32" height="122" rx="3" fill="#3a58ff"/><rect x="220" y="36" width="32" height="144" rx="3" fill="#3a58ff"/><polyline points="68,130 110,106 152,80 194,52 236,30" stroke="#25d366" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="236" cy="30" r="7" fill="#25d366"/></svg>`,
+  'scientific-approach-to-marketing': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#060b35"/><line x1="40" y1="170" x2="340" y2="170" stroke="rgba(124,155,255,.15)" stroke-width="1"/><line x1="40" y1="130" x2="340" y2="130" stroke="rgba(124,155,255,.08)" stroke-width="1"/><line x1="40" y1="90" x2="340" y2="90" stroke="rgba(124,155,255,.08)" stroke-width="1"/><line x1="40" y1="50" x2="340" y2="50" stroke="rgba(124,155,255,.08)" stroke-width="1"/><line x1="60" y1="30" x2="60" y2="170" stroke="rgba(124,155,255,.2)" stroke-width="1"/><circle cx="90" cy="148" r="4" fill="rgba(124,155,255,.5)"/><circle cx="105" cy="139" r="4" fill="rgba(124,155,255,.5)"/><circle cx="118" cy="152" r="4" fill="rgba(124,155,255,.5)"/><circle cx="98" cy="143" r="4" fill="rgba(124,155,255,.5)"/><circle cx="200" cy="108" r="4" fill="rgba(58,88,255,.8)"/><circle cx="215" cy="98" r="4" fill="rgba(58,88,255,.8)"/><circle cx="228" cy="104" r="4" fill="rgba(58,88,255,.8)"/><circle cx="210" cy="112" r="4" fill="rgba(58,88,255,.8)"/><circle cx="298" cy="62" r="5" fill="#3a58ff"/><circle cx="312" cy="55" r="5" fill="#3a58ff"/><circle cx="285" cy="68" r="5" fill="#3a58ff"/><circle cx="305" cy="70" r="4" fill="#3a58ff"/><line x1="72" y1="158" x2="320" y2="52" stroke="#f5c428" stroke-width="2" stroke-dasharray="6 3" opacity=".8"/></svg>`,
+  'data-driven-marketing-small-business': `<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="380" height="200" fill="#060b35"/><circle cx="300" cy="40" r="120" fill="rgba(58,88,255,.12)"/><rect x="44" y="148" width="18" height="28" rx="2" fill="rgba(124,155,255,.3)"/><rect x="70" y="128" width="18" height="48" rx="2" fill="rgba(124,155,255,.4)"/><rect x="96" y="108" width="18" height="68" rx="2" fill="rgba(58,88,255,.55)"/><rect x="122" y="88" width="18" height="88" rx="2" fill="rgba(58,88,255,.7)"/><rect x="148" y="68" width="18" height="108" rx="2" fill="#3a58ff"/><rect x="174" y="52" width="18" height="124" rx="2" fill="#3a58ff"/><polyline points="53,145 79,125 105,105 131,85 157,65 183,49" stroke="#f5c428" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="183" cy="49" r="5" fill="#f5c428"/><rect x="210" y="46" width="122" height="64" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(124,155,255,.2)" stroke-width="1"/><text x="222" y="70" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="rgba(245,196,40,.9)">23×</text><text x="222" y="83" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,.5)">more likely to</text><text x="222" y="94" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,.5)">acquire customers</text><text x="222" y="106" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(124,155,255,.6)">McKinsey</text></svg>`
+};
+
+function renderPost(slug) {
+  const post = POSTS[slug];
+  const app = document.getElementById('app');
+  if (!post) {
+    app.innerHTML = `<div class="not-found"><h2>Post Not Found</h2><p>This article doesn't exist or may have moved.</p><a href="./blog.html" class="btn-primary" style="margin-top:1rem;">← Back to Blog</a></div>`;
+    return;
+  }
+
+  // Update page meta
+  document.getElementById('pageTitle').textContent = post.title + ' – Webify Blog';
+  document.getElementById('pageDesc').content = post.content.replace(/<[^>]+>/g,'').substring(0,160);
+
+  // Related posts HTML
+  const relatedHTML = (post.related || []).map(rSlug => {
+    const r = POSTS[rSlug]; if (!r) return '';
+    const thumb = THUMBS[rSlug] || THUMBS[r.category] || THUMBS['Websites'];
+    return `
+      <a href="blog-post.html#${rSlug}" class="related-card" onclick="loadPost('${rSlug}');return false;">
+        <div class="related-thumb">${thumb}</div>
+        <div class="related-body">
+          <div class="related-cat">${r.category}</div>
+          <div class="related-title">${r.title}</div>
+        </div>
+        <div class="related-foot">
+          <span>${r.date}</span>
+          <span class="related-read">${r.readTime} →</span>
+        </div>
+      </a>`;
+  }).join('');
+
+  app.innerHTML = `
+    <!-- POST HERO -->
+    <section class="post-hero">
+      <div class="post-hero-inner">
+        <a href="./blog.html" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg>
+          Back to Blog
+        </a>
+        <div class="post-eyebrow">${post.category}</div>
+        <h1>${post.title}</h1>
+        <div class="post-hero-meta">
+          <strong>${post.author}</strong>
+          <div class="dot"></div>
+          <span>${post.date}</span>
+          <div class="dot"></div>
+          <span class="read-time-badge">${post.readTime}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- POST BODY -->
+    <div class="post-wrapper">
+      <div class="post-content">${post.content}</div>
+
+      <div class="divider"></div>
+
+      <!-- INLINE CTA -->
+      <div class="post-cta">
+        <h3>Ready to Grow Your Business Online?</h3>
+        <p>Webify helps township and small businesses across South Africa build a professional digital presence — from R499. No tech skills needed. Live in 3–5 days.</p>
+        <a href="https://wa.me/27791646006?text=Hi%20Webify%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20a%20free%20quote!" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg>
+          Get a Free Quote on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- RELATED POSTS -->
+    ${relatedHTML ? `
+    <section class="related-section">
+      <div class="related-inner">
+        <div class="section-tag">Keep Reading</div>
+        <h2 class="section-title">More <span class="hl">Tips for Your Business</span></h2>
+        <div class="related-grid">${relatedHTML}</div>
+      </div>
+    </section>` : ''}
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function loadPost(slug) {
+  window.location.hash = slug;
+  renderPost(slug);
+}
+
+window.loadPost = loadPost;
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Read slug from hash
+  const slug = window.location.hash.replace('#','') || '';
+  renderPost(slug || Object.keys(POSTS)[0]);
+
+  // Promo mobile rotation
+  const promoItems = document.querySelectorAll('.promo-item');
+  let promoIdx = 0;
+  function rotatePromo() {
+    if (window.innerWidth <= 768) {
+      promoItems.forEach(i => i.classList.remove('active'));
+      promoItems[promoIdx].classList.add('active');
+      promoIdx = (promoIdx + 1) % Math.min(4, promoItems.length);
+    }
+  }
+  rotatePromo(); setInterval(rotatePromo, 3200);
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const overlay = document.getElementById('mobileOverlay');
+  function closeMenu() { navLinks.classList.remove('active'); overlay.classList.remove('active'); menuBtn.textContent = '\u2630'; document.body.style.overflow = ''; }
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('active');
+    overlay.classList.toggle('active', open);
+    menuBtn.textContent = open ? '\u2715' : '\u2630';
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', closeMenu));
+
+  // Smart navbar
+  const navbar = document.getElementById('mainNavbar');
+  const promoBar = document.querySelector('.promo-bar');
+  let lastY = 0;
+  function updateNav() {
+    const sy = window.scrollY;
+    const ph = promoBar ? promoBar.offsetHeight : 0;
+    navbar.style.top = Math.max(0, ph - sy) + 'px';
+    if (sy < 80) navbar.classList.remove('nav-hidden');
+    else if (sy > lastY + 8) navbar.classList.add('nav-hidden');
+    else if (sy < lastY - 4) navbar.classList.remove('nav-hidden');
+    lastY = sy;
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // Footer flip
+  const flipWords = document.querySelectorAll('.flip-word');
+  let flipIdx = 0;
+  if (flipWords.length) {
+    setInterval(() => {
+      flipWords[flipIdx].classList.add('exit');
+      flipWords[flipIdx].classList.remove('active');
+      const ex = flipWords[flipIdx];
+      setTimeout(() => ex.classList.remove('exit'), 500);
+      flipIdx = (flipIdx + 1) % flipWords.length;
+      flipWords[flipIdx].classList.add('active');
+    }, 2400);
+  }
+
+  // Handle hash changes (browser back/forward)
+  window.addEventListener('hashchange', () => {
+    const slug = window.location.hash.replace('#','');
+    if (slug) renderPost(slug);
+  });
+});
+</script>
+</body>
+</html>
